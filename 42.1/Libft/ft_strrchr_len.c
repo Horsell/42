@@ -1,32 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_tabmalloc.c                                     :+:      :+:    :+:   */
+/*   ft_strrchr_len.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jpirsch <jpirsch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/11/14 15:43:44 by jpirsch           #+#    #+#             */
-/*   Updated: 2014/11/15 20:40:18 by jpirsch          ###   ########.fr       */
+/*   Created: 2014/11/15 18:45:10 by jpirsch           #+#    #+#             */
+/*   Updated: 2014/11/15 19:10:44 by jpirsch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char		**ft_tabmalloc(size_t nbstr, size_t slen)
+int		ft_strrchr_len(const char *s, int c)
 {
-	char	**stab;
+	int		n;
 	size_t	i;
 
+	n = ft_strlen((char*)s);
 	i = 0;
-	if (!(stab = malloc(sizeof(char*) * nbstr)))
-		return (NULL);
-	ft_bzero(stab, nbstr);
-	while (i < nbstr)
+	while (i < n + 1)
 	{
-		if (!(stab[i] = (char*)malloc(sizeof(char*) * slen)))
-			return (NULL);
-		ft_bzero(stab[i], slen);
+		if (s[n - i] == (char)c)
+			return (n - i);
 		i++;
 	}
-	return (stab);
+	return (0);
 }

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strtrim.c                                       :+:      :+:    :+:   */
+/*   ft_strtrim_char.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jpirsch <jpirsch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/11 04:29:57 by jpirsch           #+#    #+#             */
-/*   Updated: 2014/11/15 20:16:03 by jpirsch          ###   ########.fr       */
+/*   Updated: 2014/11/15 20:24:36 by jpirsch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ static char	*ft_strcleaner(const char *s, size_t startblanks, size_t endblanks)
 	return (str);
 }
 
-static char	*ft_countblanks(const char *s, size_t loops, size_t slen)
+static char	*ft_countblanks(const char *s, size_t loops, size_t slen, char c)
 {
 	size_t	startblanks;
 	size_t	endblanks;
@@ -46,18 +46,18 @@ static char	*ft_countblanks(const char *s, size_t loops, size_t slen)
 	endblanks = 0;
 	while (*s)
 	{
-		while (loops == 0 && (*s == ' ' || *s == '\n' || *s == '\t'))
+		while (loops == 0 && *s == c)
 		{
 			s++;
 			startblanks++;
 		}
-		if (*s != ' ' && *s != '\n' && *s != '\t')
+		if (*s != c)
 		{
 			loops = 1;
 			endblanks = 0;
 			s++;
 		}
-		while (*s == ' ' || *s == '\n' || *s == '\t')
+		while (*s == c)
 		{
 			endblanks++;
 			s++;
@@ -66,13 +66,13 @@ static char	*ft_countblanks(const char *s, size_t loops, size_t slen)
 	return (ft_strcleaner(s - slen, startblanks, endblanks));
 }
 
-char		*ft_strtrim(const char *s)
+char		*ft_strtrim_char(const char *s, char c)
 {
 	char	*str;
 
 	if (!s)
 		return (NULL);
-	if (!(str = ft_countblanks(s, 0, ft_strlen((char*)s))))
+	if (!(str = ft_countblanks(s, 0, ft_strlen((char*)s), c)))
 		return (NULL);
 	return (str);
 }

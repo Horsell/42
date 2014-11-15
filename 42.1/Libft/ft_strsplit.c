@@ -6,75 +6,54 @@
 /*   By: jpirsch <jpirsch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/11 07:56:07 by jpirsch           #+#    #+#             */
-/*   Updated: 2014/11/14 18:06:25 by jpirsch          ###   ########.fr       */
+/*   Updated: 2014/11/15 20:52:20 by jpirsch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static size_t	ft_countwords(const char *s, char c)
+static char			**ft_filltab(const char *s, char c, size_t n, char **strtab)
 {
-	int	i;
-	int	n;
-	
-	i = 0;
-	n = 0;
-	while (s[i] != '\0')
-	{
-		if ((s[i] == c || i == 0) && s[i + 1] != c && s[i + 1] != '\0')
-			n++;
-		i++;
-	}
-	return (n);
-}
-
-static char		**ft_stabmalloc(size_t nbstr)
-{
-	char	**stab;
-
-	if (!(stab = (char**)malloc(sizeof(char**) * nbstr)))
-		return (NULL);
-	ft_bzero(stab, nbstr);
-	return (stab);
-}
-
-static size_t		ft_strchr_len(const char *s, int c)
-{
+	size_t size;
 	size_t i;
 
+	size = 0;
 	i = 0;
-	while (s[i])
+	while (i <= n)
 	{
-		if (s[i] == (char)c)
-			return (i);
+		if ((size = ft_strchr_len(s, c)) == 0)
+			size = ft_strlen((char*)s);
+		strtab[i] = ft_strsub(s, 0, size);
+		s = s + size + 1;
 		i++;
 	}
-	if (s[i] == (char)c)
-		return (i);
-	return (0);
+	return (strtab);
 }
 
-char			**ft_strsplit(const char *s, char c)
+char				**ft_strsplit(const char *s, char c)
 {
 	char	**strtab;
 	size_t	size;
 	size_t	n;
 	size_t	i;
 
-	if (!s || !c || !*s)
+	if (!s || !c)
 		return (NULL);
 	n = ft_countwords(s, c);
-	if (!(strtab = ft_tabmalloc(n + 1, ft_strlen((char*)s))))
+	if (!(strtab = ft_tabmalloc(n + 1, ft_strlen((char*)s) + 1)))
 		return (NULL);
-	size = 0;
-	i = 0;
-	while (i < n)
+	if (!n)
+		strtab[0] = NULL;
+	else
 	{
-		if ((size = ft_strchr_len(s, c)) <= 1)
-			size = ft_strlen((char*)s);
-		strtab[i] = ft_strsub(s, 0, size);
-		s = s + size + 1;
-		i++;
+		s = ft_strtrim_char(s, c);
+		ft_putendl(strtab[0]);
+		ft_putendl((char*)s);
+		if (n == 1)
+			strtab[0] = (char*)s;
+		else
+			strtab = ft_filltab(s, c, n, strtab);
+		ft_putendl(strtab[0]);
 	}
 	return (strtab);
 }

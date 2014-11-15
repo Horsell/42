@@ -6,7 +6,7 @@
 /*   By: jpirsch <jpirsch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/09/09 18:19:55 by jpirsch           #+#    #+#             */
-/*   Updated: 2014/11/14 16:38:41 by jpirsch          ###   ########.fr       */
+/*   Updated: 2014/11/15 18:53:33 by jpirsch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,11 @@ int		ft_strnequ(const char *s1, const char *s2, size_t n);
 char	*ft_strsub(const char *s1, unsigned int start, size_t len);
 char	*ft_strjoin(const char *s1, const char *s2);
 char	*ft_strtrim(const char *s);
+char	*ft_strtrim_char(const char *s, char c);
 char	**ft_strsplit(const char *s, char c);
+size_t	ft_strchr_len(const char *s, int c);
+int		ft_strrchr_len(const char *s, int c);
+size_t	ft_countwords(const char *s, char c);
 
 char	**ft_tabmalloc(size_t nbstr, size_t slen);
 
