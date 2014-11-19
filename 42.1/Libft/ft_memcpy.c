@@ -6,7 +6,7 @@
 /*   By: jpirsch <jpirsch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/04 19:11:39 by jpirsch           #+#    #+#             */
-/*   Updated: 2014/11/05 18:04:28 by jpirsch          ###   ########.fr       */
+/*   Updated: 2014/11/18 19:28:41 by jpirsch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	*ft_memcpy(void *dst, const void *src, size_t n)
 {
-	int i;
+	size_t i;
 
 	i = 0;
 	while (i < n)

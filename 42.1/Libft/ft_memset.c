@@ -6,7 +6,7 @@
 /*   By: jpirsch <jpirsch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/04 16:53:41 by jpirsch           #+#    #+#             */
-/*   Updated: 2014/11/05 18:12:54 by jpirsch          ###   ########.fr       */
+/*   Updated: 2014/11/18 19:23:21 by jpirsch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	*ft_memset(void *b, int c, size_t len)
 {
-	int i;
+	size_t i;
 
 	i = 0;
 	while (i < len)

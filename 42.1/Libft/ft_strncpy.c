@@ -6,7 +6,7 @@
 /*   By: jpirsch <jpirsch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/07 00:13:16 by jpirsch           #+#    #+#             */
-/*   Updated: 2014/11/12 05:52:50 by jpirsch          ###   ########.fr       */
+/*   Updated: 2014/11/18 19:24:27 by jpirsch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 char	*ft_strncpy(char *dst, const char *src, size_t n)
 {
-	int i;
+	size_t i;
 
 	i = 0;
 	while (i < n && *src)

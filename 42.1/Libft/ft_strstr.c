@@ -6,7 +6,7 @@
 /*   By: jpirsch <jpirsch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/09 12:56:11 by jpirsch           #+#    #+#             */
-/*   Updated: 2014/11/09 12:57:55 by jpirsch          ###   ########.fr       */
+/*   Updated: 2014/11/18 15:47:10 by jpirsch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,14 +23,13 @@ char	*ft_strstr(const char *s1, const char *s2)
 		return ((char*)s1);
 	while (*s1)
 	{
-		while (*s1 == *s2)
+		while (s1[i] == s2[i])
 		{
 			if (i == j)
-				return ((char*)s1 - j);
+				return ((char*)s1);
 			i++;
-			s1++;
-			s2++;
 		}
+		i = 0;
 		s1++;
 	}
 	return (NULL);
