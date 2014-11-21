@@ -6,7 +6,7 @@
 /*   By: jpirsch <jpirsch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/18 20:53:08 by jpirsch           #+#    #+#             */
-/*   Updated: 2014/11/21 07:29:10 by jpirsch          ###   ########.fr       */
+/*   Updated: 2014/11/21 06:32:01 by jpirsch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,12 @@
 #include <sys/types.h>
 #include <sys/uio.h>
 #include "get_next_line.h"
+
+void	t_gnl_init(t_gnl info, const int fd)
+{
+	info.index = 0;
+	info.fd = fd;
+}
 
 char	*line_join(char *buf, char **tmp)
 {
@@ -37,30 +43,21 @@ int		get_next_line(const int fd, char **line)
 {
 	char			buf[BUF_SIZE + 1];
 	int				ret;
-	static char		**info = NULL;
-	char			idfd;
+	static t_gnl	info;
 
-	if (fd < 0 || fd > 255)
+	ft_bzero(buf, BUF_SIZE + 1);
+	t_gnl_init(info, fd);
+	ret = read(fd, buf, BUF_SIZE);
+	if (ret == -1)
 		return (-1);
-	if (!info)
+	else if (ret == 0)
 	{
-		if (info = ft_memalloc(sizeof(char *) * 256) == NULL)
-			return (-1);
+		*line = line_join(buf, info.tmp);
 	}
-	if (info[idfd])
+	else
 	{
-		tmp = ft_strchr(info[idfd], '\n');
+			ft_putendl("ret != 0 et -1");
+		*line = line_join(buf, info.tmp);
 	}
 	return (0);
 }
-
-
-/*
-	if ((ret = read(fd, buf, BUF_SIZE)) > 0)
-	{
-		buf[ret] = '\0';
-	}
-	else if
-	{
-	}
-	else*/
