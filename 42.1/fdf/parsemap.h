@@ -1,24 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fdf.h                                              :+:      :+:    :+:   */
+/*   parsemap.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jpirsch <jpirsch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/11/27 20:01:16 by jpirsch           #+#    #+#             */
-/*   Updated: 2014/12/02 07:57:57 by jpirsch          ###   ########.fr       */
+/*   Created: 2014/12/02 07:42:15 by jpirsch           #+#    #+#             */
+/*   Updated: 2014/12/02 07:47:32 by jpirsch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FDF_H
-# define FDF_H
+#ifndef PARSEMAP_H
+# define PARSEMAP_H
 
-typedef struct	s_coord
-{
-	int			x;
-	int			y;
-}				t_coord;
-
-void	fdf(int	**map);
+int		*parse_map(char *line);
 
 #endif

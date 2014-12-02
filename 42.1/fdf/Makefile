@@ -6,13 +6,13 @@
 #    By: jpirsch <jpirsch@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2014/09/14 00:47:31 by jpirsch           #+#    #+#              #
-#    Updated: 2014/11/27 21:04:37 by jpirsch          ###   ########.fr        #
+#    Updated: 2014/12/02 07:55:01 by jpirsch          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 FLAGS = -Wall -Wextra -Werror
 NAME	=	fdf
-SRC		=	get_next_line.c fdf.c main.c
+SRC		=	get_next_line.c parsemap.c drawline.c fdf.c main.c
 OBJ		=	$(SRC:.c=.o)
 LIB		=	../libft/libft.a
 LIB_DIR	=	./libft

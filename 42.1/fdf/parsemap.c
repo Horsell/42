@@ -1,24 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fdf.h                                              :+:      :+:    :+:   */
+/*   parsemap.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jpirsch <jpirsch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/11/27 20:01:16 by jpirsch           #+#    #+#             */
-/*   Updated: 2014/12/02 07:57:57 by jpirsch          ###   ########.fr       */
+/*   Created: 2014/12/02 07:42:00 by jpirsch           #+#    #+#             */
+/*   Updated: 2014/12/02 07:45:03 by jpirsch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FDF_H
-# define FDF_H
+#include "libft.h"
+#include "parsemap.h"
 
-typedef struct	s_coord
+int		*parse_map(char *line)
 {
-	int			x;
-	int			y;
-}				t_coord;
+	size_t	n;
+	int		*map;
+	char	**str;
+	size_t	j;
 
-void	fdf(int	**map);
-
-#endif
+	n = ft_countwords(line, ' ') + 1;
+	map = (int*)malloc(sizeof(int*) * n);
+	str = ft_strsplit(line, ' ');
+	map[0] = n;
+	j = 1;
+	while (j < n)
+	{
+		map[j] = ft_atoi(str[j - 1]);
+		j++;
+	}
+	return (map);
+}

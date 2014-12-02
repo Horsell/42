@@ -6,7 +6,7 @@
 /*   By: jpirsch <jpirsch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/11 07:56:07 by jpirsch           #+#    #+#             */
-/*   Updated: 2014/11/27 17:05:30 by jpirsch          ###   ########.fr       */
+/*   Updated: 2014/12/02 07:50:22 by jpirsch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ char				**ft_strsplit(const char *s, char c)
 	if (!s || !c)
 		return (NULL);
 	n = ft_countwords(s, c);
-	if (!(strtab = ft_tabmalloc(n + 1, ft_strlen((char*)s))))
+	if (!(strtab = (char**)ft_tabmalloc(n + 1, ft_strlen((char*)s))))
 		return (NULL);
 	if (!n)
 		strtab[0] = NULL;

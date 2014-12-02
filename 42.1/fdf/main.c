@@ -6,12 +6,13 @@
 /*   By: jpirsch <jpirsch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/26 07:31:16 by jpirsch           #+#    #+#             */
-/*   Updated: 2014/11/28 09:30:41 by jpirsch          ###   ########.fr       */
+/*   Updated: 2014/12/02 07:51:59 by jpirsch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 #include "fdf.h"
+#include "parsemap.h"
 #include <fcntl.h>
 
 int		main(void)
