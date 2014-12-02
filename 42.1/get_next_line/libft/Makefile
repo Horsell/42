@@ -6,7 +6,7 @@
 #    By: jpirsch <jpirsch@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2014/09/13 19:48:58 by jpirsch           #+#    #+#              #
-#    Updated: 2014/11/19 01:19:36 by jpirsch          ###   ########.fr        #
+#    Updated: 2014/11/24 10:16:01 by jpirsch          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,6 +39,7 @@ SRC		= ft_atoi.c \
 		  ft_strcmp.c \
 		  ft_strcpy.c \
 		  ft_strdup.c \
+		  ft_strjoin.c \
 		  ft_strlcat.c \
 		  ft_strlen.c \
 		  ft_strncat.c \

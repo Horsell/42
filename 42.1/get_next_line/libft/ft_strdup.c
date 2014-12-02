@@ -6,7 +6,7 @@
 /*   By: jpirsch <jpirsch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/09/13 19:35:02 by jpirsch           #+#    #+#             */
-/*   Updated: 2014/11/18 18:03:02 by jpirsch          ###   ########.fr       */
+/*   Updated: 2014/12/02 01:07:52 by jpirsch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,5 +24,6 @@ char	*ft_strdup(char *str)
 		copy[i] = str[i];
 		i++;
 	}
+	copy[i] = '\0';
 	return (copy);
 }

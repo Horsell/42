@@ -6,7 +6,7 @@
 /*   By: jpirsch <jpirsch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/09/13 19:32:46 by jpirsch           #+#    #+#             */
-/*   Updated: 2014/11/18 19:32:53 by jpirsch          ###   ########.fr       */
+/*   Updated: 2014/11/24 15:50:55 by jpirsch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,5 +14,10 @@
 
 void	ft_putstr(char *str)
 {
-	write(1, str, ft_strlen(str));
+	size_t i;
+
+	i = 0;
+	while (str[i])
+		i++;
+	write(1, str, i);
 }

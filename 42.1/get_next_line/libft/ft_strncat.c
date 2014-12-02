@@ -6,7 +6,7 @@
 /*   By: jpirsch <jpirsch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/08 06:51:43 by jpirsch           #+#    #+#             */
-/*   Updated: 2014/11/18 19:23:38 by jpirsch          ###   ########.fr       */
+/*   Updated: 2014/11/24 18:55:24 by jpirsch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,5 +26,6 @@ char	*ft_strncat(char *s1, const char *s2, size_t n)
 		s1[j + i] = s2[i];
 		i++;
 	}
+	s1[j + i] = 0;
 	return (s1);
 }
