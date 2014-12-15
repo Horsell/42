@@ -1,24 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strnew.c                                        :+:      :+:    :+:   */
+/*   ft_strsub.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jpirsch <jpirsch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/12/15 14:37:48 by jpirsch           #+#    #+#             */
-/*   Updated: 2014/12/15 14:37:50 by jpirsch          ###   ########.fr       */
+/*   Created: 2014/12/15 14:26:19 by jpirsch           #+#    #+#             */
+/*   Updated: 2014/12/15 14:26:48 by jpirsch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strnew(size_t n)
+char	*ft_strsub(const char *s, unsigned int start, size_t len)
 {
-	char	*s;
+	size_t	i;
+	char	*str;
 
-	if (!n)
+	i = 0;
+	if (!s)
 		return (NULL);
-	s = malloc(sizeof(char*) * n);
-	ft_bzero((void *)s, n);
-	return (s);
+	if (len == 0)
+		return (ft_strdup(""));
+	if (!(str = ft_strnew(len)))
+		return (NULL);
+	s += start;
+	while (len--)
+	{
+		str[i] = s[i];
+		if (str[i] == '\0')
+			return (str);
+		i++;
+	}
+	str[i] = '\0';
+	return (str);
 }
