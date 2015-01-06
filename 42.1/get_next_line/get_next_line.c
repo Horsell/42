@@ -6,7 +6,7 @@
 /*   By: jpirsch <jpirsch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/12/15 14:35:01 by jpirsch           #+#    #+#             */
-/*   Updated: 2014/12/15 14:59:04 by jpirsch          ###   ########.fr       */
+/*   Updated: 2015/01/06 16:39:25 by jpirsch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ int		split_tmp2(t_info *f, char **line)
 int		get_next_line(int fd, char **line)
 {
 	static t_info	f;
-	char			buff[BUFF_SIZE];
+	char			buff[BUFF_SIZE + 1];
 
 	if (fd == -1)
 		return (-1);
@@ -74,7 +74,7 @@ int		get_next_line(int fd, char **line)
 		return (split_tmp2(&f, line));
 	else if (!(f.i = ft_strchr_len(f.s, '\n')))
 	{
-		while ((f.ret = read(fd, buff, BUFF_SIZE)))
+		while ((f.ret = read(fd, buff, BUFF_SIZE)) > 0)
 		{
 			buff[f.ret] = '\0';
 			f.s = ft_strjoin2(f.s, buff, f.ret);
