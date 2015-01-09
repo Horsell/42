@@ -5,15 +5,15 @@
 #                                                     +:+ +:+         +:+      #
 #    By: jpirsch <jpirsch@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2014/09/13 15:55:33 by jpirsch           #+#    #+#              #
-#    Updated: 2014/12/25 13:27:01 by jpirsch          ###   ########.fr        #
+#    Created: 2015/01/05 01:28:32 by jpirsch           #+#    #+#              #
+#    Updated: 2015/01/05 01:28:59 by jpirsch          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-export FLAGS	=	-Wall -Wextra -Werror
-NAME			=	eval_expr
-SRC_DIR			=	./sources
-LIB_DIR			=	./libft
+export FLAGS	= -Wall -Wextra -Werror
+NAME			= fdf
+SRC_DIR			= ./sources
+LIB_DIR			= ./libft
 
 all:
 	make -C $(LIB_DIR)

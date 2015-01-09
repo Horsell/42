@@ -6,7 +6,7 @@
 /*   By: jpirsch <jpirsch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/12/30 14:44:11 by jpirsch           #+#    #+#             */
-/*   Updated: 2015/01/02 22:16:35 by jpirsch          ###   ########.fr       */
+/*   Updated: 2015/01/05 03:18:14 by jpirsch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,9 @@ char	**ft_split(char *line, int n)
 	int		l;
 	char	**split;
 
-	if (!(split = malloc(sizeof(char*) * n + 1)))
+	if (!(split = malloc(sizeof(char*) * n + 2)))
 		return (NULL);
-	ft_bzero(split, n);
+	ft_bzero(split, n + 1);
 	i = 0;
 	while (i < n)
 	{
@@ -33,19 +33,23 @@ char	**ft_split(char *line, int n)
 	i = 0;
 	j = 0;
 	l = (int)ft_strlen(line);
+	ft_putendl(line);
 	while (i < l && j < n)
 	{
 		k = 0;
 		while (i < l && ((line[i] >= '0' && line[i] <= '9') || line[i] == '-'))
 		{
 			split[j][k] = line[i];
+			ft_putchar(line[i]);
 			i++;
 			k++;
 		}
 		while (i < l && !((line[i] >= '0' && line[i] <= '9') || line[i] == '-'))
 			i++;
+	ft_putchar(' ');
 		j++;
 	}
+	ft_putchar('\n');
 	return (split);
 }
 
@@ -58,14 +62,16 @@ int		*parse_line(char *line, int n)
 	if (!line)
 		return (NULL);
 	split = ft_split(line, n);
-	if (!(map = malloc(sizeof(int) * n + 1)))
+	if (!(map = malloc(sizeof(int) * n + 2)))
 		return (NULL);
 	map[0] = n;
 	j = 1;
 	while (j <= n)
 	{
 		if (split[j - 1])
+		{
 			map[j] = ft_atoi(split[j - 1]);
+		}
 		j++;
 	}
 	free(split);
@@ -127,6 +133,8 @@ int		**parse(int fd)
 		{
 			ft_putnbr(map[i][j]);
 			ft_putchar(' ');
+//			ft_putnbr(j);
+//			ft_putchar(' ');
 			j++;
 		}
 		ft_putchar('\n');

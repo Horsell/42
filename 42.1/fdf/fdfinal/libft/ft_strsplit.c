@@ -6,7 +6,7 @@
 /*   By: jpirsch <jpirsch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/11 07:56:07 by jpirsch           #+#    #+#             */
-/*   Updated: 2014/12/02 07:50:22 by jpirsch          ###   ########.fr       */
+/*   Updated: 2014/11/18 20:59:04 by jpirsch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static char			**ft_filltab(const char *s, char c, size_t n, char **strtab)
 
 	size = 0;
 	i = 0;
-	while (i < n)
+	while (i <= n)
 	{
 		if ((size = ft_strchr_len(s, c)) == 0)
 			size = ft_strlen((char*)s);
@@ -27,6 +27,7 @@ static char			**ft_filltab(const char *s, char c, size_t n, char **strtab)
 		s = s + size + 1;
 		i++;
 	}
+	free(strtab);
 	return (strtab);
 }
 
@@ -40,7 +41,7 @@ char				**ft_strsplit(const char *s, char c)
 	if (!s || !c)
 		return (NULL);
 	n = ft_countwords(s, c);
-	if (!(strtab = (char**)ft_tabmalloc(n + 1, ft_strlen((char*)s))))
+	if (!(strtab = ft_tabmalloc(n + 1, ft_strlen((char*)s))))
 		return (NULL);
 	if (!n)
 		strtab[0] = NULL;

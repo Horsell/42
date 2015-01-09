@@ -6,7 +6,7 @@
 /*   By: jpirsch <jpirsch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/10 04:11:31 by jpirsch           #+#    #+#             */
-/*   Updated: 2014/12/16 16:22:33 by jpirsch          ###   ########.fr       */
+/*   Updated: 2014/11/11 10:57:09 by jpirsch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,11 @@ char	*ft_strmapi(const char *s, char (*f)(unsigned int, char))
 	char	*str;
 
 	i = 0;
+	str = ft_strnew(sizeof(s));
 	if (!s)
-		return (NULL);
-	str = ft_strnew(sizeof(char*) * ft_strlen(s));
+		return ;
 	if (!f)
-		return (str);
+		return ;
 	while (*s)
 	{
 		*str = f(i, *(char*)s);

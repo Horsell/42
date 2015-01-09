@@ -5,19 +5,20 @@
 #                                                     +:+ +:+         +:+      #
 #    By: jpirsch <jpirsch@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2014/09/14 00:47:31 by jpirsch           #+#    #+#              #
-#    Updated: 2014/12/30 15:03:05 by jpirsch          ###   ########.fr        #
+#    Created: 2015/01/05 01:32:20 by jpirsch           #+#    #+#              #
+#    Updated: 2015/01/09 12:25:01 by jpirsch          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME	=	../fdf
-SRC		=	main.c \
-			parse.c \
-			drawline.c \
+SRC		= 	main.c \
+	 		parse.c \
+		 	drawline.c \
 			get_next_line.c \
 			mlx_env.c \
+			hook.c \
 			coord.c
-OBJ		=	$(SRC:.c=.o)
+OBJ		= $(SRC:.c=.o)
 
 all: $(NAME)
 

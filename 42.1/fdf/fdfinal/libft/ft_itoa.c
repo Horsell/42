@@ -6,12 +6,12 @@
 /*   By: jpirsch <jpirsch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/11 10:46:38 by jpirsch           #+#    #+#             */
-/*   Updated: 2015/01/03 03:10:08 by jpirsch          ###   ########.fr       */
+/*   Updated: 2015/01/05 01:43:32 by jpirsch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-
+#include "libft.h"
 char	*reverse(char *s)
 {
 	int		i;
@@ -19,7 +19,7 @@ char	*reverse(char *s)
 	char	c;
 
 	i = 0;
-	j = ft_strlen(s) - 1; 
+	j = ft_strlen(s) - 1;
 	while (i < j)
 	{
 		c = s[i];
@@ -49,7 +49,7 @@ char	*ft_itoa(int n)
 	while (n > 0)
 	{
 		s[i++] = n % 10 + '0';
-		n /= 10; 
+		n /= 10;
 	}
 	if (sign < 0)
 		s[i++] = '-';

@@ -1,17 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mlx_env.h                                          :+:      :+:    :+:   */
+/*   fdf.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jpirsch <jpirsch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/12/29 02:21:11 by jpirsch           #+#    #+#             */
-/*   Updated: 2015/01/03 01:54:29 by jpirsch          ###   ########.fr       */
+/*   Updated: 2015/01/09 12:25:46 by jpirsch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef TEST_H
-# define TEST_H
+#ifndef FDF_H
+# define FDF_H
+
+typedef struct			s_key
+{
+	int					echap;
+	int					decal_down;
+	int					decal_up;
+	int					decal_right;
+	int					decal_left;
+	int					zoom;
+	int					zoom_back;
+	int					cte1_increase;
+	int					cte1_decrease;
+	int					isometric;
+	int					parallel;
+	int					conic;
+	int					scale_increase;
+	int					scale_decrease;
+	int					r;
+	int					g;
+	int					b;
+}						t_key;
 
 typedef struct			s_env
 {
@@ -25,12 +46,15 @@ typedef struct			s_env
 	int					**map;
 	int					proj;
 	double				scale;
+	double				cte1;
 	int					decalx;
 	int					decaly;
 	int					zoom;
-	unsigned char		R;
-	unsigned char		G;
-	unsigned char		B;
+	unsigned char		r;
+	unsigned char		g;
+	unsigned char		b;
+	unsigned char		c;
+	t_key				key;
 }						t_env;
 
 typedef struct			s_point
@@ -40,7 +64,17 @@ typedef struct			s_point
 	int					z;
 	unsigned int		color;
 }						t_point;
-//mlx_env
+
+/*
+ * hook
+ */
+void	init_t_key(t_key *key);
+int		key_press(int keycode, t_env *e);
+int		key_release(int keycode, t_env *e);
+int		loop_hook(t_env *e);
+/**
+ **  mlx_env
+ **/
 void					px_to_img(t_env *e, int x, int y);
 void					print_state(t_env *e);
 void					env(int **map);
