@@ -1,0 +1,51 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parse.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jpirsch <jpirsch@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2015/01/12 05:12:06 by jpirsch           #+#    #+#             */
+/*   Updated: 2015/01/12 05:30:43 by jpirsch          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "libft.h"
+#include "get_next_line.h"
+
+void	**tabmalloc(size_t size, int lines, int col)
+{
+	void	**tab;
+	int		i;
+
+	tab = malloc(sizeof(int) * lines);
+	i = 0;
+	while (i < lines)
+	{
+		tab[i] = malloc(sizeof(size) * col); 
+		i++;
+	}
+	return (tab);
+}
+
+int		**parse(int fd)
+{
+	int		ret;
+	int		**map;
+	char	*line;
+	int		i;
+	int		j;
+
+	map = (int**)tabmalloc(sizeof(int), 10, 10);
+	i = 0;
+	j = 0;
+	while ((ret = get_next_line(fd, &line)) > 0)
+	{
+		ft_putendl(line);
+		ft_putstr("map[i][0] : ");
+		ft_putnbr(ft_atoi(&line[0]));
+		ft_putchar('\n');
+		map[i][j] = ft_atoi(&line[0]);
+	}
+	return (map);
+}
