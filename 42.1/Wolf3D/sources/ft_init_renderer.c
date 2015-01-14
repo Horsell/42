@@ -6,7 +6,7 @@
 /*   By: jpirsch <jpirsch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/13 12:43:38 by jpirsch           #+#    #+#             */
-/*   Updated: 2015/01/13 12:55:21 by jpirsch          ###   ########.fr       */
+/*   Updated: 2015/01/14 05:11:04 by jpirsch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,10 @@
 #include "libft.h"
 #include "wolf.h"
 
-SDL_Renderer* g_renderer;
-
-SDL_Renderer* ft_getrenderer(void)
+SDL_Renderer	*ft_init_renderer(SDL_Window *win_sdl)
 {
-	return (g_renderer);
-}
+	SDL_Renderer *g_renderer;
 
-void			ft_init_renderer(SDL_Window	 *win_sdl)
-{
 	if ((g_renderer = SDL_CreateRenderer(win_sdl, -1, \
 					SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC \
 					)) == NULL)
@@ -32,4 +27,5 @@ void			ft_init_renderer(SDL_Window	 *win_sdl)
 //		ft_free();
 		exit(-1);
 	}
+	return (g_renderer);
 }

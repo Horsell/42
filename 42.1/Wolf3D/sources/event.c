@@ -1,26 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_draw_sdl.c                                      :+:      :+:    :+:   */
+/*   event.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jpirsch <jpirsch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/01/13 11:44:32 by jpirsch           #+#    #+#             */
-/*   Updated: 2015/01/14 04:54:24 by jpirsch          ###   ########.fr       */
+/*   Created: 2015/01/14 08:07:38 by jpirsch           #+#    #+#             */
+/*   Updated: 2015/01/14 11:50:00 by jpirsch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-//#include "SDL/SDL.h"
-#include "libft.h"
 #include "wolf.h"
 
-void	draw_point(SDL_Renderer *rend, int x, int y)
+void	handle_event(t_env *e)
 {
-	if (SDL_RenderDrawPoint(rend, x, y) < 0)
+	if (e->event.type == SDL_KEYDOWN)
 	{
-		ft_putstr_fd("SetRenderDrawPoint error ", 2);
-		ft_putendl_fd((char*)SDL_GetError(), 2);
-	//	ft_free();
-		exit(-1);
+		if (e->event.key.keysym.sym == SDLK_ESCAPE)
+			exit(1);
 	}
 }

@@ -6,7 +6,7 @@
 #    By: jpirsch <jpirsch@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/01/05 01:32:20 by jpirsch           #+#    #+#              #
-#    Updated: 2015/01/13 12:55:45 by jpirsch          ###   ########.fr        #
+#    Updated: 2015/01/14 11:51:46 by jpirsch          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,10 @@ SRC		= 	main.c \
 			parse.c \
 			ft_init_sdl.c \
 			ft_init_renderer.c \
-			ft_draw_sdl.c
+			ft_draw_sdl.c \
+			sdl_env.c \
+			event.c \
+			draw.c
 OBJ		= $(SRC:.c=.o)
 
 all: $(NAME)
