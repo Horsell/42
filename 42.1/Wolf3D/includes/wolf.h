@@ -6,7 +6,7 @@
 /*   By: jpirsch <jpirsch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/12 05:24:41 by jpirsch           #+#    #+#             */
-/*   Updated: 2015/01/15 07:36:23 by jpirsch          ###   ########.fr       */
+/*   Updated: 2015/01/18 03:47:13 by jpirsch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,18 +18,18 @@
 # define POS_Y 0
 # define POS_WIDTH 800
 # define POS_HEIGHT 600
+# define WALL_HEIGHT 400
 # define SDL_WIN_FLAGS SDL_WINDOW_SHOWN
 # define SDL_INIT_FLAGS SDL_INIT_VIDEO
 
 typedef struct			s_point
 {
-	int					x;
-	int					y;
-	int					z;
+	float				x;
+	float				y;
+	float 				z;
 	unsigned char		r;
 	unsigned char		g;
 	unsigned char		b;
-		
 }						t_point;
 
 typedef struct			s_cam
