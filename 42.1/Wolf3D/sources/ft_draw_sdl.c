@@ -6,11 +6,10 @@
 /*   By: jpirsch <jpirsch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/13 11:44:32 by jpirsch           #+#    #+#             */
-/*   Updated: 2015/01/14 04:54:24 by jpirsch          ###   ########.fr       */
+/*   Updated: 2015/01/18 04:36:10 by jpirsch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-//#include "SDL/SDL.h"
 #include "libft.h"
 #include "wolf.h"
 

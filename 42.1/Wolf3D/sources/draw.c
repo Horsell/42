@@ -6,11 +6,12 @@
 /*   By: jpirsch <jpirsch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/14 05:13:47 by jpirsch           #+#    #+#             */
-/*   Updated: 2015/01/15 12:21:59 by jpirsch          ###   ########.fr       */
+/*   Updated: 2015/01/18 06:33:31 by jpirsch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
+#include "libft.h"
 #include "wolf.h"
 
 void	draw_line(t_env *e, t_point start, t_point end)
@@ -31,94 +32,90 @@ void	draw_line(t_env *e, t_point start, t_point end)
 	while (dd-- >= 0)
 	{
 		if (x < 1440 && x > 0 && y > 0 && y < 900)
-			draw_point(e->rend, x, y);
+			draw_point(e->rend, (int)x, (int)y);
 		x += dx;
 		y += dy;
 	}
 }
-
 /*
- ** Calcul de la distance du rayon projete aux bords de la map.
- */
-
-double	dist_rp(t_env *e)
+** Calculate distance of ray to map bound.
+*/
+double	dist_rp(t_cam *cam)
 {
 	int		xmax;
 	int		ymax;
 	double	d_rp;
 
 	xmax = 9;
-	ymax = 9;
-	if (e->cam.rpa < M_PI / 4)
+	ymax = 0;
+	if (cam->rpa < M_PI / 4)
 	{
-		e->cam.rpx = xmax - e->cam.xo;
-		d_rp = tan(e->cam.a) * e->cam.rpx;
-		e->cam.rpy = sqrt((d_rp * d_rp) - (e->cam.rpx * e->cam.rpx));
+		cam->rpx = xmax - cam->xo;
+		cam->rpy = tan(cam->rpa) * cam->rpx;
+		d_rp = sqrt((cam->rpy * cam->rpy) + (cam->rpx * cam->rpx));
 	}
-	else
+	else if (cam->rpa < M_PI / 2)
 	{
-		e->cam.rpy = ymax - e->cam.yo;
-		d_rp = tan(M_PI / 2 - e->cam.a) * e->cam.rpy;
-		e->cam.rpx = sqrt((d_rp * d_rp) - (e->cam.rpy * e->cam.rpy));
+		cam->rpy = ymax - cam->yo;
+		cam->rpx = tan(M_PI / 2 - cam->rpa) * cam->rpy;
+		d_rp = sqrt((cam->rpx * cam->rpx) + (cam->rpy * cam->rpy));
+	}
+	else if (cam->rpa < 3 * (M_PI / 4))
+	{
+		cam->rpy = ymax - cam->yo;
+		cam->rpx = tan(M_PI / 2 - cam->rpa) * cam->rpy;
+		d_rp = sqrt((cam->rpx * cam->rpx) + (cam->rpy * cam->rpy));
 	}
 	return (d_rp);
 }
-
 /*
- ** Detecte les intersections entre le rayon projete et les cases de la map.
- */
-
-void	inter(t_env *e)
+** Detects intersect of ray and map walls.
+*/
+double	inter(t_env *e)
 {
 	double	d_rp;
 
-	d_rp = dist_rp(e);
+	d_rp = dist_rp(&e->cam);
 	(void)d_rp;
 	/*while (d_rp-- >= 0)
 	{
-		printf("rpx : %lf", e->cam.rpx);
-		printf("rpy : %lf", e->cam.rpy);
-		printf("d_rp : %lf\n", d_rp);
 	}*/
+	//printf("d_rp : %lf	", d_rp);
+	return (d_rp);
 }
-
 /*
- ** Trace un rayon par pixel de largeur d'ecran.
- ** soit 
- */
-
+** Trace a ray for each pixel in screen width.
+*/
 void	raycast(t_env *e)
 {
-	t_point	start;
-	t_point	end;
+	int	i;
+	t_point start;
+	t_point end;
+	double d;
+	double h;
 
-	start.x = (int)e->cam.xo;
-	start.y = (int)e->cam.yo;
-	end.x = (int)e->cam.rpx;
-	end.y = (int)e->cam.rpy;
+	i = 800;
+	e->cam.rpa = 0;
 	while (e->cam.a_cam + e->cam.rpa < e->cam.a_cam + e->cam.a)
 	{
-		inter(e);
-		printf("rpa : %lf\n", e->cam.rpa);
+		d = 300 * inter(e);
+		h = (/*692*/200 * WALL_HEIGHT) / d;
+		start.x = i;
+		start.y = (POS_HEIGHT / 2) - (h / 2);
+		end.x = i;
+		end.y = (POS_HEIGHT / 2) + (h / 2);
 		draw_line(e, start, end);
 		e->cam.rpa += e->cam.a / POS_WIDTH;
+		i--;
 	}
 }
-
-
 
 void	draw(t_env *e)
 {
 	SDL_SetRenderDrawColor(e->rend, 0, 0, 0, 0);
 	SDL_RenderClear(e->rend);
-
 	SDL_SetRenderDrawColor(e->rend, 255, 0, 0, 0);
-
-	e->cam.xo = 7.5;
-	e->cam.yo = 2.5;
-	e->cam.a_cam = 0;
-	e->cam.a = M_PI / 3;
-
+			printf("a_cam = %lf\n", e->cam.a_cam);
 	raycast(e);
 	SDL_RenderPresent(e->rend);
 }
