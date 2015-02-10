@@ -6,7 +6,7 @@
 /*   By: jpirsch <jpirsch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/12/29 02:21:11 by jpirsch           #+#    #+#             */
-/*   Updated: 2015/01/09 02:49:37 by jpirsch          ###   ########.fr       */
+/*   Updated: 2015/02/10 10:42:37 by jpirsch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,20 @@ typedef struct			s_env
 	int					endian;
 	int					decalx;
 	int					decaly;
-	int					zoom;
+	double				x;
+	double				y;
+	double				zoom;
 	int					fract_type;
 	unsigned char		R;
 	unsigned char		G;
 	unsigned char		B;
 }						t_env;
+
+typedef struct			s_pt
+{
+	double				x;
+	double				y;
+}						t_pt;
 
 typedef struct			s_point
 {
