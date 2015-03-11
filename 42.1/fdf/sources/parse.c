@@ -6,7 +6,7 @@
 /*   By: jpirsch <jpirsch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/12/30 14:44:11 by jpirsch           #+#    #+#             */
-/*   Updated: 2015/01/12 02:53:14 by jpirsch          ###   ########.fr       */
+/*   Updated: 2015/02/08 05:29:24 by jpirsch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ char	**ft_split(char *line, int n)
 			i++;
 			k++;
 		}
-		while (i < l && !((line[i] >= '0' && line[i] <= '9') || line[i] == '-'))
+		while (i < l && !((line[i] >= '0' && line[i] <= '9')))
 			i++;
 		j++;
 	}
@@ -63,7 +63,11 @@ int		*parse_line(char *line, int n)
 		}
 		j++;
 	}
-	free(split);
+	while (j - 1 >= 0)
+	{
+		free(split[j - 1]);
+		j--;
+	}
 	return (map);
 }
 
@@ -118,7 +122,6 @@ int		**parse(int fd)
 	int		**map;
 	int		n;
 	int		i;
-	int		j;
 
 	if (fd == -1)
 		return (NULL);
@@ -128,19 +131,6 @@ int		**parse(int fd)
 		map = ft_realloc(map, i);
 		n = ft_countnumbers(line);
 		map[i] = parse_line(line, n);
-		i++;
-	}
-	i = 1;
-	while (i < map[0][0])
-	{
-		j = 0;
-		while (j <= map[i][0])
-		{
-			ft_putnbr(map[i][j]);
-			ft_putchar(' ');
-			j++;
-		}
-		ft_putchar('\n');
 		i++;
 	}
 	return (map);

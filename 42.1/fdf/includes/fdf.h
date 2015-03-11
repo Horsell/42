@@ -6,7 +6,7 @@
 /*   By: jpirsch <jpirsch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/12/29 02:21:11 by jpirsch           #+#    #+#             */
-/*   Updated: 2015/01/12 03:08:31 by jpirsch          ###   ########.fr       */
+/*   Updated: 2015/02/08 05:19:07 by jpirsch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,31 +85,31 @@ typedef struct			s_point
 }						t_point;
 
 /*
- ** hook
- */
-void	init_t_key(t_key *key);
-int		key_press(int keycode, t_env *e);
-int		key_release(int keycode, t_env *e);
-int		loop_hook(t_env *e);
+** hook
+*/
+void					init_t_key(t_key *key);
+int						key_press(int keycode, t_env *e);
+int						key_release(int keycode, t_env *e);
+int						loop_hook(t_env *e);
 /*
- **  mlx_env
- */
+** mlx_env
+*/
 void					px_to_img(t_env *e, int x, int y);
 void					print_state(t_env *e);
 void					env(int **map);
 /*
- ** coord
- */
+** coord
+*/
 void					init_point(t_point *point, int x, int y, int z);
 t_point					**malloc_grid(int **map);
 t_point					**map_to_point(t_env *e);
 /*
- ** drawline
- */
+** drawline
+*/
 void					draw_grid(t_env *e);
 /*
- ** parse
- */
+** parse
+*/
 int						**parse(int fd);
 
 #endif

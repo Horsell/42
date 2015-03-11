@@ -6,7 +6,7 @@
 /*   By: jpirsch <jpirsch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/12/30 14:38:59 by jpirsch           #+#    #+#             */
-/*   Updated: 2015/01/12 03:37:43 by jpirsch          ###   ########.fr       */
+/*   Updated: 2015/03/11 21:44:47 by jpirsch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 #include "fdf.h"
 #include "libft.h"
 
-void	putline(t_env *e, t_point start, t_point end)
+void	putl(t_env *e, t_point start, t_point end)
 {
 	double	dd;
 	double	x;
@@ -86,26 +86,6 @@ t_point	**parallel(t_point **grid, t_env *e)
 	return (grid);
 }
 
-t_point	**conic(t_point **grid, t_env *e)
-{
-	int		i;
-	int		j;
-
-	i = 0;
-	while (i < e->map[0][0] - 1)
-	{
-		j = 1;
-		while (j < e->map[i + 1][0] - 1)
-		{
-			grid[i][j].x -= e->scale * grid[i][j].z;
-			grid[i][j].y -= (e->scale / 2) * grid[i][j].z;
-			j++;
-		}
-		i++;
-	}
-	return (grid);
-}
-
 void	draw_grid(t_env *e)
 {
 	t_point	**grid;
@@ -114,23 +94,23 @@ void	draw_grid(t_env *e)
 
 	grid = map_to_point(e);
 	grid = (e->proj == 0) ? isometric(grid, e) : parallel(grid, e);
-	grid = (e->proj == 2) ? conic(grid, e) : grid;
 	i = 0;
 	while ((i + 1) < e->map[0][0] - 1)
 	{
 		j = 0;
 		while ((j + 1) < e->map[i + 1][0] - 1)
 		{
-			(grid[i][j + 1].x) ? putline(e, grid[i][j], grid[i][j + 1]) : (void)i;
-			(grid[i + 1][j].x) ? putline(e, grid[i][j], grid[i + 1][j]) : (void)i;
+			(grid[i][j + 1].x) ? putl(e, grid[i][j], grid[i][j + 1]) : (void)i;
+			(grid[i + 1][j].x) ? putl(e, grid[i][j], grid[i + 1][j]) : (void)i;
 			if (j + 1 == e->map[i + 1][0] - 2 && grid[i + 1][j + 1].x)
-				putline(e, grid[i][j + 1], grid[i + 1][j + 1]);
+				putl(e, grid[i][j + 1], grid[i + 1][j + 1]);
 			if (i + 1 == e->map[0][0] - 2 && grid[i + 1][j + 1].x)
-				putline(e, grid[i + 1][j], grid[i + 1][j + 1]);
+				putl(e, grid[i + 1][j], grid[i + 1][j + 1]);
 			j++;
 		}
 		i++;
 	}
 	mlx_put_image_to_window(e->mlx, e->win, e->img, 0, 0);
+	mlx_do_sync(e->mlx);
 	print_state(e);
 }

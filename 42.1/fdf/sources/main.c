@@ -6,7 +6,7 @@
 /*   By: jpirsch <jpirsch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/26 07:31:16 by jpirsch           #+#    #+#             */
-/*   Updated: 2015/01/10 06:46:22 by jpirsch          ###   ########.fr       */
+/*   Updated: 2015/01/14 05:32:10 by jpirsch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,8 @@ int		main(int ac, char **av)
 		fd = open(av[1], O_RDONLY);
 	else
 		fd = open("maps/42.fdf", O_RDONLY);
-	if ((map = parse(fd)))
-		env(map);
+	if (fd > 0)
+		if ((map = parse(fd)))
+			env(map);
 	return (0);
 }

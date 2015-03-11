@@ -6,7 +6,7 @@
 /*   By: jpirsch <jpirsch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/10 04:08:06 by jpirsch           #+#    #+#             */
-/*   Updated: 2015/01/12 03:01:52 by jpirsch          ###   ########.fr       */
+/*   Updated: 2015/03/11 21:46:38 by jpirsch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,17 +59,18 @@ void	env(int **map)
 	t_env	e;
 
 	e.map = map;
-	e.mlx = mlx_init();
+	if (!(e.mlx = mlx_init()))
+		return ;
 	e.win = mlx_new_window(e.mlx, 1440, 900, "sandwich");
 	e.img = mlx_new_image(e.mlx, 1440, 900);
 	e.data = mlx_get_data_addr(e.img, &e.depth, &e.size_line, &e.endian);
 	e.proj = 0;
 	e.scale = 2.5;
 	e.cte1 = 0.6;
-	e.zoom = 4;
-	e.decalx = 50;
-	e.decaly = 50;
-	e.r = 0;
+	e.zoom = 8;
+	e.decalx = 150;
+	e.decaly = 150;
+	e.r = 255;
 	e.g = 0;
 	e.b = 0;
 	init_t_key(&e.key);

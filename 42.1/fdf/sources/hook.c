@@ -6,7 +6,7 @@
 /*   By: jpirsch <jpirsch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/09 12:17:52 by jpirsch           #+#    #+#             */
-/*   Updated: 2015/01/12 03:21:14 by jpirsch          ###   ########.fr       */
+/*   Updated: 2015/03/11 21:52:16 by jpirsch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,11 +37,12 @@ void	init_t_key(t_key *key)
 
 int		key_press(int keycode, t_env *e)
 {
-	(keycode == 65307) ? e->key.echap = 1 : (void)keycode;
-	(keycode == 65362) ? e->key.decal_down = 1 : (void)keycode;
-	(keycode == 65364) ? e->key.decal_up = 1 : (void)keycode;
-	(keycode == 65361) ? e->key.decal_right = 1 : (void)keycode;
-	(keycode == 65363) ? e->key.decal_left = 1 : (void)keycode;
+	ft_putnbr(keycode);
+	(keycode == 53) ? e->key.echap = 1 : (void)keycode;
+	(keycode == 125) ? e->key.decal_down = 1 : (void)keycode;
+	(keycode == 126) ? e->key.decal_up = 1 : (void)keycode;
+	(keycode == 124) ? e->key.decal_right = 1 : (void)keycode;
+	(keycode == 123) ? e->key.decal_left = 1 : (void)keycode;
 	(keycode == 65451) ? e->key.zoom = 1 : (void)keycode;
 	(keycode == 65453) ? e->key.zoom_back = 1 : (void)keycode;
 	(keycode == 61) ? e->key.scale_increase = 1 : (void)keycode;
@@ -59,11 +60,11 @@ int		key_press(int keycode, t_env *e)
 
 int		key_release(int keycode, t_env *e)
 {
-	(keycode == 65307) ? e->key.echap = 0 : (void)keycode;
-	(keycode == 65362) ? e->key.decal_down = 0 : (void)keycode;
-	(keycode == 65364) ? e->key.decal_up = 0 : (void)keycode;
-	(keycode == 65361) ? e->key.decal_right = 0 : (void)keycode;
-	(keycode == 65363) ? e->key.decal_left = 0 : (void)keycode;
+	(keycode == 53) ? e->key.echap = 0 : (void)keycode;
+	(keycode == 125) ? e->key.decal_down = 0 : (void)keycode;
+	(keycode == 126) ? e->key.decal_up = 0 : (void)keycode;
+	(keycode == 124) ? e->key.decal_right = 0 : (void)keycode;
+	(keycode == 123) ? e->key.decal_left = 0 : (void)keycode;
 	(keycode == 65451) ? e->key.zoom = 0 : (void)keycode;
 	(keycode == 65453) ? e->key.zoom_back = 0 : (void)keycode;
 	(keycode == 61) ? e->key.scale_increase = 0 : (void)keycode;
