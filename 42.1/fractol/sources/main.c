@@ -6,22 +6,19 @@
 /*   By: jpirsch <jpirsch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/26 07:31:16 by jpirsch           #+#    #+#             */
-/*   Updated: 2015/01/09 02:49:52 by jpirsch          ###   ########.fr       */
+/*   Updated: 2015/03/11 17:40:49 by jpirsch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <fcntl.h>
 #include "libft.h"
-#include "fdf.h"
+#include "fractol.h"
 
 int		main(int ac, char **av)
 {
-	int		fract_type;
-
-	if (ac == 2)
-		fract_type = av[1][0];
+	if (ac != 2)
+		env(1);
 	else
-		fract_type = 1;
-	env(fract_type);
+		env(av[1][0] - 48);
 	return (0);
 }

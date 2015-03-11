@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mlx_env.h                                          :+:      :+:    :+:   */
+/*   fractol.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jpirsch <jpirsch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/12/29 02:21:11 by jpirsch           #+#    #+#             */
-/*   Updated: 2015/02/10 10:42:37 by jpirsch          ###   ########.fr       */
+/*   Updated: 2015/03/11 21:27:54 by jpirsch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef TEST_H
-# define TEST_H
+#ifndef FRACTOL_H
+# define FRACTOL_H
 
 typedef struct			s_env
 {
@@ -22,15 +22,15 @@ typedef struct			s_env
 	int					size_line;
 	int					depth;
 	int					endian;
-	int					decalx;
-	int					decaly;
+	double				decalx;
+	double				decaly;
 	double				x;
 	double				y;
 	double				zoom;
 	int					fract_type;
-	unsigned char		R;
-	unsigned char		G;
-	unsigned char		B;
+	unsigned char		r;
+	unsigned char		g;
+	unsigned char		b;
 }						t_env;
 
 typedef struct			s_pt
@@ -39,16 +39,10 @@ typedef struct			s_pt
 	double				y;
 }						t_pt;
 
-typedef struct			s_point
-{
-	int					x;
-	int					y;
-}						t_point;
-//mlx_env
 void					px_to_img(t_env *e, int x, int y);
 void					print_state(t_env *e);
-void					env(int fract_type);
-//drawline
+void					env(int	fract);
 void					draw(t_env *e);
-
+void					draw_tree(t_env *e, t_pt start, double angle,
+						int depth);
 #endif
