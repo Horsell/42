@@ -6,7 +6,7 @@
 /*   By: jpirsch <jpirsch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/12/29 02:15:18 by jpirsch           #+#    #+#             */
-/*   Updated: 2015/03/11 21:01:14 by jpirsch          ###   ########.fr       */
+/*   Updated: 2015/03/14 19:43:56 by jpirsch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@
 
 int		key_hook(int keycode, t_env *e)
 {
-	ft_putnbr(keycode);
 	(keycode == 53) ? exit(0) : 1;
 	(keycode == 125) ? e->decaly -= 0.2 : 1;
 	(keycode == 126) ? e->decaly += 0.2 : 1;
@@ -32,6 +31,8 @@ int		key_hook(int keycode, t_env *e)
 	(keycode == 38) ? e->fract_type = 0 : 1;
 	(keycode == 46) ? e->fract_type = 1 : 1;
 	(keycode == 17) ? e->fract_type = 2 : 1;
+	if (keycode == 35)
+		e->pause = (e->pause == 0) ? 1 : 0;
 	draw(e);
 	mlx_do_sync(e->mlx);
 	return (1);
@@ -39,7 +40,13 @@ int		key_hook(int keycode, t_env *e)
 
 int		mouse_hook(int button, int x, int y, t_env *e)
 {
-	(button == 4) ? e->zoom *= 1.2 : 1;
+//	(button == 4) ? e->zoom *= 1.2 : 1;
+	if (button == 4)
+	{
+		e->zoom *= 1.2;
+		e->decalx *= (x / 1440) * 3;
+		e->decaly *= (y / 900) * 2;
+	}
 	(button == 5) ? e->zoom /= 1.2 : 1;
 	(void)x;
 	(void)y;
@@ -57,10 +64,13 @@ void	px_to_img(t_env *e, int x, int y)
 
 int		mouse_motion(int x, int y, t_env *e)
 {
-	e->x = ((double)x / 1440) * 3.5 - 2.5;
-	e->y = ((double)y / 900) * 2 - 1;
-	draw(e);
-	mlx_do_sync(e->mlx);
+	if (e->pause == 0)
+	{
+		e->x = ((double)x / 1440) * 3.5 - 2.5;
+		e->y = ((double)y / 900) * 2 - 1;
+		draw(e);
+		mlx_do_sync(e->mlx);
+	}
 	return (1);
 }
 
