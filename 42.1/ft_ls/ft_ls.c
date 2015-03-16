@@ -6,7 +6,7 @@ int	main(int ac, char **av)
 	t_flags	flags;
 	char	**files;
 	int	*fd;
-	struct dirent	*dir;
+	DIR				 *dir;
 	struct dirent	*dp;
 
 	files = parse_args(av, &flags, ac);

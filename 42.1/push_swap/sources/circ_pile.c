@@ -6,7 +6,7 @@
 /*   By: jpirsch <jpirsch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/11 01:28:45 by jpirsch           #+#    #+#             */
-/*   Updated: 2015/03/16 06:52:09 by jpirsch          ###   ########.fr       */
+/*   Updated: 2015/03/16 07:01:58 by jpirsch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ void	pop(t_pile **p)
 {
 	t_pile *tmp;
 
-	if (!p)
+	if (!*p)
 		return ;
 	tmp = *p;
 	*p = (*p)->next;
