@@ -6,7 +6,7 @@
 /*   By: jpirsch <jpirsch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/10 03:28:26 by jpirsch           #+#    #+#             */
-/*   Updated: 2015/03/11 05:08:08 by jpirsch          ###   ########.fr       */
+/*   Updated: 2015/03/16 06:52:12 by jpirsch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,18 +15,32 @@
 
 int		main(int ac, char **av)
 {
-	int *a;
-	int *b;
+	int		i;
+	t_pile	*a;
+	t_pile	*b;
 
-	a = create_pile(ac, av);
-	b = create_pile(ac, av);
-	b = ft_memset(b, 0, ac);
-
-	display_pile(a, ac);
+	i = 1;
+	a = NULL;
+	b = NULL;
+	while (i < ac)
+	{
+		a = push(a, ft_atoi(av[i]));
+		i++;
+	}
+	display_pile(a);
 	ft_putendl("");
-	display_pile(b, ac);
-//	pop(&pa);
-//	pa = pa->next;
-//	display_pile(pa);
+	swap_pile(&a);
+	display_pile(a);
+/*	display_pile(b);
+	pop(a);
+	pop(a);
+	pop(a);
+	ft_putendl("");
+	display_pile(a);
+	swap_two_pile(a, b);
+	ft_putendl("");
+	display_pile(a);
+	ft_putendl("");
+	display_pile(b);*/
 	return (0);
 }

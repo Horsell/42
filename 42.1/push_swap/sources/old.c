@@ -6,80 +6,55 @@
 /*   By: jpirsch <jpirsch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/11 01:28:45 by jpirsch           #+#    #+#             */
-/*   Updated: 2015/03/16 06:52:09 by jpirsch          ###   ########.fr       */
+/*   Updated: 2015/03/16 05:32:16 by jpirsch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "push_swap.h"
 
-t_pile	*create_pile(int val)
+t_pile	*create_pile(int ac, char **av)
 {
 	t_pile *p;
 
-	p = NULL;
-	if ((p = malloc(sizeof(t_pile))))
-	{
-		p->val = val;
-		p->next = NULL;
-	}
+	if (!(p = malloc(sizeof(t_pile))))
+		return (NULL);
+	if (!(p->tab = malloc(sizeof(int) * ac - 1)))
+		return (NULL);
+	p->n = ac - 1;
+	while (--ac > 0)
+		p->tab[ac - 1] = ft_atoi(av[ac]);
 	return (p);
 }
 
-t_pile	*push(t_pile *p, int val)
+void	push(t_pile *p, int val)
 {
-	t_pile *new;
-	t_pile *tmp;
-
-	new = NULL;
-	tmp = NULL;
-	if (p == NULL)
-		 p = create_pile(val);
-	else
-	{
-		new = create_pile(val);
-		tmp = p;
-		while (tmp->next)
-			tmp = tmp->next;
-		tmp->next = new;
-	}
-	return (p);
+	++p->n;
+	p->tab[p->n - 1] = val;
 }
 
-void	pop(t_pile **p)
+void	pop(t_pile *p)
 {
-	t_pile *tmp;
-
-	if (!p)
-		return ;
-	tmp = *p;
-	*p = (*p)->next;
-	free(tmp);
+	if (p->n > 0)
+	{
+		p->tab[p->n - 1] = 0;
+		--p->n;
+	}
 }
 
 void	display_pile(t_pile *p)
 {
-	t_pile *tmp;
+	int i;
 
-	if (!p)
-		return ;
-	tmp = p;
-	while (tmp->next)
+	i = p->n;
+	while (--i >= 0)
 	{
-		ft_putnbr(tmp->val);
-		tmp = tmp->next;
+		ft_putnbr(p->tab[i]);
+		ft_putchar(' ');
 	}
-	ft_putnbr(tmp->val);
 }
 
-void	swap_pile(t_pile **p)
+void	swap_pile(t_pile *p)
 {
-	int tmp;
-
-	if (*p && (*p)->next)
-	{
-		tmp = (*p)->val;
-		(*p)->val = (*p)->next->val;
-		(*p)->next->val = tmp;
-	}
+	ft_swap(&(p->tab[p->n - 1]), &(p->tab[p->n - 2]));
 }
