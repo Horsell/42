@@ -6,14 +6,16 @@
 #    By: jpirsch <jpirsch@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/01/05 01:32:20 by jpirsch           #+#    #+#              #
-#    Updated: 2015/03/11 01:38:27 by jpirsch          ###   ########.fr        #
+#    Updated: 2015/03/18 16:25:07 by jpirsch          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME	=	../push_swap
 SRC		= 	main.c \
 			circ_pile.c \
-			circ_pile2.c
+			circ_pile2.c \
+			checks.c \
+			algo.c
 OBJ		= $(SRC:.c=.o)
 
 all: $(NAME)

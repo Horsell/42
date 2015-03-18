@@ -6,7 +6,7 @@
 /*   By: jpirsch <jpirsch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/11 01:28:45 by jpirsch           #+#    #+#             */
-/*   Updated: 2015/03/18 18:13:20 by jpirsch          ###   ########.fr       */
+/*   Updated: 2015/03/11 02:36:36 by jpirsch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,11 @@ t_pile	*create_pile(int val)
 	t_pile *p;
 
 	p = NULL;
-	if ((p = malloc(sizeof(t_pile))))
+	if ((p = malloc(sizeof(t_pile) * 1)))
 	{
 		p->val = val;
-		p->next = NULL;
+		p->pred = p;
+		p->next = p;
 	}
 	return (p);
 }
@@ -34,54 +35,74 @@ t_pile	*push(t_pile *p, int val)
 	new = NULL;
 	tmp = NULL;
 	if (p == NULL)
+	{
 		 p = create_pile(val);
+		 p->first = 1;
+		 return (p);
+	}
 	else
 	{
 		new = create_pile(val);
-		tmp = p;
-		while (tmp->next)
-			tmp = tmp->next;
-		tmp->next = new;
+		new->first = 0;
+		tmp = p->next;//tmp pointe vers le 1er
+		tmp->pred = new;//le premier pointe vers new
+		p->next = new;// le precedent pointe vers new
+		new->next = tmp;//new pointe vers le 1er
+		new->pred = p;//new pointe vers le precedent
 	}
-	return (p);
+	return (new);
 }
 
 void	pop(t_pile **p)
 {
-	t_pile *tmp;
+	t_pile **tmp;
 
-	if (!*p)
-		return ;
-	tmp = *p;
+	tmp = p;
+	*p = (*p)->pred;
+	(*p)->next = (*tmp)->next;
+	free(*tmp);
+//	t_pile *tmp2;
+
+	/*if (p != NULL)
+	{
+		tmp1 = (*p)->pred;
+		tmp1->next = (*p)->next;
+		tmp2 = *p;
+		*p = (*p)->next;
+		p->pred = tmp;
+		free(tmp2);
+	}
+	tmp = p;
+	*p = (*p)->pred;
+	(*p)->next = (*p)->next->next;
 	*p = (*p)->next;
-	free(tmp);
+	(*p)->pred = *tmp;
+	*p = (*tmp)->pred;
+	free(*tmp);*/
 }
 
 void	display_pile(t_pile *p)
 {
-	t_pile *tmp;
-
-	if (!p)
-		return ;
-	tmp = p;
-	while (tmp->next)
+	if (p != NULL)
 	{
-		ft_putnbr(tmp->val);
-		tmp = tmp->next;
+		while (p->first != 1)
+		{
+			ft_putnbr(p->val);
+			p = p->pred;
+		}
+		ft_putnbr(p->val);
 	}
-	ft_putnbr(tmp->val);
 }
 
 void	swap_pile(t_pile **p)
 {
-	int tmp;
+	t_pile **tmp;
 
-	ft_putchar('g');
-	if (*p && (*p)->next)
+	if (p != NULL && (*p)->pred != NULL)
 	{
-		tmp = (*p)->val;
-		(*p)->val = (*p)->next->val;
-		(*p)->next->val = tmp;
+		tmp = p;
+		p = &((*p)->pred);
+		ft_swap((void*)p, (void*)tmp);
+		*p = (*p)->next;
 	}
-	ft_putchar('b');
 }
