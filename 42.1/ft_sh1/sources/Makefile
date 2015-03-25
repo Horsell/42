@@ -1,0 +1,32 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: jpirsch <jpirsch@student.42.fr>            +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2015/01/05 01:32:20 by jpirsch           #+#    #+#              #
+#    Updated: 2015/03/25 02:04:27 by sven             ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
+NAME	=	../ft_sh1
+SRC		= 	main.c \
+			get_next_line.c
+OBJ		= $(SRC:.c=.o)
+
+all: $(NAME)
+
+$(NAME): $(OBJ)
+	gcc -o $(NAME) $(OBJ) -L ../libft/ -lft
+
+$(OBJ):
+	gcc -c $(SRC) -I ../includes
+
+clean:
+	rm -f $(OBJ)
+
+fclean: clean
+	rm -f $(NAME)
+
+re: fclean all
