@@ -6,7 +6,7 @@
 /*   By: jpirsch <jpirsch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/12 05:24:41 by jpirsch           #+#    #+#             */
-/*   Updated: 2015/03/25 05:10:08 by sven             ###   ########.fr       */
+/*   Updated: 2015/04/03 16:59:09 by jpirsch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,5 +32,9 @@
 
 void	display_env(char **env);
 int		search_env(char **env, char *var);
+void	ft_execve(char *cmd, char **av, char **env);
+int		check_path(char **env, char **av, char *bin);
+int		check_builtin(char *line, char **env);
+int		check_command(char *line, char **av, char **env);
 
 #endif

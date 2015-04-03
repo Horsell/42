@@ -6,12 +6,19 @@
 #    By: jpirsch <jpirsch@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/01/05 01:32:20 by jpirsch           #+#    #+#              #
-#    Updated: 2015/03/25 02:04:27 by sven             ###   ########.fr        #
+#    Updated: 2015/04/03 16:35:50 by jpirsch          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME	=	../ft_sh1
 SRC		= 	main.c \
+			ft_execve.c \
+			display_env.c \
+			setenv.c \
+			unsetenv.c \
+			parse_command.c \
+			hashtable.c \
+			termcaps.c \
 			get_next_line.c
 OBJ		= $(SRC:.c=.o)
 
