@@ -3,10 +3,10 @@
 
 int	main(int ac, char **av)
 {
-	t_flags	flags;
-	char	**files;
-	int	*fd;
-	DIR				 *dir;
+	t_flags			flags;
+	char			**files;
+	int				*fd;
+	DIR				*dir;
 	struct dirent	*dp;
 
 	files = parse_args(av, &flags, ac);
