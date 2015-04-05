@@ -1,0 +1,9 @@
+main
+	init t_env : 
+					typedef struct	s_env
+					{
+						char		**env;
+						char		**av;
+						char		**path;
+						int			ac;
+					}				t_env;
