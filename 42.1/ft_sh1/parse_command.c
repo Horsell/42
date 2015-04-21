@@ -6,7 +6,7 @@
 /*   By: jpirsch <jpirsch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/04/03 16:30:36 by jpirsch           #+#    #+#             */
-/*   Updated: 2015/04/21 06:26:49 by jpirsch          ###   ########.fr       */
+/*   Updated: 2015/04/18 12:15:54 by jpirsch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,40 +36,29 @@ t_env	*init_env(char **env)
 	t_env	*e;
 	char	*path;
 	int		i;
-	t_list	*new;
+	t_list	*hash;
 
+	if (!(env))
+		return (NULL);
 	e = malloc(sizeof(t_env));
 	e->env = env;
 	path = get_env(e, "PATH");
 	e->path = ft_strsplit(path, ':');
 	e->pc = ft_countwords(path, ':');
 	read_path(e);
-	e->env_l = ft_lstnew(env[0], sizeof(char*) * ft_strlen(env[0]));
-	i = 1;
+	i = 0;
 	while (env[i])
-	{
-		ft_putendl("debug");
-		new = ft_lstnew(env[i], sizeof(char) * 256);
-		ft_lstadd(&e->env_l, new);
-		ft_putendl(env[i]);
 		i++;
-	}
-	new = e->env_l;
-	while (new->next)
-	{
-		ft_putendl(*(char**)new->content);
-		new = new->next;
-	}
 	e->ec = i;
 	return (e);
 }
 
 int		cmd_to_env(char *line, t_env *e)
 {
-	if (line && line[0])
+	if (line)
 	{
-		line = ft_strtrim(line);
 		e->ac = ft_countwords(line, ' ');
+		line = ft_strtrim(line);
 		e->av = ft_strsplit(line, ' ');
 		return (1);
 	}
@@ -90,7 +79,7 @@ int		check_cmd(char *line, t_env *e)
 	}
 	else
 	{
-//		ft_putendl_fd("Error while splitting command", 2);
-		return (0);//1 pour exit
+		ft_putendl_fd("Error while splitting command", 2);
+		return (1);
 	}
 }
