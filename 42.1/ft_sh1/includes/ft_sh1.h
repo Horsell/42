@@ -6,7 +6,7 @@
 /*   By: jpirsch <jpirsch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/12 05:24:41 by jpirsch           #+#    #+#             */
-/*   Updated: 2015/04/21 06:11:52 by jpirsch          ###   ########.fr       */
+/*   Updated: 2015/04/21 18:16:17 by jpirsch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ typedef struct	s_env
 }				t_env;
 
 t_env			*init_env(char **env);
+t_env			*empty_env();
 int				check_cmd(char *line, t_env *e);
 int				display_env(t_env *e);
 char			*get_env(t_env *e, char *var);

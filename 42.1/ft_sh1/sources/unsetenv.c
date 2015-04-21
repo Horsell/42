@@ -6,7 +6,7 @@
 /*   By: jpirsch <jpirsch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/04/03 16:32:45 by jpirsch           #+#    #+#             */
-/*   Updated: 2015/04/17 18:27:04 by jpirsch          ###   ########.fr       */
+/*   Updated: 2015/04/21 18:52:00 by jpirsch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,17 @@ int			ft_unsetenv(t_env *e)
 	if (!(e->env) || !(e->av[1]))
 		return (1);
 	j = search_env(e, e->av[1]);
-	if (j || ft_strnequ(e->av[1], e->env[0], ft_strlen(e->env[0])))
-		e->env = ft_realloc(e->env, e->av[1], n - 1);
+	if (j > -1)
+	{
+		e->env[j] = NULL;
+		while (j < e->ec - 1)
+		{
+			e->env[j] = e->env[j+1];
+			j++;
+		}
+		free(e->env[e->ec]);
+		--e->ec;
+		e->env[e->ec] = NULL;
+	}
 	return (2);
 }
