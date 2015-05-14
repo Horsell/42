@@ -6,7 +6,7 @@
 /*   By: jpirsch <jpirsch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/14 05:07:55 by jpirsch           #+#    #+#             */
-/*   Updated: 2015/04/29 00:12:57 by sven             ###   ########.fr       */
+/*   Updated: 2015/05/11 19:47:39 by sven             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,8 @@ int				sdl_env(t_scene *scene)
 		{
 			SDL_GetWindowSize(e->win_sdl, &e->w, &e->h);
 			handle_event(e);
-			draw(e);
+			if (e->k.up)
+				draw(e);
 		}
 	}
 	if (ft_free(e))
