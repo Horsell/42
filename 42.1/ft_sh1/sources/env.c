@@ -41,6 +41,7 @@ t_env	*init_env(char **env)
 
 	e = malloc(sizeof(t_env));
 	e->env = env;
+	e->env[search_env(e, "SHLVL")][6]++;
 	path = get_env(e, "PATH");
 	e->path = ft_strsplit(path, ':');
 	e->pc = ft_countwords(path, ':');

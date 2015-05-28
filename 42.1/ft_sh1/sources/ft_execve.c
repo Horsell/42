@@ -13,6 +13,12 @@
 #include "libft.h"
 #include "ft_sh1.h"
 
+int		ft_exec(t_env *e)
+{
+	ft_execve(ft_strchr(e->av[0], '/') + 1, e->av, e->env);
+	return (2);
+}
+
 void	ft_execve(char *cmd, char **av, char **env)
 {
 	pid_t	father;

@@ -65,7 +65,7 @@ int		rev_hash(t_env *e, char *bin)
 			return (k);
 		k++;
 	}
-	return (k);
+	return (2 * e->hc);
 }
 
 void	hash_table(t_env *e, int j)
@@ -98,6 +98,7 @@ void	read_path(t_env *e)
 	int				j;
 	DIR				*dir;
 	struct dirent	*dp;
+	char			*path;
 
 	i = 0;
 	j = 1;
@@ -108,8 +109,16 @@ void	read_path(t_env *e)
 			while ((dp = readdir(dir)))
 			{
 				if ((ft_strncmp(dp->d_name, "..", 2)) &&
-						(ft_strncmp(dp->d_name, ".", 1)))
+						(ft_strncmp(dp->d_name, ".", 1))) //&&
+						//(access(ft_strjoin(e->path[i], dp->d_name), X_OK)))
 				{
+/*					if (j % 9 == 0)
+					{
+						ft_putnbr(i);
+						ft_putstr(e->path[i]);
+						ft_putchar('/');
+						ft_putendl(dp->d_name);
+					}*/
 					hash_t(e, e->path[i], dp->d_name, i);
 					j++;
 				}
@@ -134,10 +143,13 @@ int		check_path(t_env *e)
 		return (0);
 	}*/
 	n = rev_hash(e, e->av[0]);
+	if (n > e->hc)
+	{
+		ft_putendl_fd("Command not found.", 2);
+		return (0);
+	}
 	hashbin = ft_strrchr(*(char**)e->hashtab[n]->content, '/') + 1;
 	if (!(ft_strcmp(hashbin, e->av[0])))
 		ft_execve(*(char**)e->hashtab[n]->content, e->av, e->env);
-	else
-		ft_putendl_fd("Command not found.", 2);
-	return (--i);
+	return (--i); //return value unused ?
 }

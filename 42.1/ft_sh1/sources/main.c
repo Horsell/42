@@ -35,6 +35,21 @@ static void	prompt(t_env *e)
 	ft_putstr("/>");
 }
 
+void	ft_free(t_env *e)
+{
+	int	i;
+
+	i = -1;
+	if (e)
+	{
+		if (e->av)
+			while (++i < e->ac)
+				free(e->av[i]);
+		free(e->av);
+		free(e);
+	}
+}
+
 int		main(int ac, char **av, char **env)
 {
 	char	*line;
@@ -53,5 +68,6 @@ int		main(int ac, char **av, char **env)
 				break ;
 		}
 	}
+	ft_free(e);
 	return (0);
 }
