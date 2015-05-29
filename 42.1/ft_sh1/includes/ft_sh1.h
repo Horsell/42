@@ -6,7 +6,7 @@
 /*   By: jpirsch <jpirsch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/12 05:24:41 by jpirsch           #+#    #+#             */
-/*   Updated: 2015/04/21 18:16:17 by jpirsch          ###   ########.fr       */
+/*   Updated: 2015/05/29 16:26:40 by jpirsch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ void			ft_execve(char *cmd, char **av, char **env);
 int				check_path(t_env *e);
 int				check_builtin(t_env *e);
 t_list			*init_hashtable(t_env *e);
-void			read_path(t_env *e);
+void			read_path(t_env *e, int i, int j);
 
 int				cmd_to_env(char *line, t_env *e);
 #endif

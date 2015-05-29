@@ -6,7 +6,7 @@
 /*   By: jpirsch <jpirsch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/04/03 16:32:51 by jpirsch           #+#    #+#             */
-/*   Updated: 2015/04/21 18:56:25 by jpirsch          ###   ########.fr       */
+/*   Updated: 2015/05/29 17:11:15 by jpirsch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,15 +17,19 @@ t_env	*empty_env()
 	t_env 	*e;
 	char	buf[256];
 
-	ft_putendl_fd("Warning : empty environment.", 2);
-	exit(1);
-/*	if (!(getcwd(buf, 256)))
+//	ft_putendl_fd("Warning : empty environment.", 2);
+//	exit(1);
+	if (!(getcwd(buf, 256)))
 	{
 			ft_putendl_fd("Error : failed to load current directory", 2);
 			exit(1);
 	}
 	e = malloc(sizeof(t_env));
-	e->env = ft_tabmalloc(3, 256);
+	e->env = malloc(sizeof(char*) * 1);
+	e->ec = 0;
+	ft_setenv_prog(e, "PWD", buf);
+	ft_setenv_prog(e, "USER", "unknown");
+/*	e->env = ft_tabmalloc(3, 256);
 	ft_strcpy(e->env[0], "PWD="); 
 	ft_strcpy(e->env[0] + 4, buf); 
 	ft_strcpy(e->env[2], "USER=unknown");*/
@@ -45,7 +49,7 @@ t_env	*init_env(char **env)
 	path = get_env(e, "PATH");
 	e->path = ft_strsplit(path, ':');
 	e->pc = ft_countwords(path, ':');
-	read_path(e);
+	read_path(e, 0, 1);
 	i = 0;
 	while (env[i])
 		i++;

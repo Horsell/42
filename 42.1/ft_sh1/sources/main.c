@@ -6,7 +6,7 @@
 /*   By: jpirsch <jpirsch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/12 05:11:10 by jpirsch           #+#    #+#             */
-/*   Updated: 2015/04/21 18:56:31 by jpirsch          ###   ########.fr       */
+/*   Updated: 2015/05/29 17:11:11 by jpirsch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ int		main(int ac, char **av, char **env)
 
 	ret = 0;
 	e = (!(env[0])) ? empty_env() : init_env(env);
+	signal(SIGINT, SIG_IGN);
 	while (ret != 1)
 	{
 		prompt(e);

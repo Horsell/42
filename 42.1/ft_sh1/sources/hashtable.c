@@ -6,7 +6,7 @@
 /*   By: jpirsch <jpirsch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/04/03 16:30:49 by jpirsch           #+#    #+#             */
-/*   Updated: 2015/04/21 05:23:32 by jpirsch          ###   ########.fr       */
+/*   Updated: 2015/05/29 17:13:14 by jpirsch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,16 +92,11 @@ void	hash_table(t_env *e, int j)
 	e->hc = j + 1;
 }
 
-void	read_path(t_env *e)
+void	read_path(t_env *e, int i, int j)
 {
-	int				i;
-	int				j;
 	DIR				*dir;
 	struct dirent	*dp;
-	char			*path;
 
-	i = 0;
-	j = 1;
 	while (i < e->pc)
 	{
 		if ((dir = opendir(e->path[i])))
@@ -109,16 +104,8 @@ void	read_path(t_env *e)
 			while ((dp = readdir(dir)))
 			{
 				if ((ft_strncmp(dp->d_name, "..", 2)) &&
-						(ft_strncmp(dp->d_name, ".", 1))) //&&
-						//(access(ft_strjoin(e->path[i], dp->d_name), X_OK)))
+						(ft_strncmp(dp->d_name, ".", 1)))
 				{
-/*					if (j % 9 == 0)
-					{
-						ft_putnbr(i);
-						ft_putstr(e->path[i]);
-						ft_putchar('/');
-						ft_putendl(dp->d_name);
-					}*/
 					hash_t(e, e->path[i], dp->d_name, i);
 					j++;
 				}
@@ -136,12 +123,16 @@ int		check_path(t_env *e)
 	int		n;
 	char	*hashbin;
 
-	i = 0;
-	/*if (e->av[0][0] == '/')
-	{
-		ft_execve(e->av[0], e->av, e->env);
+	ft_putendl(e->av[0]);
+	if (!e->path)
 		return (0);
-	}*/
+	i = 0;
+	if (e->av[0][0] == '/')
+	{
+		if (!(access(e->av[0], X_OK)))
+			ft_execve(e->av[0], e->av, e->env);
+		return (0);
+	}
 	n = rev_hash(e, e->av[0]);
 	if (n > e->hc)
 	{
@@ -150,6 +141,7 @@ int		check_path(t_env *e)
 	}
 	hashbin = ft_strrchr(*(char**)e->hashtab[n]->content, '/') + 1;
 	if (!(ft_strcmp(hashbin, e->av[0])))
-		ft_execve(*(char**)e->hashtab[n]->content, e->av, e->env);
+		if (!(access(*(char**)e->hashtab[n]->content, X_OK)))
+			ft_execve(*(char**)e->hashtab[n]->content, e->av, e->env);
 	return (--i); //return value unused ?
 }

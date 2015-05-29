@@ -6,7 +6,7 @@
 /*   By: jpirsch <jpirsch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/04/03 16:32:56 by jpirsch           #+#    #+#             */
-/*   Updated: 2015/04/21 18:20:50 by jpirsch          ###   ########.fr       */
+/*   Updated: 2015/05/29 17:10:44 by jpirsch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,17 +37,12 @@ int	ft_setenv_prog(t_env *e, char *var, char *value)
 {
 	char	*env_var;
 
-	if (e->ac == 3)
-	{
-		free(e->env[e->ec]);
-		e->env[e->ec] = malloc(sizeof(char) * 10);
-		e->env[e->ec + 1] = malloc(sizeof(char) * 1);
-		e->env[e->ec + 1] = NULL;
-		env_var = ft_strjoin(var, "=");
-		e->env[e->ec] = ft_strjoin(env_var, value);
-		ft_putendl(e->env[e->ec]);
-		e->ec++;
-	}
+	e->env[e->ec] = malloc(sizeof(char) * 10);
+	e->env[e->ec + 1] = malloc(sizeof(char) * 1);
+	e->env[e->ec + 1] = NULL;
+	env_var = ft_strjoin(var, "=");
+	e->env[e->ec] = ft_strjoin(env_var, value);
+	e->ec++;
 	return (2);
 }
 
