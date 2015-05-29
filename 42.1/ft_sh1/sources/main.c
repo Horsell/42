@@ -6,7 +6,7 @@
 /*   By: jpirsch <jpirsch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/12 05:11:10 by jpirsch           #+#    #+#             */
-/*   Updated: 2015/05/29 17:11:11 by jpirsch          ###   ########.fr       */
+/*   Updated: 2015/05/29 19:32:39 by jpirsch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,15 +50,25 @@ void	ft_free(t_env *e)
 	}
 }
 
+void	catch(int signum)
+{
+	ft_putstr("\b\b");
+}
+
 int		main(int ac, char **av, char **env)
 {
-	char	*line;
-	int		ret;
-	t_env 	*e;
+	char			*line;
+	int				ret;
+	int				fd;
+	struct termios	*termios_p;
+	t_env 			*e;
 
 	ret = 0;
 	e = (!(env[0])) ? empty_env() : init_env(env);
-	signal(SIGINT, SIG_IGN);
+	signal(SIGINT, catch);
+	tcgetattr(fd, termios_p);
+	ft_putnbr(fd);
+	ft_putnbr(termios_p->c_iflag);
 	while (ret != 1)
 	{
 		prompt(e);

@@ -6,7 +6,7 @@
 /*   By: jpirsch <jpirsch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/12 05:24:41 by jpirsch           #+#    #+#             */
-/*   Updated: 2015/05/29 16:26:40 by jpirsch          ###   ########.fr       */
+/*   Updated: 2015/05/29 18:12:57 by jpirsch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ typedef struct	s_env
 	char		**env;
 	t_list		*env_l;
 	char		**av;
+	char		*save;
 	char		**path;
 	t_list		*hash;
 	t_list		**hashtab;

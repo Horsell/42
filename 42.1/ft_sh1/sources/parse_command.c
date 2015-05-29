@@ -6,7 +6,7 @@
 /*   By: jpirsch <jpirsch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/04/03 16:30:36 by jpirsch           #+#    #+#             */
-/*   Updated: 2015/04/21 18:45:59 by jpirsch          ###   ########.fr       */
+/*   Updated: 2015/05/29 18:55:10 by jpirsch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,11 @@ int		cmd_to_env(char *line, t_env *e)
 		line = ft_strtrim(line);
 		if (!line[0])
 			return (0);
+		if (ft_strchr_len(line, ';'))
+		{
+			e->save = ft_strchr(line, ';');
+			line = ft_strsub(line, 0, ft_strchr_len(line, ';'));
+		}
 		e->ac = ft_countwords(line, ' ');
 		e->av = ft_strsplit(line, ' ');
 		return (1);

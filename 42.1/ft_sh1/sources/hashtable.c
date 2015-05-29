@@ -6,7 +6,7 @@
 /*   By: jpirsch <jpirsch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/04/03 16:30:49 by jpirsch           #+#    #+#             */
-/*   Updated: 2015/05/29 17:13:14 by jpirsch          ###   ########.fr       */
+/*   Updated: 2015/05/29 18:20:49 by jpirsch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,7 +123,6 @@ int		check_path(t_env *e)
 	int		n;
 	char	*hashbin;
 
-	ft_putendl(e->av[0]);
 	if (!e->path)
 		return (0);
 	i = 0;
