@@ -6,7 +6,7 @@
 /*   By: jpirsch <jpirsch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/12 05:24:41 by jpirsch           #+#    #+#             */
-/*   Updated: 2015/05/29 18:12:57 by jpirsch          ###   ########.fr       */
+/*   Updated: 2015/06/02 09:51:38 by jpirsch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,8 @@ typedef struct	s_env
 	int			hc;
 	int			ec;
 }				t_env;
+
+typedef struct	termios t_termios;
 
 t_env			*init_env(char **env);
 t_env			*empty_env();

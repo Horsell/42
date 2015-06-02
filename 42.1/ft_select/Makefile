@@ -5,36 +5,26 @@
 #                                                     +:+ +:+         +:+      #
 #    By: jpirsch <jpirsch@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2015/01/05 01:32:20 by jpirsch           #+#    #+#              #
-#    Updated: 2015/06/02 09:34:29 by jpirsch          ###   ########.fr        #
+#    Created: 2015/01/05 01:28:32 by jpirsch           #+#    #+#              #
+#    Updated: 2015/06/02 13:07:17 by jpirsch          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME	=	../ft_sh1
-SRC		= 	main.c \
-			ft_execve.c \
-			env.c \
-			setenv.c \
-			unsetenv.c \
-			ft_cd.c \
-			parse_command.c \
-			hashtable.c \
-			termcaps.c \
-			get_next_line.c
-OBJ		= $(SRC:.c=.o)
+export FLAGS	= -Wall -Wextra -Werror
+NAME			= ft_select
+SRC_DIR			= ./sources
+LIB_DIR			= ./libft
 
-all: $(NAME)
-
-$(NAME): $(OBJ)
-	gcc -o $(NAME) $(OBJ) -L ../libft/ -lft -ltermcap
-
-$(OBJ):
-	gcc -c $(SRC) -I ../includes
+all:
+	make -C $(LIB_DIR)
+	make -C $(SRC_DIR)
 
 clean:
-	rm -f $(OBJ)
+	make -C $(LIB_DIR) clean
+	make -C $(SRC_DIR) clean
 
 fclean: clean
-	rm -f $(NAME)
+	make -C $(LIB_DIR) fclean
+	make -C $(SRC_DIR) fclean
 
 re: fclean all

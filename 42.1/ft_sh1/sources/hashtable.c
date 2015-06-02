@@ -6,7 +6,7 @@
 /*   By: jpirsch <jpirsch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/04/03 16:30:49 by jpirsch           #+#    #+#             */
-/*   Updated: 2015/05/29 18:20:49 by jpirsch          ###   ########.fr       */
+/*   Updated: 2015/06/02 09:37:19 by jpirsch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -142,5 +142,5 @@ int		check_path(t_env *e)
 	if (!(ft_strcmp(hashbin, e->av[0])))
 		if (!(access(*(char**)e->hashtab[n]->content, X_OK)))
 			ft_execve(*(char**)e->hashtab[n]->content, e->av, e->env);
-	return (--i); //return value unused ?
+	return (--i);
 }
