@@ -6,7 +6,7 @@
 /*   By: jpirsch <jpirsch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/12 05:11:10 by jpirsch           #+#    #+#             */
-/*   Updated: 2015/06/08 05:47:37 by jpirsch          ###   ########.fr       */
+/*   Updated: 2015/06/08 08:35:21 by jpirsch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,7 @@ void	display_args(t_list *list)
 {
 	while (list)
 	{
+		
 		ft_putendl(list->content);
 		if (list->next)
 			list = list->next;
@@ -82,49 +83,66 @@ void	clr_screen()
 	}
 }
 
-int		main(int ac, char **av, char **env)
+t_env	*init(int ac, char **av)
 {
+	t_env			*e;
 	t_list			*list;
-	char			chain[9];
-	int				ret;
-	int				fd;
-	char			*underline;
 	struct winsize	win;
 
-	(void)env;
+	if (!(e = malloc(sizeof(t_env))))
+		return (NULL);
+	initialize_terminal(av);
+	ioctl(0, TIOCGWINSZ, &win);
+	list = init_arglist(ac, av);
+	tputs(tgetstr("cl", NULL), 1, ft_putc);
+	return (e);
+}
+
+void	select_elem()
+{
+}
+
+void	myread()
+{
+	char	buf[4];
+	int		x;
+
+	x = 0;
+	while (buf[0] != 4)			
+	{
+		buf[0] = 0;
+		buf[1] = 0;
+		buf[2] = 0;
+		buf[3] = 0;
+		read(0, buf, 4);
+		x = (buf[3] << 24) + (buf[2] << 16) + (buf[1] << 8) + buf[0];
+		if (x == 27)
+			break ;
+		if (x == 32)
+			select_elem();
+     }
+}
+
+void	signals()
+{
 	signal(SIGINT, catch);
 	signal(SIGWINCH, catch);
+}
+
+int		main(int ac, char **av)
+{
+	t_list			*list;
+	struct winsize	win;
+
+	signals();
+		ft_putstr("\033[?1049h\033[H");
 	initialize_terminal(av);
-//	fd = open("/dev/tty", O_WRONLY);
-//	underline = tgetstr("us", NULL);
-//	tputs(underline, 1, ft_putc);
-	ioctl(0, TIOCGWINSZ, &win);
-	clr_screen();
+//	ioctl(0, TIOCGWINSZ, &win);
+	tputs(tgetstr("cl", NULL), 1, ft_putc);
 	list = init_arglist(ac, av);
 	display_args(list);
-	while (read(0, chain, 2))
-	{
-		ft_putchar(chain[0]);
-		if (chain[0] == '\t')
-			ft_putnbr(chain[0]);
-		if (chain[0] == '\n')
-			break ;
-	}
-//	tputs(tgetstr("so", NULL), 1, ft_putc);
-	tputs(tgetstr("le", NULL), 1, ft_putc);
-//	tputs(tgetstr("RI", NULL), 1, ft_putc);
-//	tputs(tgetstr("RI", NULL), 1, ft_putc);
-	ft_putstr("gome");
-	tputs(tgetstr("me", NULL), 1, ft_putc);
-	ft_putchar('\n');
-	ft_putnbr(win.ws_row);
-	ft_putchar('\n');
-	ft_putnbr(win.ws_col);
-	ft_putchar('\n');
-	sleep(2);
-	underline = tgetstr("ue", NULL);
-	tputs(underline, 1, ft_putc);
-	close(fd);
+	myread();
+		ft_putstr("\033[?1049l");
 	restore_term(1);
 	return (0);
 }
