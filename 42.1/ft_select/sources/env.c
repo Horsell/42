@@ -6,48 +6,54 @@
 /*   By: jpirsch <jpirsch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/02 16:24:42 by jpirsch           #+#    #+#             */
-/*   Updated: 2015/06/02 16:25:01 by jpirsch          ###   ########.fr       */
+/*   Updated: 2015/06/09 19:35:25 by jpirsch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_select.h"
 
-int		search_env(t_env *e, char *var)
+t_env	*init_select(int ac, char **av)
 {
-	int i;
+	t_env			*e;
 
-	i = 0;
-	while (e->env[i] != NULL)
-	{
-		if (!(ft_strncmp(e->env[i], var, ft_strlen(var) - 1)))
-			return (i);
-		i++;
-	}
-	return (-1);
+	if (!(e = malloc(sizeof(t_env))))
+		return (NULL);
+	initialize_terminal(av);
+	e->clist = init_arglist(ac, av);
+	ioctl(0, TIOCGWINSZ, e->win);
+	return (e);
 }
 
-int		display_env(t_env *e)
+void	close_select(t_env *e)
 {
-	int i;
-
-	i = 0;
-	while (e->env[i])
-	{
-		ft_putendl(e->env[i]);
-		i++;
-	}
-	return (2);
+	ft_clstdel(e->clist);
+	free(e->win);
+	free(e);
+	restore_term(1);
 }
 
-char	*get_env(t_env *e, char *var)
+t_clist	*init_arglist(int ac, char **av)
 {
-	char	*env_var;
+	t_clist	*clist;
+	t_clist	*first;
+	t_clist	*tmp;
 	int		i;
 
-	i = search_env(e, var);
-	if (i > -1)
-		env_var = e->env[i] + ft_strlen(var) + 1;
-	else
-		env_var = ft_strdup("_");
-	return (env_var);
+	i = 0;
+	clist = NULL;
+	while (i < ac)
+	{
+		if (!clist)
+		{
+			clist = ft_clstnew(av[i], 1);
+			first = clist;
+		}
+		else
+		{
+			tmp = ft_clstnew(av[i], 0);
+			ft_clstadd(&first->prev, &first, tmp);
+		}
+		i++;
+	}
+	return (clist);
 }

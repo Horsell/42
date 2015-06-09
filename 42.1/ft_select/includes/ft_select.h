@@ -6,7 +6,7 @@
 /*   By: jpirsch <jpirsch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/12 05:24:41 by jpirsch           #+#    #+#             */
-/*   Updated: 2015/06/08 08:47:04 by jpirsch          ###   ########.fr       */
+/*   Updated: 2015/06/09 19:07:24 by jpirsch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,25 +26,37 @@
 typedef struct	termios t_termios;
 typedef struct	winsize t_winsize;
 
-typedef struct	s_env
+typedef struct			s_clist
 {
-	t_termios	term;
-	t_list		*list;
-	t_winsize	*win;
-	int			col;
-	int			lines;
-	int			nbargs;
-}				t_env;
+	char				*underlined;
+	char				*selected;
+	char				*arg;
+	int					isfirst;
+	struct s_clist		*prev;
+	struct s_clist		*next;
+}						t_clist;
 
-typedef struct	s_clist
+typedef struct			s_env
 {
-	char		*underline;
-	char		*selected;
-	t_clist		*prev;
-	t_clist		*next;
-}				t_clist;
+	t_termios			term;
+	t_clist				*clist;
+	t_winsize			*win;
+	int					col;
+	int					line;
+	int					nbargs;
+}						t_env;
 
-int		ft_putc(int c);
-void	initialize_terminal(char **av);
-void	restore_term(int success);
+t_clist					*ft_clstnew(char *arg, int isfirst);
+void					ft_clstadd(t_clist **last, t_clist **first, t_clist *new);
+void					ft_clstdel(t_clist *alst);
+int						ft_putc(int c);
+void					signals();
+void					up(t_env *e);
+void					down(t_env *e);
+t_env					*init_select(int ac, char **av);
+void					initialize_terminal();
+t_clist					*init_arglist(int ac, char **av);
+void					display_args(t_clist *clist);
+void					restore_term(int success);
+void					close_select(t_env *e);
 #endif

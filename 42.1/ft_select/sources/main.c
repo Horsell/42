@@ -6,103 +6,44 @@
 /*   By: jpirsch <jpirsch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/12 05:11:10 by jpirsch           #+#    #+#             */
-/*   Updated: 2015/06/08 08:35:21 by jpirsch          ###   ########.fr       */
+/*   Updated: 2015/06/09 20:04:07 by jpirsch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_select.h"
 
-void	catch(int signum)
+void	ajdsfh()
 {
-	ft_putstr("\b\b");
+	ecrire une fonction qui retourne l'elem de la liste selectione
 }
 
-
-void		activate_underline(t_list **list)
+void	select_elem(t_env *e)
 {
-	char	*dir;
-	char	*videomod;
-	char	*disable;
-	char	*underline;
+	int		first;
+	t_clist	*tmp;
 
-	dir = tgetstr("cm", NULL);
-	videomod = tgetstr("so", NULL);
-	disable = tgetstr("me", NULL);
-	underline = tgetstr("us", NULL);
-	tputs(underline, 1, ft_putc);
-	if ((*list)->content)
-		tputs(videomod, 1, ft_putc);
-	tputs(tgoto(dir, 2, 5), 1, ft_putc);
-	ft_putendl_fd((*list)->content, 1);
-	tputs(disable, 1, ft_putc);
-	tputs(tgoto(dir, 2, 5), 1, ft_putc);
-}
-
-t_list	*init_arglist(int ac, char **av)
-{
-	t_list			*list;
-	t_list			*tmp;
-
-	list = NULL;
-	while (--ac >= 0)
+	first = 1;
+	tmp = e->clist;
+	while (e->clist)
 	{
-		if (!list)
-			list = ft_lstnew(av[ac], sizeof(char) * ft_strlen(av[ac]));
-		else
-		{
-			tmp = ft_lstnew(av[ac], sizeof(char) * ft_strlen(av[ac]));
-			ft_lstadd(&list, tmp);
-		}
-	}
-	return (list);
-}
-
-void	display_args(t_list *list)
-{
-	while (list)
-	{
-		
-		ft_putendl(list->content);
-		if (list->next)
-			list = list->next;
-		else
+		if (e->clist->isfirst != first)
 			return ;
+		if (!ft_strncmp(e->clist->underlined, "us", 2))
+		{
+			if (!ft_strncmp(e->clist->selected, "so", 2))
+				e->clist->selected = "se";
+			else
+				e->clist->selected = "so";
+			break ;
+		}
+		if (e->clist->next)
+			e->clist = e->clist->next;
+		first = 0;
 	}
+	e->clist = tmp;
 }
 
-void	clr_screen()
-{
-	int i;
-
-	i = 0;
-	while (i < 44)
-	{
-		tputs(tgetstr("up", NULL), 1, ft_putc);
-		tputs(tgetstr("dl", NULL), 1, ft_putc);
-		i++;
-	}
-}
-
-t_env	*init(int ac, char **av)
-{
-	t_env			*e;
-	t_list			*list;
-	struct winsize	win;
-
-	if (!(e = malloc(sizeof(t_env))))
-		return (NULL);
-	initialize_terminal(av);
-	ioctl(0, TIOCGWINSZ, &win);
-	list = init_arglist(ac, av);
-	tputs(tgetstr("cl", NULL), 1, ft_putc);
-	return (e);
-}
-
-void	select_elem()
-{
-}
-
-void	myread()
+void	myread(t_env *e)
 {
 	char	buf[4];
 	int		x;
@@ -110,6 +51,7 @@ void	myread()
 	x = 0;
 	while (buf[0] != 4)			
 	{
+		display_args(e->clist);
 		buf[0] = 0;
 		buf[1] = 0;
 		buf[2] = 0;
@@ -118,31 +60,19 @@ void	myread()
 		x = (buf[3] << 24) + (buf[2] << 16) + (buf[1] << 8) + buf[0];
 		if (x == 27)
 			break ;
-		if (x == 32)
-			select_elem();
+		(x == 32) ? select_elem(e) : 1;
+		(x == 4348699) ? down(e) : 1;
+		(x == 4283163) ? up(e) : 1;
      }
-}
-
-void	signals()
-{
-	signal(SIGINT, catch);
-	signal(SIGWINCH, catch);
 }
 
 int		main(int ac, char **av)
 {
-	t_list			*list;
-	struct winsize	win;
+	t_env	*e;
 
 	signals();
-		ft_putstr("\033[?1049h\033[H");
-	initialize_terminal(av);
-//	ioctl(0, TIOCGWINSZ, &win);
-	tputs(tgetstr("cl", NULL), 1, ft_putc);
-	list = init_arglist(ac, av);
-	display_args(list);
-	myread();
-		ft_putstr("\033[?1049l");
-	restore_term(1);
+	e = init_select(ac, av);
+	myread(e);
+	close_select(e);
 	return (0);
 }
