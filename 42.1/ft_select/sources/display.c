@@ -6,7 +6,7 @@
 /*   By: jpirsch <jpirsch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/09 14:16:28 by jpirsch           #+#    #+#             */
-/*   Updated: 2015/06/10 16:08:50 by jpirsch          ###   ########.fr       */
+/*   Updated: 2015/06/10 16:54:05 by jpirsch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ void	display_args(t_env *e)
 	int	first;
 
 	first = 1;
+	initialize_terminal();
 	tputs(tgetstr("cl", NULL), 1, ft_putc);
 	while (e->clist)
 	{
