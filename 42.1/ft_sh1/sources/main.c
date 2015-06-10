@@ -6,7 +6,7 @@
 /*   By: jpirsch <jpirsch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/12 05:11:10 by jpirsch           #+#    #+#             */
-/*   Updated: 2015/06/02 12:49:31 by jpirsch          ###   ########.fr       */
+/*   Updated: 2015/06/10 17:19:33 by jpirsch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,9 +95,10 @@ void	restore_term(int success)
 
 int		main(int ac, char **av, char **env)
 {
-	char			buf[2];
+	char			buf[4];
 	char			*line;
 	int				ret;
+	int				x;
 	int				fd;
 	t_termios		*term;
 	t_env 			*e;
@@ -110,12 +111,27 @@ int		main(int ac, char **av, char **env)
 	{
 		line = ft_strdup("");
 		prompt(e);
-		while ((ret = read(0, buf, 1)))
+		while (buf[0] != 4)			
+		{
+			buf[0] = 0;
+			buf[1] = 0;
+			buf[2] = 0;
+			buf[3] = 0;
+			read(0, buf, 4);
+			x = (buf[3] << 24) + (buf[2] << 16) + (buf[1] << 8) + buf[0];
+			if (x == 27)
+			{
+				restore_term(1);
+				ft_free(e);
+			}
+			if (x == 10)
+				break ;
+/*		while ((ret = read(0, buf, 1)))
 		{
 			buf[ret] = '\0';
 			ft_putchar(buf[0]);
 			if (buf[0] == '\n')
-				break ;
+				break ;*/
 			line = ft_strjoin(line, buf);
 		}
 		ret = check_cmd(line, e);

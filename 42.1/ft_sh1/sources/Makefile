@@ -6,7 +6,7 @@
 #    By: jpirsch <jpirsch@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/01/05 01:32:20 by jpirsch           #+#    #+#              #
-#    Updated: 2015/06/02 09:34:29 by jpirsch          ###   ########.fr        #
+#    Updated: 2015/06/10 17:13:23 by jpirsch          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,8 +28,8 @@ all: $(NAME)
 $(NAME): $(OBJ)
 	gcc -o $(NAME) $(OBJ) -L ../libft/ -lft -ltermcap
 
-$(OBJ):
-	gcc -c $(SRC) -I ../includes
+%.o:%.c
+	gcc -c $(FlAGS) $(SRC) -I ../includes
 
 clean:
 	rm -f $(OBJ)
