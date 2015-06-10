@@ -6,41 +6,44 @@
 /*   By: jpirsch <jpirsch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/12 05:11:10 by jpirsch           #+#    #+#             */
-/*   Updated: 2015/06/09 20:04:07 by jpirsch          ###   ########.fr       */
+/*   Updated: 2015/06/10 13:23:01 by jpirsch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_select.h"
 
-void	ajdsfh()
-{
-	ecrire une fonction qui retourne l'elem de la liste selectione
-}
-
-void	select_elem(t_env *e)
+t_clist	*is_underlined(t_clist *clist)
 {
 	int		first;
 	t_clist	*tmp;
 
 	first = 1;
-	tmp = e->clist;
-	while (e->clist)
+	tmp = clist;
+	while (clist)
 	{
-		if (e->clist->isfirst != first)
-			return ;
-		if (!ft_strncmp(e->clist->underlined, "us", 2))
-		{
-			if (!ft_strncmp(e->clist->selected, "so", 2))
-				e->clist->selected = "se";
-			else
-				e->clist->selected = "so";
-			break ;
-		}
-		if (e->clist->next)
-			e->clist = e->clist->next;
+		if (clist->isfirst != first)
+			return (NULL);
+		if (!ft_strncmp(clist->underlined, "us", 2))
+			return (clist);
+		if (clist->next)
+			clist = clist->next;
 		first = 0;
 	}
-	e->clist = tmp;
+	clist = tmp;
+	return (NULL);
+}
+
+void	select_elem(t_env *e)
+{
+	t_clist	*tmp;
+
+	tmp = is_underlined(e->clist);
+	if (!tmp)
+		return ;
+	if (!ft_strncmp(tmp->selected, "so", 2))
+		tmp->selected = "se";
+	else
+		tmp->selected = "so";
 }
 
 void	myread(t_env *e)

@@ -6,7 +6,7 @@
 /*   By: jpirsch <jpirsch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/09 15:50:23 by jpirsch           #+#    #+#             */
-/*   Updated: 2015/06/09 19:44:27 by jpirsch          ###   ########.fr       */
+/*   Updated: 2015/06/10 13:14:17 by jpirsch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ t_clist	*ft_clstnew(char *arg, int isfirst)
 		new->underlined = "us";
 	else
 		new->underlined = "ue";
-	new->next = NULL;
+	new->next = new;
 	new->prev = new;
 	return (new);
 }
