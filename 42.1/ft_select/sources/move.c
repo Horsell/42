@@ -6,7 +6,7 @@
 /*   By: jpirsch <jpirsch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/04 18:03:36 by jpirsch           #+#    #+#             */
-/*   Updated: 2015/06/10 13:23:30 by jpirsch          ###   ########.fr       */
+/*   Updated: 2015/06/10 15:35:29 by jpirsch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,10 @@ void	up(t_env *e)
 	t_clist	*clist;
 
 	clist = is_underlined(e->clist);
-	if (!ft_strncmp(clist->underlined, "us", 2))
-	{
-		clist->underlined = "se";
-		clist->prev->underlined = "us";
-	}
+	if (!clist)
+		return ;
+	clist->underlined = "ue";
+	clist->prev->underlined = "us";
 }
 
 void	down(t_env *e)
@@ -35,11 +34,10 @@ void	down(t_env *e)
 	t_clist	*clist;
 
 	clist = is_underlined(e->clist);
-	if (!ft_strncmp(clist->underlined, "us", 2))
-	{
-		clist->underlined = "se";
-		clist->next->underlined = "us";
-	}
+	if (!clist)
+		return ;
+	clist->underlined = "ue";
+	clist->next->underlined = "us";
 }
 
 void	right()

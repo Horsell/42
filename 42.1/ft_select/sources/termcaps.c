@@ -6,7 +6,7 @@
 /*   By: jpirsch <jpirsch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/04/03 16:30:54 by jpirsch           #+#    #+#             */
-/*   Updated: 2015/06/09 20:04:33 by jpirsch          ###   ########.fr       */
+/*   Updated: 2015/06/10 14:55:44 by jpirsch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,5 +48,4 @@ void	restore_term(int success)
 	if (success != -42)
 		tputs(tgetstr("cl", NULL), 1, ft_putc);
 	tputs(tgetstr("ve", NULL), 1, ft_putc);
-	exit(EXIT_SUCCESS);
 }
