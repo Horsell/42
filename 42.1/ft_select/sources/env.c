@@ -6,7 +6,7 @@
 /*   By: jpirsch <jpirsch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/02 16:24:42 by jpirsch           #+#    #+#             */
-/*   Updated: 2015/06/09 19:35:25 by jpirsch          ###   ########.fr       */
+/*   Updated: 2015/06/10 16:19:24 by jpirsch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,15 +18,18 @@ t_env	*init_select(int ac, char **av)
 
 	if (!(e = malloc(sizeof(t_env))))
 		return (NULL);
+	if (!(e->win = malloc(sizeof(t_winsize))))
+		return (NULL);
 	initialize_terminal(av);
 	e->clist = init_arglist(ac, av);
+	e->nbargs = ac;
 	ioctl(0, TIOCGWINSZ, e->win);
 	return (e);
 }
 
 void	close_select(t_env *e)
 {
-	ft_clstdel(e->clist);
+	ft_clstdel(&e->clist);
 	free(e->win);
 	free(e);
 	restore_term(1);

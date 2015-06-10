@@ -6,7 +6,7 @@
 /*   By: jpirsch <jpirsch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/12 05:11:10 by jpirsch           #+#    #+#             */
-/*   Updated: 2015/06/10 15:35:37 by jpirsch          ###   ########.fr       */
+/*   Updated: 2015/06/10 15:59:15 by jpirsch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ void	myread(t_env *e)
 	ft_bzero(buf, 4);
 	while (buf[0] != 4)			
 	{
-		display_args(e->clist);
+		display_args(e);
 		buf[0] = 0;
 		buf[1] = 0;
 		buf[2] = 0;

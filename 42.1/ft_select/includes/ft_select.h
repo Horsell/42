@@ -6,7 +6,7 @@
 /*   By: jpirsch <jpirsch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/12 05:24:41 by jpirsch           #+#    #+#             */
-/*   Updated: 2015/06/10 13:13:14 by jpirsch          ###   ########.fr       */
+/*   Updated: 2015/06/10 16:19:47 by jpirsch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ typedef struct			s_env
 
 t_clist					*ft_clstnew(char *arg, int isfirst);
 void					ft_clstadd(t_clist **last, t_clist **first, t_clist *new);
-void					ft_clstdel(t_clist *alst);
+void					ft_clstdel(t_clist **alst);
 t_clist					*is_underlined(t_clist *clist);
 int						ft_putc(int c);
 void					signals();
@@ -57,7 +57,7 @@ void					down(t_env *e);
 t_env					*init_select(int ac, char **av);
 void					initialize_terminal();
 t_clist					*init_arglist(int ac, char **av);
-void					display_args(t_clist *clist);
+void					display_args(t_env *e);
 void					restore_term(int success);
 void					close_select(t_env *e);
 #endif

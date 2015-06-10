@@ -6,7 +6,7 @@
 /*   By: jpirsch <jpirsch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/04/03 16:30:54 by jpirsch           #+#    #+#             */
-/*   Updated: 2015/06/10 14:55:44 by jpirsch          ###   ########.fr       */
+/*   Updated: 2015/06/10 15:49:30 by jpirsch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,10 @@ void	initialize_terminal()
 
 	term = getenv("TERM");
 	if (!term)
+	{
+		ft_putendl_fd("Failed to load term properties", 2);
 		exit(EXIT_FAILURE);
+	}
 	tgetent(NULL, term);
 	tcgetattr(0, &s_term);
 	s_term.c_lflag &= ~(ICANON);

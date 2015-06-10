@@ -6,7 +6,7 @@
 /*   By: jpirsch <jpirsch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/09 15:50:23 by jpirsch           #+#    #+#             */
-/*   Updated: 2015/06/10 13:14:17 by jpirsch          ###   ########.fr       */
+/*   Updated: 2015/06/10 16:24:56 by jpirsch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,22 +46,19 @@ void	ft_clstadd(t_clist **last, t_clist **first, t_clist *new)
 	(*last) = new;
 }
 
-void	ft_clstdel(t_clist *alst)
+void	ft_clstdelone(t_clist **alst)
 {
-//	t_clist	*tmp;
+	if (!alst)
+		return ;
+	free(*alst);
+	*alst = NULL;
+}
 
+void	ft_clstdel(t_clist **alst)
+{
 	if (!(alst))
 		return ;
-	free(alst);
-/*	while (alst)
-	{
-		if (alst->next)
-		{
-			tmp = alst;
-			alst = alst->next;
-			free(tmp);
-		}
-		else
-			free(alst);
-	}*/
+	if ((*alst)->next->isfirst != 1)
+		ft_clstdel(&((*alst)->next));
+	ft_clstdelone(alst);
 }

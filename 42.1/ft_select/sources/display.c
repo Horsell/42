@@ -6,31 +6,33 @@
 /*   By: jpirsch <jpirsch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/09 14:16:28 by jpirsch           #+#    #+#             */
-/*   Updated: 2015/06/09 19:15:09 by jpirsch          ###   ########.fr       */
+/*   Updated: 2015/06/10 16:08:50 by jpirsch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_select.h"
 
-void	display_args(t_clist *clist)
+void	display_args(t_env *e)
 {
 	int	first;
 
 	first = 1;
 	tputs(tgetstr("cl", NULL), 1, ft_putc);
-	while (clist)
+	while (e->clist)
 	{
-		if (clist->isfirst != first)
-			return ;
-		tputs(tgetstr(clist->underlined, NULL), 1, ft_putc);
-		tputs(tgetstr(clist->selected, NULL), 1, ft_putc);
-		ft_putendl(clist->arg);
-		if (clist->next)
-			clist = clist->next;
+		if (e->clist->isfirst != first)
+			break ;
+		tputs(tgetstr(e->clist->underlined, NULL), 1, ft_putc);
+		tputs(tgetstr(e->clist->selected, NULL), 1, ft_putc);
+		ft_putendl(e->clist->arg);
+		if (e->clist->next)
+			e->clist = e->clist->next;
 		else
-			return ;
+			break ;
 		first = 0;
 	}
 	tputs(tgetstr("se", NULL), 1, ft_putc);
 	tputs(tgetstr("ue", NULL), 1, ft_putc);
+	ft_putnbr(e->win->ws_row);
+	ft_putnbr(e->nbargs);
 }
