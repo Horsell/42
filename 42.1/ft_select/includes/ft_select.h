@@ -6,7 +6,7 @@
 /*   By: jpirsch <jpirsch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/12 05:24:41 by jpirsch           #+#    #+#             */
-/*   Updated: 2015/06/10 16:19:47 by jpirsch          ###   ########.fr       */
+/*   Updated: 2015/06/11 09:54:32 by jpirsch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,8 +52,10 @@ void					ft_clstdel(t_clist **alst);
 t_clist					*is_underlined(t_clist *clist);
 int						ft_putc(int c);
 void					signals();
+void					left(t_env *e);
 void					up(t_env *e);
 void					down(t_env *e);
+void					right(t_env *e);
 t_env					*init_select(int ac, char **av);
 void					initialize_terminal();
 t_clist					*init_arglist(int ac, char **av);

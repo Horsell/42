@@ -6,7 +6,7 @@
 /*   By: jpirsch <jpirsch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/09 14:17:27 by jpirsch           #+#    #+#             */
-/*   Updated: 2015/06/10 17:01:04 by jpirsch          ###   ########.fr       */
+/*   Updated: 2015/06/10 17:29:00 by jpirsch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 
 void	catch(int signum)
 {
-	char			sim[2];
+	(void)signum;
+/*	char			sim[2];
 	struct termios	*new;
 
 	if (signum == 18)
@@ -24,7 +25,7 @@ void	catch(int signum)
 		sim[1] = 0;
 		ioctl(0, TIOCSTI, sim);
 		signal(SIGTSTP, SIG_DFL);
-	}
+	}*/
 	//	ft_putstr("\b\b");
 }
 
