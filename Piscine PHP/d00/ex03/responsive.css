@@ -1,0 +1,128 @@
+caption
+{
+	font-size: 3vw;
+	color: white;
+}
+
+td
+{
+	width: 1%;
+	height: 2px;
+	text-align: center;
+}
+
+sub
+{
+	font-size: 1.2vw;
+}
+
+sup
+{
+	font-size: 1.2vw;
+}
+
+body
+{
+	background-color: grey;
+}
+
+.elem_font
+{
+	font-size: 1.2vw;
+}
+
+.nonmetals
+{
+	font-size: 1vw;
+	background-color: maroon;
+	border: solid 1px black;
+}
+
+.metalloids 
+{
+	font-size: 1vw;
+	background-color: #FFAA33;
+	border: solid 1px black;
+}
+
+.gazes_nbl
+{
+	font-size: 1vw;
+	background-color: blue;
+	border: solid 1px black;
+}
+
+.alkali_metal
+{
+	font-size: 1vw;
+	background-color: #FF7744;
+	border: solid 1px black;
+}
+
+.alkaline_metal
+{
+	font-size: 1vw;
+	background-color: #FF9955;
+	border:solid 1px black;
+}
+
+.halogenes
+{
+	font-size: 1vw;
+	background-color: green;
+	border: solid 1px black;
+}
+
+.transition_metal
+{
+	font-size: 1vw; 
+	background-color: #6677FF; 
+	border: solid 1px black;
+}
+
+.lanthanoids
+{
+	font-size: 1vw;
+	background-color: magenta;
+	border: solid 1px black;
+}
+
+.actinoids 
+{
+	font-size: 1vw; 
+	background-color: purple; 
+	border: solid 1px black;
+}
+
+.inconnu 
+{
+	font-size: 1vw; 
+	background-color: #999999; 
+	border: solid 1px black;
+}
+
+.other_mtls
+{
+	font-size: 1vw;
+	background-color: cyan; 
+	border: solid 1px black;
+}
+
+.subd
+{
+	text-align: left;
+	font-size: 1.1vw;
+}
+
+.supd
+{
+	text-align: right;
+	font-size: 1.1vw;
+}
+
+#xkcd
+{
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+}
