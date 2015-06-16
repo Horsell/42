@@ -1,31 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strrchr.c                                       :+:      :+:    :+:   */
+/*   ft_strmapi.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jpirsch <jpirsch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/11/09 03:20:08 by jpirsch           #+#    #+#             */
-/*   Updated: 2015/06/12 14:29:19 by jpirsch          ###   ########.fr       */
+/*   Created: 2014/11/10 04:11:31 by jpirsch           #+#    #+#             */
+/*   Updated: 2015/01/10 04:53:05 by jpirsch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strrchr(const char *s, int c)
+char	*ft_strmapi(const char *s, char (*f)(unsigned int, char))
 {
-	int n;
+	size_t	i;
+	char	*str;
 
-	//ft_putchar('7');
-	n = ft_strlen((char*)s);
-//	ft_putstr("yoloswag");
-	s += n;
-	while (n + 1)
+	i = 0;
+	str = ft_strnew(sizeof(s));
+	if (!s)
+		return (NULL);
+	if (!f)
+		return (NULL);
+	while (*s)
 	{
-		if (*s == (char)c)
-			return ((char *)s);
-		s--;
-		n--;
+		*str = f(i, *(char*)s);
+		s++;
+		str++;
+		i++;
 	}
-	return (NULL);
+	return (str - i);
 }

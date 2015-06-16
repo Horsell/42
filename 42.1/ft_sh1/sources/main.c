@@ -6,7 +6,7 @@
 /*   By: jpirsch <jpirsch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/12 05:11:10 by jpirsch           #+#    #+#             */
-/*   Updated: 2015/06/10 17:19:33 by jpirsch          ###   ########.fr       */
+/*   Updated: 2015/06/14 11:56:55 by jpirsch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,38 +106,55 @@ int		main(int ac, char **av, char **env)
 	ret = 0;
 	e = (!(env[0])) ? empty_env() : init_env(env);
 	signal(SIGINT, catch);
-	initialize_terminal(av);
+//	initialize_terminal(av);
 	while (ret != 1)
 	{
+		prompt(e);
+		if (get_next_line(0, &line))
+		{
+			ret = check_cmd(line, e);
+			if (ret == 1)
+				break ;
+		}
+	}
+//	restore_term(1);
+	ft_free(e);
+	return (0);
+}
+	/*
+//	while (ret != 1)
+	{//
 		line = ft_strdup("");
 		prompt(e);
 		while (buf[0] != 4)			
 		{
-			buf[0] = 0;
-			buf[1] = 0;
-			buf[2] = 0;
-			buf[3] = 0;
+			ft_bzero(buf, 4);
 			read(0, buf, 4);
 			x = (buf[3] << 24) + (buf[2] << 16) + (buf[1] << 8) + buf[0];
-			if (x == 27)
-			{
-				restore_term(1);
-				ft_free(e);
-			}
 			if (x == 10)
-				break ;
-/*		while ((ret = read(0, buf, 1)))
-		{
-			buf[ret] = '\0';
-			ft_putchar(buf[0]);
-			if (buf[0] == '\n')
-				break ;*/
-			line = ft_strjoin(line, buf);
+			{
+				ft_putchar('\n');
+				ft_putstr(line);
+				ret = check_cmd(line, e);
+				free(line);
+				line = NULL;
+				line = ft_strdup("");
+				if (ret == 1)
+					break ;
+				prompt(e);
+			}
+			else if (ft_isprint(x))
+			{
+				ft_putchar(buf[0]);
+				line = ft_strjoin(line, buf);
+			}
+			else if (x == 9)
+			{
+				ft_putnbr(x);
+			}
 		}
-		ret = check_cmd(line, e);
-		free(line);
-	}
+//	}
 	restore_term(1);
 	ft_free(e);
 	return (0);
-}
+}*/

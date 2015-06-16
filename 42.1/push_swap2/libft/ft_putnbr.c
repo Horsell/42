@@ -1,31 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strrchr.c                                       :+:      :+:    :+:   */
+/*   ft_putnbr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jpirsch <jpirsch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/11/09 03:20:08 by jpirsch           #+#    #+#             */
-/*   Updated: 2015/06/12 14:29:19 by jpirsch          ###   ########.fr       */
+/*   Created: 2014/09/13 19:39:13 by jpirsch           #+#    #+#             */
+/*   Updated: 2014/11/11 10:45:27 by jpirsch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strrchr(const char *s, int c)
+void	ft_putnbr(int n)
 {
-	int n;
-
-	//ft_putchar('7');
-	n = ft_strlen((char*)s);
-//	ft_putstr("yoloswag");
-	s += n;
-	while (n + 1)
+	if (n < 0 && n != -2147483648)
 	{
-		if (*s == (char)c)
-			return ((char *)s);
-		s--;
-		n--;
+		ft_putchar('-');
+		ft_putnbr(-n);
 	}
-	return (NULL);
+	else if (n == -2147483648)
+		ft_putstr("-2147483648");
+	else if (n > 9)
+	{
+		ft_putnbr(n / 10);
+		ft_putchar((n % 10) + '0');
+	}
+	else
+		ft_putchar((n % 10) + '0');
 }

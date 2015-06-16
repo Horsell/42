@@ -1,31 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strrchr.c                                       :+:      :+:    :+:   */
+/*   ft_strcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jpirsch <jpirsch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/11/09 03:20:08 by jpirsch           #+#    #+#             */
-/*   Updated: 2015/06/12 14:29:19 by jpirsch          ###   ########.fr       */
+/*   Created: 2014/09/04 05:40:49 by jpirsch           #+#    #+#             */
+/*   Updated: 2014/11/16 04:18:07 by jpirsch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-
-char	*ft_strrchr(const char *s, int c)
+int		ft_strcmp(const char *s1, const char *s2)
 {
-	int n;
-
-	//ft_putchar('7');
-	n = ft_strlen((char*)s);
-//	ft_putstr("yoloswag");
-	s += n;
-	while (n + 1)
+	while (*s1 == *s2 && *s1 && *s2)
 	{
-		if (*s == (char)c)
-			return ((char *)s);
-		s--;
-		n--;
+		s1++;
+		s2++;
 	}
-	return (NULL);
+	return (*(unsigned char*)s1 - *(unsigned char*)s2);
 }

@@ -6,7 +6,7 @@
 /*   By: jpirsch <jpirsch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/17 20:05:37 by jpirsch           #+#    #+#             */
-/*   Updated: 2015/03/18 18:48:34 by jpirsch          ###   ########.fr       */
+/*   Updated: 2015/06/12 04:45:08 by jpirsch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	algo(t_pile **a, t_pile **b, int n)
 			push_swap(b, *a);
 		}
 		ft_putchar('d');
-		tp = top_check(*a));
+		tp = top_check(*a);
 		i++;
 	}
 }

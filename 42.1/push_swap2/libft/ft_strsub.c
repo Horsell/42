@@ -1,31 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strrchr.c                                       :+:      :+:    :+:   */
+/*   ft_strsub.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jpirsch <jpirsch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/11/09 03:20:08 by jpirsch           #+#    #+#             */
-/*   Updated: 2015/06/12 14:29:19 by jpirsch          ###   ########.fr       */
+/*   Created: 2014/11/10 06:05:31 by jpirsch           #+#    #+#             */
+/*   Updated: 2015/04/05 15:17:57 by jpirsch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strrchr(const char *s, int c)
+char	*ft_strsub(const char *s, unsigned int start, size_t len)
 {
-	int n;
+	size_t	i;
+	char	*str;
 
-	//ft_putchar('7');
-	n = ft_strlen((char*)s);
-//	ft_putstr("yoloswag");
-	s += n;
-	while (n + 1)
+	i = 0;
+	if (!s)
+		return (NULL);
+	if (!len && !start)
+		return (ft_strdup(""));
+	if (!(str = ft_strnew(len)))
+		return (NULL);
+	s += start;
+	while (len--)
 	{
-		if (*s == (char)c)
-			return ((char *)s);
-		s--;
-		n--;
+		str[i] = s[i];
+		if (str[i] == '\0')
+			return (str);
+		i++;
 	}
-	return (NULL);
+	str[i] = '\0';
+	return (str);
 }

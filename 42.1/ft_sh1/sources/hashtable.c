@@ -6,7 +6,7 @@
 /*   By: jpirsch <jpirsch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/04/03 16:30:49 by jpirsch           #+#    #+#             */
-/*   Updated: 2015/06/02 09:37:19 by jpirsch          ###   ########.fr       */
+/*   Updated: 2015/06/12 14:28:33 by jpirsch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	hash_t(t_env *e, char *path_dir, char *bin, int i)
 	ft_lstadd(&e->hash, new);
 }
 
-int		hash(t_env *e, char *bin, int j)
+int		hash_calc(char *bin)
 {
 	int i;
 	int k;
@@ -35,10 +35,17 @@ int		hash(t_env *e, char *bin, int j)
 	k = 0;
 	while (bin[i])
 	{
-		k += bin[i]; 
+		k += bin[i];
 		i++;
 	}
-	k = k % j;
+	return (k);
+}
+
+int		hash(t_env *e, char *bin, int j)
+{
+	int k;
+
+	k = hash_calc(bin) % j;
 	while ((e->hashtab[k]))
 		k++;
 	return (k);
@@ -46,21 +53,15 @@ int		hash(t_env *e, char *bin, int j)
 
 int		rev_hash(t_env *e, char *bin)
 {
-	int		i;
 	int		k;
 	char	*hashbin;
 
-	i = 0;
-	k = 0;
-	while (bin[i])
-	{
-		k += bin[i]; 
-		i++;
-	}
-	k = k % e->hc;
-	while ((e->hashtab[k]))
+	k = hash_calc(bin) % e->hc;
+	while (k < e->hc && (e->hashtab[k]))
 	{
 		hashbin = ft_strrchr(*(char**)e->hashtab[k]->content, '/') + 1;
+		if (!hashbin)
+			return (2 * e->hc);
 		if (!(ft_strcmp(bin, hashbin)))
 			return (k);
 		k++;

@@ -1,31 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strrchr.c                                       :+:      :+:    :+:   */
+/*   ft_strnequ.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jpirsch <jpirsch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/11/09 03:20:08 by jpirsch           #+#    #+#             */
-/*   Updated: 2015/06/12 14:29:19 by jpirsch          ###   ########.fr       */
+/*   Created: 2014/11/10 04:49:55 by jpirsch           #+#    #+#             */
+/*   Updated: 2015/04/05 14:38:16 by jpirsch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strrchr(const char *s, int c)
+int		ft_strnequ(const char *s1, const char *s2, size_t n)
 {
-	int n;
+	size_t i;
+	size_t j;
 
-	//ft_putchar('7');
-	n = ft_strlen((char*)s);
-//	ft_putstr("yoloswag");
-	s += n;
-	while (n + 1)
+	i = 1;
+	if (!s1 || !s2)
+		return (0);
+	if (n == 0)
+		return (1);
+	j = ft_strlen((char*)s1) - 1;
+	if (ft_strlen((char*)s2) - 1 != j)
+		return (0);
+	while (*s1 == *s2 && i <= n)
 	{
-		if (*s == (char)c)
-			return ((char *)s);
-		s--;
-		n--;
+		if (i == j || i == n)
+			return (1);
+		s1++;
+		s2++;
+		i++;
 	}
-	return (NULL);
+	return (0);
 }

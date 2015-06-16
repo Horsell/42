@@ -1,31 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strrchr.c                                       :+:      :+:    :+:   */
+/*   ft_lstdel.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jpirsch <jpirsch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/11/09 03:20:08 by jpirsch           #+#    #+#             */
-/*   Updated: 2015/06/12 14:29:19 by jpirsch          ###   ########.fr       */
+/*   Created: 2015/04/05 16:01:30 by jpirsch           #+#    #+#             */
+/*   Updated: 2015/04/05 19:31:20 by jpirsch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strrchr(const char *s, int c)
+void	ft_lstdel(t_list **alst, void (*del)(void *, size_t))
 {
-	int n;
-
-	//ft_putchar('7');
-	n = ft_strlen((char*)s);
-//	ft_putstr("yoloswag");
-	s += n;
-	while (n + 1)
+	if (!(alst) || !(del))
+		return ;
+	if (*alst)
 	{
-		if (*s == (char)c)
-			return ((char *)s);
-		s--;
-		n--;
+		ft_lstdel(&(*alst)->next, del);
+		ft_lstdelone(&(*alst), del);
 	}
-	return (NULL);
+	alst = NULL;
 }

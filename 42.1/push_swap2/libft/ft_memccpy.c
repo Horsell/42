@@ -1,31 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strrchr.c                                       :+:      :+:    :+:   */
+/*   ft_memccpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jpirsch <jpirsch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/11/09 03:20:08 by jpirsch           #+#    #+#             */
-/*   Updated: 2015/06/12 14:29:19 by jpirsch          ###   ########.fr       */
+/*   Created: 2014/11/04 19:33:01 by jpirsch           #+#    #+#             */
+/*   Updated: 2014/11/18 19:25:21 by jpirsch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strrchr(const char *s, int c)
+void	*ft_memccpy(void *dst, const void *src, int c, size_t n)
 {
-	int n;
+	size_t i;
 
-	//ft_putchar('7');
-	n = ft_strlen((char*)s);
-//	ft_putstr("yoloswag");
-	s += n;
-	while (n + 1)
+	i = 0;
+	while (i < n)
 	{
-		if (*s == (char)c)
-			return ((char *)s);
-		s--;
-		n--;
+		((unsigned char*)dst)[i] = ((unsigned char*)src)[i];
+		if (((unsigned char*)src)[i] == (unsigned char)c)
+		{
+			((unsigned char*)dst)[i] = ((unsigned char*)src)[i];
+			return (dst + i + 1);
+		}
+		i++;
 	}
 	return (NULL);
 }

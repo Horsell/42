@@ -1,31 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strrchr.c                                       :+:      :+:    :+:   */
+/*   ft_countwords.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jpirsch <jpirsch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/11/09 03:20:08 by jpirsch           #+#    #+#             */
-/*   Updated: 2015/06/12 14:29:19 by jpirsch          ###   ########.fr       */
+/*   Created: 2014/11/15 16:57:08 by jpirsch           #+#    #+#             */
+/*   Updated: 2015/01/10 05:37:21 by jpirsch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strrchr(const char *s, int c)
+size_t		ft_countwords(const char *s, char c)
 {
-	int n;
+	int		i;
+	size_t	n;
 
-	//ft_putchar('7');
-	n = ft_strlen((char*)s);
-//	ft_putstr("yoloswag");
-	s += n;
-	while (n + 1)
+	i = 0;
+	n = 0;
+	if (s[0] && !s[1])
+		return (1);
+	while (s[i] != '\0')
 	{
-		if (*s == (char)c)
-			return ((char *)s);
-		s--;
-		n--;
+		if ((s[i] == c || i == 0) && s[i + 1] != c && s[i + 1] != '\0')
+			n++;
+		i++;
 	}
-	return (NULL);
+	return (n);
 }

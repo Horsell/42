@@ -1,31 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strrchr.c                                       :+:      :+:    :+:   */
+/*   ft_strrchr_len.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jpirsch <jpirsch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/11/09 03:20:08 by jpirsch           #+#    #+#             */
-/*   Updated: 2015/06/12 14:29:19 by jpirsch          ###   ########.fr       */
+/*   Created: 2014/11/15 18:45:10 by jpirsch           #+#    #+#             */
+/*   Updated: 2015/01/10 04:53:48 by jpirsch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strrchr(const char *s, int c)
+int		ft_strrchr_len(const char *s, int c)
 {
-	int n;
+	size_t	n;
+	size_t	i;
 
-	//ft_putchar('7');
 	n = ft_strlen((char*)s);
-//	ft_putstr("yoloswag");
-	s += n;
-	while (n + 1)
+	i = 0;
+	while (i < n + 1)
 	{
-		if (*s == (char)c)
-			return ((char *)s);
-		s--;
-		n--;
+		if (s[n - i] == (char)c)
+			return (n - i);
+		i++;
 	}
-	return (NULL);
+	return (0);
 }
