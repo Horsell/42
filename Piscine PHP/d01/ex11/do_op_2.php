@@ -1,22 +1,32 @@
 #!/usr/bin/php
 <?php
+	function ft_split($s)
+	{
+		$s = trim($s);
+		$split = explode(" ", $s);
+		$split = array_filter($split);
+		$split = array_values($split);
+		return($split);
+	}
 	if (count($argv) != 2)
 		echo "Incorrect Parameters\n";
 	else
 	{
-		$num1 = $argv[1];
-		$op = $argv[2];
-		$num2 = $argv[3];
-		$num1 = trim($num1);
-		$op = trim($op);
-		$num2 = trim($num2);
-		if (!is_numeric($num1) || !is_numeric($num2))
-			$param_error = 1;
-		$res = ($op == "+" ? $num1 + $num2 : 0);
-		$res = ($op == "-" ? $num1 - $num2 : 0);
-		$res = ($op == "*" ? $num1 * $num2 : 0);
-		$res = ($op == "/" ? $num1 / $num2 : 0);
-		$res = ($op == "%" ? $num1 % $num2 : 0);
+		$s = ft_split($argv[1]);
+		if (!is_numeric($s[0]) || !is_numeric($s[2]))
+			$res = "Syntax Error";
+		if ($s[1] == "+")
+			$res = $s[0] + $s[2];
+		else if ($s[1] == "-")
+			$res = $s[0] - $s[2];
+		else if ($s[1] == "*")
+			$res = $s[0] * $s[2];
+		else if ($s[1] == "/")
+			$res = $s[0] / $s[2];
+		else if ($s[1] == "%")
+			$res = $s[0] % $s[2];
+		else
+			$res = "Syntax Error";
 		echo $res."\n";
 	}
 ?>

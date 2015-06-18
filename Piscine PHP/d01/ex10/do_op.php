@@ -10,13 +10,16 @@
 		$num1 = trim($num1);
 		$op = trim($op);
 		$num2 = trim($num2);
-		if (!is_numeric($num1) || !is_numeric($num2))
-			$param_error = 1;
-		$res = ($op == "+" ? $num1 + $num2 : 0);
-		$res = ($op == "-" ? $num1 - $num2 : 0);
-		$res = ($op == "*" ? $num1 * $num2 : 0);
-		$res = ($op == "/" ? $num1 / $num2 : 0);
-		$res = ($op == "%" ? $num1 % $num2 : 0);
+		if ($op == "+")
+			$res = $num1 + $num2;
+		else if ($op == "-")
+			$res = $num1 - $num2;
+		else if ($op == "*")
+			$res = $num1 * $num2;
+		else if ($op == "/")
+			$res = $num1 / $num2;
+		else if ($op == "%")
+			$res = $num1 % $num2;
 		echo $res."\n";
 	}
 ?>
