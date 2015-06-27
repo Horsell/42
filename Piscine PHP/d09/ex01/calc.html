@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Balloon</title>
+	</head>
+<body>
+<script>
+	function ft_calc()
+	{
+		var result = 0;
+		var s1 = document.getElementById("1").value;
+		var s2 = document.getElementById("2").value;
+		var s3 = document.getElementById("3").value;
+		if (isNaN(s1) && isNaN(s3))
+			return ;
+		else
+		{
+			s1 = parseInt(s1);
+			s3 = parseInt(s3);
+		}
+		if (s2 == '+')
+			result = s1 + s3;
+		if (s2 == '-')
+			result = s1 - s3;
+		if (s2 == '*')
+			result = s1 * s3;
+		if (s2 == '/')
+		{
+			if (s3 == 0)
+			{
+				var error = "It\'s over 9000!";
+				console.log(error);
+				alert("It\'s over 9000!");
+				return ;
+			}
+			result = s1 / s3;
+		}
+		if (s2 == '%')
+		{
+			if (s3 == 0)
+			{
+				var error = "It\'s over 9000!";
+				console.log(error);
+				alert("It\'s over 9000!");
+				return ;
+			}
+			result = s1 % s3;
+		}
+		console.log(result);
+		alert(result);
+	}
+	setInterval("alert('Please, use me...')", 30000);	
+</script>
+<input id="1" type="text"></input>
+<select id="2" name="select">
+	<option value="+" selected>+</option>
+	<option value="-">-</option> 
+	<option value="*">*</option>
+	<option value="/">/</option>
+	<option value="%">%</option>
+</select>
+<input id="3" type="text"></input>
+<input type="submit" value="Try me!" onclick="ft_calc();"></input>
+</body>
+</html>
