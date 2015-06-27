@@ -4,19 +4,64 @@
 		<meta charset="UTF-8">
 		<title>Balloon</title>
 		<style>
-#balloon {
-	border-radius: 50%;
-	background-color: red;
-	width: 200px;
-	height: 200px;
-}
+			#balloon {
+				border-radius: 50%;
+				background-color: red;
+				width : 200px;
+				height : 200px;
+			}
 		</style>
-	</head>
+</head>
 <body>
-	<div class="balloon"></div>
-	<script language="javascript">
-var elem = document.getElementById("balloon");
-	elem.style.width = 210px;
+   <script language="javascript">
+		var clicks = 0;
+		function inflateBalloon()
+		{
+			var elem = document.getElementById("balloon");
+			var width = elem.offsetWidth;
+			var height = elem.offsetHeight;
+			width += 10;
+			height += 10;
+			elem.style.width = width + 'px';
+			elem.style.height = height + 'px';
+			if (elem.offsetWidth > 420)
+			{
+				elem.style.width = '200px';
+				elem.style.height = '200px';
+			}
+			clicks++;
+			if (clicks > 2)
+				clicks = 0;
+			if (clicks == 0)
+				elem.style.backgroundColor = "red";
+			else if (clicks == 1)
+				elem.style.backgroundColor = "green";
+			else if (clicks == 2)
+				elem.style.backgroundColor = "blue";
+		}
+		function deflateBalloon()
+		{
+			var elem = document.getElementById("balloon");
+			var width = elem.offsetWidth;
+			var height = elem.offsetHeight;
+			if (width > 200)
+			{
+				width -= 5;
+				height -= 5;
+			}
+			elem.style.width = width + 'px';
+			elem.style.height = height + 'px';
+			clicks--;
+			if (clicks < 0)
+				clicks = 2;
+			if (clicks == 0)
+				elem.style.backgroundColor = "red";
+			else if (clicks == 1)
+				elem.style.backgroundColor = "green";
+			else if (clicks == 2)
+				elem.style.backgroundColor = "blue";
+		}
 	</script>
+	<div id="balloon" onClick="inflateBalloon()" onMouseOut="deflateBalloon()"></div>
 </body>
 </html>
