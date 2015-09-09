@@ -5,26 +5,25 @@
 #                                                     +:+ +:+         +:+      #
 #    By: jpirsch <jpirsch@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2015/01/05 01:32:20 by jpirsch           #+#    #+#              #
-#    Updated: 2015/03/18 16:25:07 by jpirsch          ###   ########.fr        #
+#    Created: 2015/06/14 17:10:37 by jpirsch           #+#    #+#              #
+#    Updated: 2015/06/14 17:30:56 by jpirsch          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME	=	../push_swap
-SRC		= 	main.c \
-			circ_pile.c \
-			circ_pile2.c \
-			checks.c \
-			algo.c
-OBJ		= $(SRC:.c=.o)
+SRC		=	main.c \
+			algo.c \
+			op.c \
+			pushnpop.c
+OBJ		=	$(SRC:.c=.o)
 
 all: $(NAME)
 
 $(NAME): $(OBJ)
-	gcc -o $(NAME) $(FLAGS) $(OBJ) -L ../libft/ -lft
+	gcc -o $(NAME) $(OBJ) -L ../libft/ -lft
 
-$(OBJ):
-	gcc -c -Ofast $(FLAGS) $(SRC) -I ../includes
+%.o:%.c
+	gcc -c $(FlAGS) $(SRC) -I ../includes/
 
 clean:
 	rm -f $(OBJ)

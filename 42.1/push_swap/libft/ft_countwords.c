@@ -19,6 +19,8 @@ size_t		ft_countwords(const char *s, char c)
 
 	i = 0;
 	n = 0;
+	if (s[0] && !s[1])
+		return (1);
 	while (s[i] != '\0')
 	{
 		if ((s[i] == c || i == 0) && s[i + 1] != c && s[i + 1] != '\0')

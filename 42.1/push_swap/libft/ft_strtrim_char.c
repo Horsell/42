@@ -6,26 +6,28 @@
 /*   By: jpirsch <jpirsch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/11 04:29:57 by jpirsch           #+#    #+#             */
-/*   Updated: 2015/01/10 04:36:02 by jpirsch          ###   ########.fr       */
+/*   Updated: 2015/04/05 15:01:30 by jpirsch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static char	*ft_strcleaner(const char *s, size_t startblanks, size_t endblanks)
+static char	*ft_strcleaner(const char *s, size_t startblanks, size_t endblanks,
+		char c)
 {
 	char	*str;
 	size_t	size;
 	size_t	i;
 
 	i = 0;
+	str = ft_strdup((char*)s);
 	if (!startblanks && !endblanks)
 		return ((char*)s);
 	else
 		size = ft_strlen((char *)s) - startblanks - endblanks + 1;
 	if (!(str = ft_strnew(size + 1)))
 		return (NULL);
-	while (*s == ' ' || *s == '\n' || *s == '\t')
+	while (*s == c)
 		s++;
 	while (*s && i < size - 1)
 	{
@@ -63,7 +65,7 @@ static char	*ft_countblanks(const char *s, size_t loops, size_t slen, char c)
 			s++;
 		}
 	}
-	return (ft_strcleaner(s - slen, startblanks, endblanks));
+	return (ft_strcleaner(s - slen, startblanks, endblanks, c));
 }
 
 char		*ft_strtrim_char(const char *s, char c)

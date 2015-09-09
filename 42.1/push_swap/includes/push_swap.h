@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: jpirsch <jpirsch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/03/10 03:38:05 by jpirsch           #+#    #+#             */
-/*   Updated: 2015/03/18 18:20:03 by jpirsch          ###   ########.fr       */
+/*   Created: 2014/12/15 14:35:08 by jpirsch           #+#    #+#             */
+/*   Updated: 2015/04/05 18:33:19 by jpirsch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,21 +14,17 @@
 # define PUSH_SWAP_H
 # include "libft.h"
 
-typedef struct		s_pile
-{
-	int				val;
-	struct s_pile	*next;
-}					t_pile;
-
-t_pile				*create_pile(int val);
-t_pile				*push(t_pile *p, int val);
-void				pop(t_pile **p);
-void				display_pile(t_pile *p);
-void				swap_pile(t_pile **p);
-void				swap_two_pile(t_pile **a, t_pile **b);
-t_pile				*push_swap(t_pile **a, t_pile *b);
-
-void				algo(t_pile **a, t_pile **b, int n);
-int					bottom_check(t_pile *a);
-int					top_check(t_pile *a);
+void	push(t_list **pile, int val);
+void	push_back(t_list **pile, int val);
+void	ft_mydel(void *content, size_t content_size);
+void	pop_back(t_list **pile);
+void	pop(t_list **pile);
+void	push_a(t_list **a, t_list **b);
+void	push_b(t_list **a, t_list **b);
+void	rotate(t_list **pile);
+void	rev_rotate(t_list **pile);
+int	ft_findmin(t_list *a);
+int	ft_getsize(t_list *a);
+void	ft_getmin(t_list **a);
+void	sort_pile(t_list **a, t_list **b);
 #endif

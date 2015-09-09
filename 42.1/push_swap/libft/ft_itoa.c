@@ -6,13 +6,13 @@
 /*   By: jpirsch <jpirsch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/11 10:46:38 by jpirsch           #+#    #+#             */
-/*   Updated: 2015/01/10 04:35:00 by jpirsch          ###   ########.fr       */
+/*   Updated: 2015/04/05 15:38:26 by jpirsch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*reverse(char *s)
+static char	*reverse(char *s)
 {
 	int		i;
 	int		j;
@@ -31,7 +31,7 @@ char	*reverse(char *s)
 	return (s);
 }
 
-char	*ft_itoa(int n)
+char		*ft_itoa(int n)
 {
 	int		i;
 	int		sign;

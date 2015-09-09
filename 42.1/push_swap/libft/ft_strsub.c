@@ -6,7 +6,7 @@
 /*   By: jpirsch <jpirsch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/10 06:05:31 by jpirsch           #+#    #+#             */
-/*   Updated: 2014/11/19 01:20:45 by jpirsch          ###   ########.fr       */
+/*   Updated: 2015/04/05 15:17:57 by jpirsch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,10 @@ char	*ft_strsub(const char *s, unsigned int start, size_t len)
 	char	*str;
 
 	i = 0;
-	if (!s || !len)
+	if (!s)
 		return (NULL);
+	if (!len && !start)
+		return (ft_strdup(""));
 	if (!(str = ft_strnew(len)))
 		return (NULL);
 	s += start;

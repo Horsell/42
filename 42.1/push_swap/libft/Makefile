@@ -6,7 +6,7 @@
 #    By: jpirsch <jpirsch@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2014/09/13 19:48:58 by jpirsch           #+#    #+#              #
-#    Updated: 2015/03/10 01:47:38 by jpirsch          ###   ########.fr        #
+#    Updated: 2015/06/14 17:10:27 by jpirsch          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,6 +21,11 @@ SRC		= ft_atoi.c \
 		  ft_isprint.c \
 		  ft_itoa.c \
 		  ft_lstnew.c \
+		  ft_lstadd.c \
+		  ft_lstdelone.c \
+		  ft_lstdel.c \
+		  ft_lstiter.c \
+		  ft_lstmap.c \
 		  ft_memalloc.c \
 		  ft_memccpy.c \
 		  ft_memchr.c \
@@ -79,8 +84,7 @@ $(NAME): $(OBJ)
 	ar rc $(NAME) $(OBJ)
 	ranlib $(NAME)
 
-#%.o: %.c
-$(OBJ):
+%.o: %.c
 	    gcc -Ofast $(FLAGS) -I ../includes/ -c $(SRC)
 
 clean:
