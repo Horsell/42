@@ -6,7 +6,7 @@
 /*   By: jpirsch <jpirsch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/14 17:15:03 by jpirsch           #+#    #+#             */
-/*   Updated: 2015/06/14 20:50:25 by jpirsch          ###   ########.fr       */
+/*   Updated: 2015/09/11 15:57:33 by jpirsch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,40 @@ void	display_pile(t_list *a, t_list *b)
 	ft_putendl("");
 }
 
+int	check_args(int ac, char **av)
+{
+	int	nbarg;
+	int	i;
+
+	while (--ac)
+	{
+		nbarg = ac;
+		i = 0;
+		while (av[ac][i])
+		{
+			if (!(ft_isdigit(av[ac][i])))
+				return (0);
+			if (i > 9)
+				return (0);
+			i++;
+		}
+		while (--nbarg)
+		{
+			if (ft_atoi(av[ac]) == ft_atoi(av[nbarg]))
+					return (0);
+		}
+	}
+	return (1);
+}
+
+int	make_pile(int ac, char **av, t_list **a)
+{
+	if (!(check_args(ac, av)))
+		return (0);
+	while (--ac)
+		push(a, ft_atoi(av[ac]));
+	return (1);
+}
 
 int	main(int ac, char **av)
 {
@@ -46,8 +80,11 @@ int	main(int ac, char **av)
 	b = NULL;
 	if (ac != 1)
 	{
-		while (--ac)
-			push(&a, ft_atoi(av[ac]));
+		if (!(make_pile(ac, av, &a)))
+		{
+			ft_putendl("Error");
+			return (0);
+		}
 		display_pile(a, b);
 		sort_pile(&a, &b);
 		display_pile(a, b);

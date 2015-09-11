@@ -6,7 +6,7 @@
 /*   By: jpirsch <jpirsch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/14 17:15:03 by jpirsch           #+#    #+#             */
-/*   Updated: 2015/06/14 20:50:25 by jpirsch          ###   ########.fr       */
+/*   Updated: 2015/09/11 15:22:29 by jpirsch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ void	ft_getmin(t_list **a)
 	{
 		while (i < n)
 		{
-			rotate(a);
+			rotate_a(a);
 			++i;
 		}
 	}
@@ -72,10 +72,30 @@ void	ft_getmin(t_list **a)
 	{
 		while (i < size - n)
 		{
-			rev_rotate(a);
+			rev_rotate_a(a);
 			++i;
 		}
 	}
+}
+
+int		is_sort(t_list *a)
+{
+	int	n;
+
+	if (!a)
+		return (0);
+	n = *(int*)(a->content);
+	while (a)
+	{
+		if (*(int*)(a->content) >= n)
+		{
+			n = *(int*)(a->content);
+		}
+		else
+			return (0);
+		a = a->next;
+	}
+	return (1);
 }
 
 void	sort_pile(t_list **a, t_list **b)
@@ -84,6 +104,8 @@ void	sort_pile(t_list **a, t_list **b)
 
 	tmp = NULL;
 	if (!a)
+		return ;
+	if (is_sort(*a))
 		return ;
 	while ((*a)->next)
 	{

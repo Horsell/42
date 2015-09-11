@@ -6,7 +6,7 @@
 /*   By: jpirsch <jpirsch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/12/15 14:35:08 by jpirsch           #+#    #+#             */
-/*   Updated: 2015/04/05 18:33:19 by jpirsch          ###   ########.fr       */
+/*   Updated: 2015/09/11 15:19:46 by jpirsch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,13 @@ void	pop_back(t_list **pile);
 void	pop(t_list **pile);
 void	push_a(t_list **a, t_list **b);
 void	push_b(t_list **a, t_list **b);
-void	rotate(t_list **pile);
-void	rev_rotate(t_list **pile);
-int	ft_findmin(t_list *a);
-int	ft_getsize(t_list *a);
+void	rotate_a(t_list **a);
+void	rotate_b(t_list **b);
+void	rev_rotate_a(t_list **a);
+void	rev_rotate_b(t_list **b);
+int		ft_findmin(t_list *a);
+int		ft_getsize(t_list *a);
 void	ft_getmin(t_list **a);
 void	sort_pile(t_list **a, t_list **b);
+int		is_sort(t_list *a);
 #endif
