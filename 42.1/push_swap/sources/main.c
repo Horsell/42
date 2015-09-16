@@ -6,7 +6,7 @@
 /*   By: jpirsch <jpirsch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/14 17:15:03 by jpirsch           #+#    #+#             */
-/*   Updated: 2015/09/11 15:57:33 by jpirsch          ###   ########.fr       */
+/*   Updated: 2015/09/16 06:40:47 by jpirsch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void	display_pile(t_list *a, t_list *b)
 	ft_putendl("");
 }
 
-int	check_args(int ac, char **av)
+int		check_args(int ac, char **av)
 {
 	int	nbarg;
 	int	i;
@@ -47,22 +47,22 @@ int	check_args(int ac, char **av)
 		i = 0;
 		while (av[ac][i])
 		{
-			if (!(ft_isdigit(av[ac][i])))
+			if (!(ft_isdigit(av[ac][i])) && i > 0)
 				return (0);
-			if (i > 9)
+			if (i > 9) // test int value in the 2*10^9 range
 				return (0);
 			i++;
 		}
 		while (--nbarg)
 		{
 			if (ft_atoi(av[ac]) == ft_atoi(av[nbarg]))
-					return (0);
+				return (0);
 		}
 	}
 	return (1);
 }
 
-int	make_pile(int ac, char **av, t_list **a)
+int		make_pile(int ac, char **av, t_list **a)
 {
 	if (!(check_args(ac, av)))
 		return (0);
@@ -71,7 +71,7 @@ int	make_pile(int ac, char **av, t_list **a)
 	return (1);
 }
 
-int	main(int ac, char **av)
+int		main(int ac, char **av)
 {
 	t_list	*a;
 	t_list	*b;
@@ -86,7 +86,10 @@ int	main(int ac, char **av)
 			return (0);
 		}
 		display_pile(a, b);
-		sort_pile(&a, &b);
+		if (ft_getsize(a) == 3)
+			sort_pileof3(&a, &b);
+		else
+			sort_pile(&a, &b);
 		display_pile(a, b);
 	}
 	else

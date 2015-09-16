@@ -6,7 +6,7 @@
 /*   By: jpirsch <jpirsch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/14 17:15:03 by jpirsch           #+#    #+#             */
-/*   Updated: 2015/06/14 20:50:25 by jpirsch          ###   ########.fr       */
+/*   Updated: 2015/09/16 06:41:07 by jpirsch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,5 +63,3 @@ void	pop(t_list **pile)
 		return ;
 	ft_lstdelone(pile, ft_mydel);
 }
-
-

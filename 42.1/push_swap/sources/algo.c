@@ -6,13 +6,13 @@
 /*   By: jpirsch <jpirsch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/14 17:15:03 by jpirsch           #+#    #+#             */
-/*   Updated: 2015/09/11 15:22:29 by jpirsch          ###   ########.fr       */
+/*   Updated: 2015/09/16 06:39:39 by jpirsch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	ft_findmin(t_list *a)
+int		ft_findmin(t_list *a)
 {
 	int	min;
 	int	i;
@@ -36,7 +36,7 @@ int	ft_findmin(t_list *a)
 	return (j);
 }
 
-int	ft_getsize(t_list *a)
+int		ft_getsize(t_list *a)
 {
 	int	i;
 
@@ -88,9 +88,7 @@ int		is_sort(t_list *a)
 	while (a)
 	{
 		if (*(int*)(a->content) >= n)
-		{
 			n = *(int*)(a->content);
-		}
 		else
 			return (0);
 		a = a->next;
@@ -107,13 +105,19 @@ void	sort_pile(t_list **a, t_list **b)
 		return ;
 	if (is_sort(*a))
 		return ;
-	while ((*a)->next)
+	while ((*a)->next && !(is_sort(*a)))
 	{
-		ft_getmin(a);
-		push_b(a, b);
+		if (is_sort((*a)->next))
+			swap_a(a);
+		else
+		{
+			ft_getmin(a);
+			push_b(a, b);
+		}
 	}
 	while (*b)
 	{
 		push_a(a, b);
 	}
+	ft_putendl("");
 }

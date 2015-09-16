@@ -6,7 +6,7 @@
 /*   By: jpirsch <jpirsch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/14 17:15:03 by jpirsch           #+#    #+#             */
-/*   Updated: 2015/09/11 15:21:02 by jpirsch          ###   ########.fr       */
+/*   Updated: 2015/09/16 04:25:32 by jpirsch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	push_a(t_list **a, t_list **b)
 		push(a, *(int*)(*b)->content);
 		pop(b);
 	}
-	ft_putstr("pa");
+	ft_putstr("pa ");
 }
 
 void	push_b(t_list **a, t_list **b)
@@ -43,19 +43,19 @@ void	push_b(t_list **a, t_list **b)
 		push(b, *(int*)(*a)->content);
 		pop(a);
 	}
-	ft_putstr("pb");
+	ft_putstr("pb ");
 }
 
 void	rotate_a(t_list **a)
 {
 	push_back(a, *(int*)(*a)->content);
 	pop(a);
-	ft_putstr("ra");
+	ft_putstr("ra ");
 }
 
 void	rotate_b(t_list **b)
 {
 	push_back(b, *(int*)(*b)->content);
 	pop(b);
-	ft_putstr("rb");
+	ft_putstr("rb ");
 }

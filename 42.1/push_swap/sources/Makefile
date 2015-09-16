@@ -6,7 +6,7 @@
 #    By: jpirsch <jpirsch@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/06/14 17:10:37 by jpirsch           #+#    #+#              #
-#    Updated: 2015/09/11 15:20:49 by jpirsch          ###   ########.fr        #
+#    Updated: 2015/09/16 05:08:10 by jpirsch          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,6 +15,7 @@ SRC		=	main.c \
 			algo.c \
 			op.c \
 			op2.c \
+			small_algo.c \
 			pushnpop.c
 OBJ		=	$(SRC:.c=.o)
 
