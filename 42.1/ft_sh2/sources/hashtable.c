@@ -118,7 +118,40 @@ void	read_path(t_env *e, int i, int j)
 	hash_table(e, j);
 }
 
-int		check_path(t_env *e)
+/*int		check_path(t_env *e)
+{
+	int		n;
+	char	*hashbin;
+
+	if (!e->path)
+		return (0);
+	if (e->av[0][0] == '/' && e->av[0][1])
+	{
+		if (!(access(e->av[0], X_OK)))
+		{
+			ft_execve(e->av[0], e->av, e->env);
+			return (0);
+		}
+		else
+		{
+			ft_putendl_fd("Command not found.", 2);
+			return (0);
+		}
+	}
+	n = rev_hash(e, e->av[0]);
+	if (n > e->hc)
+	{
+		ft_putendl_fd("Command not found.", 2);
+		return (0);
+	}
+	hashbin = ft_strrchr(*(char**)e->hashtab[n]->content, '/') + 1;
+	if (!(ft_strcmp(hashbin, e->av[0])))
+		if (!(access(*(char**)e->hashtab[n]->content, X_OK)))
+			ft_execve(*(char**)e->hashtab[n]->content, e->av, e->env);
+	return (-1);
+}*/
+
+int		check_path(t_env *e, char *line)
 {
 	int		n;
 	char	*hashbin;

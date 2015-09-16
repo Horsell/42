@@ -34,14 +34,22 @@
 # define WORD 1
 # define CMD 2
 # define ARG 3
-# define SEP 4
-# define PIPE 5
-# define R_RED 6
-# define L_RED 7
-# define RR_RED 8
-# define LL_RED 9
-# define PRESENT e->tokens[j]
-# define LAST e->tokens[j - 1]
+# define FILEE 4
+# define SEP 5
+# define PIPE 6
+# define R_RED 7
+# define L_RED 8
+# define RR_RED 9
+# define LL_RED 10
+# define PRESENT e->tokens[j].id_token
+# define PRESENT_val e->tokens[j].val
+# define LAST e->tokens[j - 1].id_token
+
+typedef struct	s_tok
+{
+	int	id_token;
+	char	*val;
+}		t_tok;
 
 typedef struct	s_env
 {
@@ -52,7 +60,7 @@ typedef struct	s_env
 	char		*save;
 	t_list		**hashtab;
 	t_list		*hash;
-	int		*tokens;
+	t_tok		*tokens;
 	int		ac;
 	int		pc;
 	int		hc;
@@ -75,7 +83,7 @@ int			ft_cd(t_env *e);
 int			search_env(t_env *e, char *var);
 int			ft_exec(t_env *e);
 void			ft_execve(char *cmd, char **av, char **env);
-int			check_path(t_env *e);
+int			check_path(t_env *e, char *line);
 int			check_builtin(t_env *e);
 t_list			*init_hashtable(t_env *e);
 void			read_path(t_env *e, int i, int j);
@@ -93,4 +101,9 @@ int		is_reserved_char(char c);
 int		is_word(char *line, int *i);
 int		is_cmd(char *line, int *i);
 int		ft_build_symbol_table(char *line, t_env *e, int i, int j);
+
+//	PARSER
+
+int	ft_build_exec_tree(t_env *e);
+
 #endif

@@ -20,6 +20,9 @@ SRC	= 	main.c \
 		parse_command.c \
 		lexer.c \
 		lex_op.c \
+		parser.c \
+		btree_apply_prefix.c \
+		btree_create_node.c \
 		hashtable.c \
 		termcaps.c \
 		get_next_line.c

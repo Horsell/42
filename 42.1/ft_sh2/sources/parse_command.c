@@ -32,7 +32,7 @@ int		check_builtin(t_env *e)
 	return (ret);
 }
 
-int		cmd_to_env(char *line, t_env *e)
+/*int		cmd_to_env(char *line, t_env *e)
 {
 	if (line && line[0])
 	{
@@ -83,7 +83,7 @@ int		clean_cmd(char *line, t_env *e)
 	}
 	else
 		return (0);
-}
+}*/
 
 int		parse_cmd(char *line, t_env *e)
 {
@@ -91,15 +91,16 @@ int		parse_cmd(char *line, t_env *e)
 	{
 		line = ft_strtrim(line);
 		ft_build_symbol_table(line, e, 0, 0); // --> Lexer
+		ft_build_exec_tree(e); // --> Parser
 		int i = 0;
 		while (i < 10)
 		{
-			ft_putnbr(e->tokens[i]);
+			ft_putnbr(e->tokens[i].id_token);
+			ft_putendl(e->tokens[i].val);
 			i++;
 		}
 		if (!(ft_strcmp(line, "exit")))
 			return (1);
-//		ft_build_exec_tree(e); --> Parser
 		return (0);
 	}
 	else

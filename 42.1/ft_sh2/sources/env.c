@@ -51,10 +51,11 @@ t_env	*init_env(char **env)
 	e->ec = i;
 
 	int	j = 0;
-	e->tokens = malloc(sizeof(int) * 20);
+	e->tokens = malloc(sizeof(t_tok) * 20);
 	while (j < 20)
 	{
-		e->tokens[j] = 0;
+		e->tokens[j].id_token = 0;
+		e->tokens[j].val = malloc(sizeof(char) * 20);
 		j++;
 	}
 	return (e);
