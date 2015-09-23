@@ -36,58 +36,23 @@ void	display_pile(t_list *a, t_list *b)
 	ft_putendl("");
 }
 
-int		is_option(char *arg)
-{
-	if (ft_strcmp("-c", arg))// || ft_strcmp("-v", arg))
-		return (0);
-	ft_putstr("arg:");
-	ft_putstr(arg);
-	ft_putstr(" ");
-	return (1);
-}
-
-int		is_valid_int(char *arg)
-{
-	int	i;
-
-	i = 0;
-	if (ft_strlen(arg) == 11 &&  arg[0] == '-')
-		if (ft_strcmp("-2147483648", arg) < 0)
-			return (0);
-	if (ft_strlen(arg) == 10 && ft_isdigit(arg[0]))
-		if (ft_strcmp("2147483647", arg) < 0)
-			return (0);
-	if (ft_strlen(arg) == 11 && arg[0] == '+')
-		if (ft_strcmp("2147483647", &arg[1]) < 0)
-			return (0);
-	if (ft_strlen(arg) > 11 || (ft_strlen(arg) > 10 && ft_isdigit(arg[0])))
-		return (0);
-	while (arg[i])
-	{
-		if (i == 0 && !(ft_isdigit(arg[i])) && arg[i] != '-' && arg[i] != '+')
-			return (0);
-		if (!(ft_isdigit(arg[i])) && i > 0)
-			return (0);
-		i++;
-	}
-	return (1);
-}
-
 int		check_args(int ac, char **av)
 {
 	int	nbarg;
 	int	i;
 
-	i = 1;
-	while (is_option(av[i]))
-		i++;
-	ft_putnbr(i);
-	while (--ac > i)
+	while (--ac)
 	{
-		ft_putnbr(ac);
 		nbarg = ac;
-		if (!is_valid_int(av[ac]))
-			return (0);
+		i = 0;
+		while (av[ac][i])
+		{
+			if (!(ft_isdigit(av[ac][i])) && i > 0)
+				return (0);
+			if (i > 9) // test int value in the 2*10^9 range
+				return (0);
+			i++;
+		}
 		while (--nbarg)
 		{
 			if (ft_atoi(av[ac]) == ft_atoi(av[nbarg]))
