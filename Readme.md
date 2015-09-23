@@ -6,6 +6,7 @@ To make it short this repository is a place to share my work at the shool 42 whe
 the basic course is supposed to be about 3 year long.
 As it may not seem obvious 42.1 will be the folder where all projects of the first
 year will be stored.
+[wiki](https://github.com/jpirsch/42/wiki)
 
 ###	License
 Every of those didactic projects will be open sourced, and released under the WTFPL
