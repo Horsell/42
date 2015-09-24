@@ -9,7 +9,7 @@ c = 0
 
 def parse(arg):
 	reg_poly = re.compile('([-+=]?)\s*([0-9\.]+)?(\s*\*?\s*[xX](?:\s*\^\s*([0-9]+))?)?\s*')
-	reg_eq = re.compile('\s+=\s+')
+	reg_eq = re.compile('\s*=\s*')
 	reg_sp = re.compile('\s*')
 	reg_num = re.compile('[0-9]*')
 	reg_pow = re.compile('[0-2]+')
@@ -23,10 +23,15 @@ def parse(arg):
 	num = 0
 	j = 0
 	side = 0
-	while j < len(arg) -1:
+	while j < len(arg):
+		if (arg[j] > '9' or arg[j] < '0') and (arg[j] != '*' and arg[j] != '-' and arg[j] != '+' and arg[j] != '=' and arg[j] != 'x' and arg[j] != 'X' and arg[j] != ' ' and arg[j] != '^'):
+			print "Bad character found in input"
+			return 0
+		j += 1
+	j = 0
+	while j < len(arg) - 1:
 		last_elt = None
 		for i, elt in enumerate(eq_part.group()):
-#			print "indice :  {} , élément : {}".format(i, elt)
 			if elt.isdigit() and (last_elt is None or last_elt.isdigit() is False) and last_elt != 'x' and last_elt != 'X':
 				nb = re.match(reg_num, arg[j + i:])
 				tmp = float(nb.group(0))
@@ -49,13 +54,13 @@ def parse(arg):
 			if elt.isdigit() or elt == '-' or elt == 'x' or elt == 'X' or elt == '+':
 				last_elt = elt
 		j += i
-		eq = re.match(reg_eq, arg[j:])
-		if eq is not None:
-			j += len(eq.group(0))
-			side = 1
 		sp = re.match(reg_sp, arg[j:])
 		if sp is not None:
 			j += len(sp.group(0))
+		eq = re.match(reg_eq, arg[j:])
+		if eq is not None:
+			j += len(eq.group(0)) - 1
+			side = 1
 		eq_part = re.match(reg_poly, arg[j:])
 	if a == 0 and b == 0:
 		print "\033[90mReduced form : {} = 0.0\033[39m".format(c)
@@ -73,8 +78,13 @@ def parse(arg):
 		print "\033[90mPolynomial degree: 1\033[39m"
 	if a != 0:
 		print "\033[90mPolynomial degree: 2\033[39m"
+	return 1
 
 def solve():
+	if a == 0 and b != 0:
+		x = -c / b
+		print "\033[90mx = {}\033[39m ".format(x)
+		return
 	delta = b ** 2 - (4 * a * c)
 	if delta > 0:
 		x1 = (-b - abs(delta) ** 0.5) / (2 * a)
@@ -97,7 +107,7 @@ def solve():
 
 if (len(argv) == 2):
 	arg = argv[1]
-	parse(arg)
-	solve()
+	if parse(arg) == 1:
+		solve()
 else:
 	print "Wrong number of parameters."
