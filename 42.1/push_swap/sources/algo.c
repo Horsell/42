@@ -81,7 +81,9 @@ void	ft_getmin(t_list **a)
 int		is_sort(t_list *a)
 {
 	int	n;
+	int	i;
 
+	i = 0;
 	if (!a)
 		return (0);
 	n = *(int*)(a->content);
@@ -92,6 +94,7 @@ int		is_sort(t_list *a)
 		else
 			return (0);
 		a = a->next;
+		i++;
 	}
 	return (1);
 }
@@ -107,7 +110,16 @@ void	sort_pile(t_list **a, t_list **b)
 		return ;
 	while ((*a)->next && !(is_sort(*a)))
 	{
-		if (is_sort((*a)->next))
+		if (is_sort(*a) == ft_getsize(*a) - 1)
+		{
+			rev_rotate_a(a);
+			rev_rotate_a(a);
+			swap_a(a);
+			rotate_a(a);
+			rotate_a(a);
+			return ;
+		}
+		else if (is_sort((*a)->next))
 			swap_a(a);
 		else
 		{
