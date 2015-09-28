@@ -9,11 +9,10 @@ year will be stored.
 [wiki](https://github.com/jpirsch/42/wiki)
 
 ###	License
-Every of those didactic projects will be open sourced, and released under the WTFPL
-license.
+Every of those didactic projects will be open sourced, and released under the GNU GPL license.
 
 
 
-#####Oh and btw
+#####Oh and by the way
 
 #							Don't Panic !
