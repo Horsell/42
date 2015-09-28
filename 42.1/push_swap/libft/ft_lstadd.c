@@ -6,7 +6,7 @@
 /*   By: jpirsch <jpirsch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/04/05 17:02:32 by jpirsch           #+#    #+#             */
-/*   Updated: 2015/04/05 19:30:30 by jpirsch          ###   ########.fr       */
+/*   Updated: 2015/09/28 19:02:13 by jpirsch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,4 @@ void	ft_lstaddend(t_list **alst, t_list *new)
 	while (tmp->next)
 		tmp = tmp->next;
 	tmp->next = new;
-	//new->next = (*alst);
-	//(*alst) = new;
 }

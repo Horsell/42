@@ -6,7 +6,7 @@
 /*   By: jpirsch <jpirsch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/14 17:15:03 by jpirsch           #+#    #+#             */
-/*   Updated: 2015/09/16 06:40:47 by jpirsch          ###   ########.fr       */
+/*   Updated: 2015/09/28 19:11:21 by jpirsch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 void	display_pile(t_list *a, t_list *b)
 {
+	ft_putendl("");
 	ft_putendl("Pile a :");
 	while (a)
 	{
@@ -36,96 +37,56 @@ void	display_pile(t_list *a, t_list *b)
 	ft_putendl("");
 }
 
-int		is_option(char *arg)
+int		make_pile(int ac, char **av, t_list **a, t_env *e)
 {
-	if (ft_strcmp("-c", arg))// || ft_strcmp("-v", arg))
-		return (0);
-	ft_putstr("arg:");
-	ft_putstr(arg);
-	ft_putstr(" ");
-	return (1);
-}
-
-int		is_valid_int(char *arg)
-{
-	int	i;
-
-	i = 0;
-	if (ft_strlen(arg) == 11 &&  arg[0] == '-')
-		if (ft_strcmp("-2147483648", arg) < 0)
-			return (0);
-	if (ft_strlen(arg) == 10 && ft_isdigit(arg[0]))
-		if (ft_strcmp("2147483647", arg) < 0)
-			return (0);
-	if (ft_strlen(arg) == 11 && arg[0] == '+')
-		if (ft_strcmp("2147483647", &arg[1]) < 0)
-			return (0);
-	if (ft_strlen(arg) > 11 || (ft_strlen(arg) > 10 && ft_isdigit(arg[0])))
-		return (0);
-	while (arg[i])
-	{
-		if (i == 0 && !(ft_isdigit(arg[i])) && arg[i] != '-' && arg[i] != '+')
-			return (0);
-		if (!(ft_isdigit(arg[i])) && i > 0)
-			return (0);
-		i++;
-	}
-	return (1);
-}
-
-int		check_args(int ac, char **av)
-{
-	int	nbarg;
-	int	i;
+	int i;
 
 	i = 1;
-	while (is_option(av[i]))
-		i++;
-	ft_putnbr(i);
-	while (--ac > i)
+	if (!(i = check_args(ac, av, e)))
 	{
-		ft_putnbr(ac);
-		nbarg = ac;
-		if (!is_valid_int(av[ac]))
-			return (0);
-		while (--nbarg)
-		{
-			if (ft_atoi(av[ac]) == ft_atoi(av[nbarg]))
-				return (0);
-		}
+		return (0);
 	}
+	while (--ac >= i)
+		push(a, ft_atoi(av[ac]));
 	return (1);
 }
 
-int		make_pile(int ac, char **av, t_list **a)
+t_env	*init_env(void)
 {
-	if (!(check_args(ac, av)))
-		return (0);
-	while (--ac)
-		push(a, ft_atoi(av[ac]));
-	return (1);
+	t_env	*e;
+
+	e = malloc(sizeof(t_env));
+	if (e)
+	{
+		e->opt_c = 0;
+		e->opt_v = 0;
+		e->v = 0;
+	}
+	return (e);
 }
 
 int		main(int ac, char **av)
 {
 	t_list	*a;
 	t_list	*b;
+	t_env	*e;
 
-	a = NULL;
-	b = NULL;
+	e = init_env();
 	if (ac != 1)
 	{
-		if (!(make_pile(ac, av, &a)))
+		if (!(make_pile(ac, av, &a, e)))
 		{
 			ft_putendl("Error");
 			return (0);
 		}
-		display_pile(a, b);
+		if (e->opt_c)
+			ft_putstr("\033[31m");
 		if (ft_getsize(a) == 3)
-			sort_pileof3(&a, &b);
+			sort_pileof3(&a, &b, e);
 		else
-			sort_pile(&a, &b);
-		display_pile(a, b);
+			sort_pile(&a, &b, e);
+		if (e->opt_c)
+			ft_putstr("\033[0m");
 	}
 	else
 		ft_putendl("");

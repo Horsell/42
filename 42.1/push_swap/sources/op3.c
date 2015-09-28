@@ -1,29 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strrchr.c                                       :+:      :+:    :+:   */
+/*   op3.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jpirsch <jpirsch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/11/09 03:20:08 by jpirsch           #+#    #+#             */
-/*   Updated: 2015/09/23 17:37:43 by jpirsch          ###   ########.fr       */
+/*   Created: 2015/09/28 19:25:30 by jpirsch           #+#    #+#             */
+/*   Updated: 2015/09/28 19:27:11 by jpirsch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "push_swap.h"
 
-char	*ft_strrchr(const char *s, int c)
+void	ss(t_list **a, t_list **b, t_env *e)
 {
-	int n;
+	swap_a(a, b, e);
+	swap_b(a, b, e);
+}
 
-	n = ft_strlen((char*)s);
-	s += n;
-	while (n + 1)
-	{
-		if (*s == (char)c)
-			return ((char *)s);
-		s--;
-		n--;
-	}
-	return (NULL);
+void	rr(t_list **a, t_list **b, t_env *e)
+{
+	rotate_a(a, b, e);
+	rotate_b(a, b, e);
+}
+
+void	rrr(t_list **a, t_list **b, t_env *e)
+{
+	rev_rotate_a(a, b, e);
+	rev_rotate_b(a, b, e);
 }

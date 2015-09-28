@@ -1,3 +1,0 @@
-small algo (add to makefile)
-better error check (case of 10 numbers, compare each with max int value)
-idea for small algo : check if sort after each getmin + pb, if yes check if possible to directly push b on a.

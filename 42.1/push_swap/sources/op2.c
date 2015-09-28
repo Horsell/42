@@ -6,13 +6,13 @@
 /*   By: jpirsch <jpirsch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/11 15:25:01 by jpirsch           #+#    #+#             */
-/*   Updated: 2015/09/16 05:15:52 by jpirsch          ###   ########.fr       */
+/*   Updated: 2015/09/28 18:40:04 by jpirsch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	rev_rotate_a(t_list **a)
+void	rev_rotate_a(t_list **a, t_list **b, t_env *e)
 {
 	t_list	*tmp;
 
@@ -21,10 +21,13 @@ void	rev_rotate_a(t_list **a)
 		tmp = tmp->next;
 	push(a, *(int*)(tmp->content));
 	pop_back(a);
-	ft_putstr("rra ");
+	if (e->v)
+		ft_putstr("rra ");
+	if (e->opt_v && e->v)
+		display_pile(*a, *b);
 }
 
-void	rev_rotate_b(t_list **b)
+void	rev_rotate_b(t_list **a, t_list **b, t_env *e)
 {
 	t_list	*tmp;
 
@@ -33,10 +36,13 @@ void	rev_rotate_b(t_list **b)
 		tmp = tmp->next;
 	push(b, *(int*)(tmp->content));
 	pop_back(b);
-	ft_putstr("rrb ");
+	if (e->v)
+		ft_putstr("rrb ");
+	if (e->opt_v && e->v)
+		display_pile(*a, *b);
 }
 
-void	swap_a(t_list **a)
+void	swap_a(t_list **a, t_list **b, t_env *e)
 {
 	int	tmp;
 
@@ -45,10 +51,13 @@ void	swap_a(t_list **a)
 	tmp = *(int*)(*a)->next->content;
 	*(int*)(*a)->next->content = *(int*)(*a)->content;
 	*(int*)(*a)->content = tmp;
-	ft_putstr("sa ");
+	if (e->v)
+		ft_putstr("sa ");
+	if (e->opt_v && e->v)
+		display_pile(*a, *b);
 }
 
-void	swap_b(t_list **b)
+void	swap_b(t_list **a, t_list **b, t_env *e)
 {
 	int	tmp;
 
@@ -57,5 +66,8 @@ void	swap_b(t_list **b)
 	tmp = *(int*)(*b)->next->content;
 	*(int*)(*b)->next->content = *(int*)(*b)->content;
 	*(int*)(*b)->content = tmp;
-	ft_putstr("sb ");
+	if (e->v)
+		ft_putstr("sb ");
+	if (e->opt_v && e->v)
+		display_pile(*a, *b);
 }

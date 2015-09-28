@@ -1,29 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strrchr.c                                       :+:      :+:    :+:   */
+/*   algo2.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jpirsch <jpirsch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/11/09 03:20:08 by jpirsch           #+#    #+#             */
-/*   Updated: 2015/09/23 17:37:43 by jpirsch          ###   ########.fr       */
+/*   Created: 2015/09/28 19:12:16 by jpirsch           #+#    #+#             */
+/*   Updated: 2015/09/28 19:12:53 by jpirsch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "push_swap.h"
 
-char	*ft_strrchr(const char *s, int c)
+int		ft_findmin(t_list *a)
 {
-	int n;
+	int	min;
+	int	i;
+	int	j;
 
-	n = ft_strlen((char*)s);
-	s += n;
-	while (n + 1)
+	min = *(int*)(a->content);
+	i = 0;
+	j = 0;
+	while (a)
 	{
-		if (*s == (char)c)
-			return ((char *)s);
-		s--;
-		n--;
+		if (*(int*)(a->content) < min)
+		{
+			min = *(int*)(a->content);
+			j = i;
+		}
+		if (!(a->next))
+			break ;
+		a = a->next;
+		++i;
 	}
-	return (NULL);
+	return (j);
 }

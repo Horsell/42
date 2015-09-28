@@ -6,35 +6,11 @@
 /*   By: jpirsch <jpirsch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/14 17:15:03 by jpirsch           #+#    #+#             */
-/*   Updated: 2015/09/16 06:39:39 by jpirsch          ###   ########.fr       */
+/*   Updated: 2015/09/28 19:12:55 by jpirsch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-int		ft_findmin(t_list *a)
-{
-	int	min;
-	int	i;
-	int	j;
-
-	min = *(int*)(a->content);
-	i = 0;
-	j = 0;
-	while (a)
-	{
-		if (*(int*)(a->content) < min)
-		{
-			min = *(int*)(a->content);
-			j = i;
-		}
-		if (!(a->next))
-			break ;
-		a = a->next;
-		++i;
-	}
-	return (j);
-}
 
 int		ft_getsize(t_list *a)
 {
@@ -51,7 +27,7 @@ int		ft_getsize(t_list *a)
 	return (i);
 }
 
-void	ft_getmin(t_list **a)
+void	ft_getmin(t_list **a, t_list **b, t_env *e)
 {
 	int	n;
 	int	i;
@@ -64,7 +40,7 @@ void	ft_getmin(t_list **a)
 	{
 		while (i < n)
 		{
-			rotate_a(a);
+			rotate_a(a, b, e);
 			++i;
 		}
 	}
@@ -72,7 +48,7 @@ void	ft_getmin(t_list **a)
 	{
 		while (i < size - n)
 		{
-			rev_rotate_a(a);
+			rev_rotate_a(a, b, e);
 			++i;
 		}
 	}
@@ -96,10 +72,29 @@ int		is_sort(t_list *a)
 		a = a->next;
 		i++;
 	}
-	return (1);
+	return (i);
 }
 
-void	sort_pile(t_list **a, t_list **b)
+void	back_swap(t_list **a, t_list **b, t_env *e)
+{
+	rev_rotate_a(a, b, e);
+	if (is_sort((*a)->next) == ft_getsize(*a) - 1)
+	{
+		ft_putstr("rra ");
+		if (e->opt_v)
+			display_pile(*a, *b);
+		e->v = 1;
+		rev_rotate_a(a, b, e);
+		swap_a(a, b, e);
+		rotate_a(a, b, e);
+		rotate_a(a, b, e);
+		return ;
+	}
+	else
+		rotate_a(a, b, e);
+}
+
+void	sort_pile(t_list **a, t_list **b, t_env *e)
 {
 	t_list	*tmp;
 
@@ -108,28 +103,19 @@ void	sort_pile(t_list **a, t_list **b)
 		return ;
 	if (is_sort(*a))
 		return ;
+	back_swap(a, b, e);
+	e->v = 1;
 	while ((*a)->next && !(is_sort(*a)))
 	{
-		if (is_sort(*a) == ft_getsize(*a) - 1)
-		{
-			rev_rotate_a(a);
-			rev_rotate_a(a);
-			swap_a(a);
-			rotate_a(a);
-			rotate_a(a);
-			return ;
-		}
-		else if (is_sort((*a)->next))
-			swap_a(a);
+		if (is_sort((*a)->next))
+			swap_a(a, b, e);
 		else
 		{
-			ft_getmin(a);
-			push_b(a, b);
+			ft_getmin(a, b, e);
+			push_b(a, b, e);
 		}
 	}
 	while (*b)
-	{
-		push_a(a, b);
-	}
+		push_a(a, b, e);
 	ft_putendl("");
 }
