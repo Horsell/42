@@ -9,7 +9,7 @@ year will be stored.
 [wiki](https://github.com/jpirsch/42/wiki)
 
 ###	License
-My work on these didactic projects are open sourced, and released under the GNU GPL license.
+My work on these didactic projects is open sourced, and released under the GNU GPL license.
 
 
 
