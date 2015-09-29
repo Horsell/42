@@ -13,6 +13,5 @@ My work on these didactic projects is open sourced, and released under the GNU G
 
 
 
-#####Oh and by the way
-
+#####Oh and by the way...
 #							Don't Panic !
