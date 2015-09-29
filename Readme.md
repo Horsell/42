@@ -1,4 +1,4 @@
-##		42 School Work
+##		42 School Work : [wiki](https://github.com/jpirsch/42/wiki)
 
 ###	Goal of this repository
 Hi reader, if you are here you probably know about the basics of github.
