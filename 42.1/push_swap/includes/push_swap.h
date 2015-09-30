@@ -6,7 +6,7 @@
 /*   By: jpirsch <jpirsch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/12/15 14:35:08 by jpirsch           #+#    #+#             */
-/*   Updated: 2015/09/30 01:29:09 by jpirsch          ###   ########.fr       */
+/*   Updated: 2015/10/01 00:14:15 by jpirsch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ typedef struct	s_env
 	int			opt_v;
 	int			opt_c;
 	int			v;
+	int			size;
 }				t_env;
 
 typedef struct	s_backtrack
@@ -49,7 +50,6 @@ int				swap_b(t_list **a, t_list **b, t_env *e);
 int				ss(t_list **a, t_list **b, t_env *e);
 int				rr(t_list **a, t_list **b, t_env *e);
 int				rrr(t_list **a, t_list **b, t_env *e);
-int				ft_findmin(t_list *a);
 int				ft_getsize(t_list *a);
 void			ft_getmin(t_list **a, t_list **b, t_env *e);
 void			sort_pile(t_list **a, t_list **b, t_env *e);

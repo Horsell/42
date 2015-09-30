@@ -6,7 +6,7 @@
 /*   By: jpirsch <jpirsch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/28 18:51:05 by jpirsch           #+#    #+#             */
-/*   Updated: 2015/09/29 18:18:14 by jpirsch          ###   ########.fr       */
+/*   Updated: 2015/09/30 23:04:41 by jpirsch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ int		check_args(int ac, char **av, t_env *e)
 		nbarg = ac;
 		if (!is_valid_int(av[ac]))
 			return (0);
-		while (--nbarg)
+		while (--nbarg >= i)
 		{
 			if (ft_atoi(av[ac]) == ft_atoi(av[nbarg]))
 				return (0);

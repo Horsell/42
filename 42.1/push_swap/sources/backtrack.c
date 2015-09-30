@@ -6,7 +6,7 @@
 /*   By: jpirsch <jpirsch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/30 01:33:23 by jpirsch           #+#    #+#             */
-/*   Updated: 2015/09/30 01:59:47 by jpirsch          ###   ########.fr       */
+/*   Updated: 2015/09/30 23:56:24 by jpirsch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,12 +105,12 @@ int			backtrack(t_list **a, t_list **b, t_env *e, int depth)
 	{
 		e->v = 1;
 		apply(a, b, e, bk->best);
-		ft_putnbr(is_sort(*a)); // fair 'unapply" pour pouvoir tester si ca ne marche pas sans afficher
-		ft_putstr(" ");
-		ft_putnbr(ft_getsize(*a));
+		free(bk);
+		return (1);
 	}
 	else
-		sort_pile(a, b, e);
-	free(bk);
-	return (0);
+	{
+		free(bk);
+		return (0);
+	}
 }

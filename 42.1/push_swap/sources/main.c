@@ -6,7 +6,7 @@
 /*   By: jpirsch <jpirsch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/14 17:15:03 by jpirsch           #+#    #+#             */
-/*   Updated: 2015/09/30 01:19:01 by jpirsch          ###   ########.fr       */
+/*   Updated: 2015/10/01 00:14:38 by jpirsch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,10 +46,11 @@ int		make_pile(int ac, char **av, t_list **a, t_env *e)
 		return (0);
 	while (--ac >= i)
 		push(a, ft_atoi(av[ac]));
+	e->size -= i;
 	return (1);
 }
 
-t_env	*init_env(void)
+t_env	*init_env(int ac)
 {
 	t_env	*e;
 
@@ -59,6 +60,7 @@ t_env	*init_env(void)
 		e->opt_c = 0;
 		e->opt_v = 0;
 		e->v = 0;
+		e->size = ac;
 	}
 	return (e);
 }
@@ -69,7 +71,7 @@ int		main(int ac, char **av)
 	t_list	*b;
 	t_env	*e;
 
-	e = init_env();
+	e = init_env(ac);
 	if (ac != 1)
 	{
 		if (!(make_pile(ac, av, &a, e)))
@@ -79,8 +81,8 @@ int		main(int ac, char **av)
 		}
 		if (e->opt_c)
 			ft_putstr("\033[31m");
-		if (ft_getsize(a) <= 7)
-			backtrack(&a, &b, e, 0);
+		if (e->size < 2000)
+			(backtrack(&a, &b, e, 0)) ? 1 :	sort_pile(&a, &b, e);
 		else
 			sort_pile(&a, &b, e);
 		if (e->opt_c)

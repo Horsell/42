@@ -6,7 +6,7 @@
 /*   By: jpirsch <jpirsch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/30 01:26:59 by jpirsch           #+#    #+#             */
-/*   Updated: 2015/09/30 01:27:46 by jpirsch          ###   ########.fr       */
+/*   Updated: 2015/09/30 16:08:28 by jpirsch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ void	apply(t_list **a, t_list **b, t_env *e, int *tab)
 	int	i;
 
 	i = 0;
-	while (i < 7 && tab[i] != -1)
+	while (i < 8 && tab[i] != -1)
 	{
 		apply_action(a, b, e, tab[i]);
 		i++;
