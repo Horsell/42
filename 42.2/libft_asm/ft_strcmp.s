@@ -6,11 +6,13 @@
 #    By: jpirsch <jpirsch@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/09/30 07:16:33 by jpirsch           #+#    #+#              #
-#    Updated: 2015/09/30 09:35:31 by jpirsch          ###   ########.fr        #
+#    Updated: 2015/09/30 14:30:25 by jpirsch          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 section .text
+
+global _ft_strcmp
 
 _ft_strcmp:
 xor		eax, eax

@@ -6,11 +6,13 @@
 #    By: jpirsch <jpirsch@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/09/30 05:53:00 by jpirsch           #+#    #+#              #
-#    Updated: 2015/09/30 09:36:04 by jpirsch          ###   ########.fr        #
+#    Updated: 2015/09/30 14:31:12 by jpirsch          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 section .text
+
+global _ft_strlen
 
 _ft_strlen:
 mov		rax, 0				; store '\0' to be cmp in repnz

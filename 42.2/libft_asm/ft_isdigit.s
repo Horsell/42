@@ -6,11 +6,13 @@
 #    By: jpirsch <jpirsch@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/09/30 05:08:50 by jpirsch           #+#    #+#              #
-#    Updated: 2015/09/30 05:08:52 by jpirsch          ###   ########.fr        #
+#    Updated: 2015/09/30 14:28:14 by jpirsch          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 section .text
+
+global _ft_isdigit
 
 _ft_isdigit:
 mov		rax, 1			; ret value

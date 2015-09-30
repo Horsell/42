@@ -6,10 +6,11 @@
 #    By: jpirsch <jpirsch@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/09/30 07:19:39 by jpirsch           #+#    #+#              #
-#    Updated: 2015/09/30 09:35:56 by jpirsch          ###   ########.fr        #
+#    Updated: 2015/09/30 17:48:24 by jpirsch          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
+NAME = libfts.a
 CC = nasm -f macho64
 AR = ar rc
 RANLIB = ranlib
@@ -40,21 +41,14 @@ all: $(NAME)
 $(NAME): $(OBJ)
 	@$(AR) $(NAME) $(OBJ)
 	@$(RANLIB) $(NAME)
-	@echo "\033[31;31;1m=== Compilation $(NAME)\t\t\033[32;32;mDONE"
 
 %.o: %.s
 	@$(CC) $< -o $@
 
 clean:
-	@echo "\033[31;31;1m=== O file $(NAME)\t\t\t\033[34;34;mREMOVED"
 	@$(RM) -f $(OBJ)
 
-clean_no_printf:
-	@echo "\033[31;31;1m=== O file $(NAME)\t\t\t\033[34;34;mREMOVED"
-	@$(RM) -f $(OBJ)
-
-fclean: clean_no_printf
-	@echo "\033[31;31;1m=== $(NAME)\t\t\t\t\033[34;34;mREMOVED"
+fclean: clean
 	@$(RM) -f $(NAME)
 
 re: fclean all 

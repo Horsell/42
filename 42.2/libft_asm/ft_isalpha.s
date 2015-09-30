@@ -6,11 +6,13 @@
 #    By: jpirsch <jpirsch@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/09/30 05:08:28 by jpirsch           #+#    #+#              #
-#    Updated: 2015/09/30 05:08:30 by jpirsch          ###   ########.fr        #
+#    Updated: 2015/09/30 14:25:37 by jpirsch          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 section .text
+
+global _ft_isalpha
 
 _ft_isalpha:
 mov		rax, 1			; ret value

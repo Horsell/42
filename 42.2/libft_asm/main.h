@@ -6,14 +6,14 @@
 /*   By: jpirsch <jpirsch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/30 07:18:15 by jpirsch           #+#    #+#             */
-/*   Updated: 2015/09/30 09:35:54 by jpirsch          ###   ########.fr       */
+/*   Updated: 2015/09/30 14:17:55 by jpirsch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef		MAIN_H
 # define	MAIN_H
 
-//# include <string.h>
+# include <string.h>
 
 int			ft_puts(const char *s);
 void		ft_bzero(void *s, size_t n);

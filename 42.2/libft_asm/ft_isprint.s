@@ -6,11 +6,13 @@
 #    By: jpirsch <jpirsch@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/09/30 05:09:08 by jpirsch           #+#    #+#              #
-#    Updated: 2015/09/30 05:09:10 by jpirsch          ###   ########.fr        #
+#    Updated: 2015/09/30 14:28:28 by jpirsch          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 section .text
+
+global _ft_isprint
 
 _ft_isprint:
 mov		rax, 1		; ret value

@@ -6,7 +6,7 @@
 #    By: jpirsch <jpirsch@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/09/30 07:16:18 by jpirsch           #+#    #+#              #
-#    Updated: 2015/09/30 09:35:28 by jpirsch          ###   ########.fr        #
+#    Updated: 2015/09/30 17:41:13 by jpirsch          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,18 +18,20 @@ buff: resb 1024
 
 section .text
 
+global _ft_cat
+
 _ft_cat:
-mov		rdx, 1024
-lea		rsi, [rel buff]
+mov		rdx, 1024			; buff size to arg3 of read
+lea		rsi, [rel buff]		; addr of buf to arg2 of read
 call	_read
-cmp		rax, 0x0
+cmp		rax, 0x0			; check ret == -1 ?
 jl		_leave
-push	rdi
-mov		rdi, 1
-mov		rdx, rax
+push	rdi					; store fd(arg1 of cat)
+mov		rdi, 1				; stdout to arg1 of write
+mov		rdx, rax			; nbr of bytes read returned to arg3 of write
 call	_write
-pop		rdi
-cmp		rax, 0x0
+pop		rdi					; pop fd
+cmp		rax, 0x0			; check nbr of byte written(if 0 ->end)
 je		_leave
 jmp		_ft_cat
 
