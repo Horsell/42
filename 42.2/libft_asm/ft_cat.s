@@ -1,30 +1,37 @@
 # **************************************************************************** #
 #                                                                              #
 #                                                         :::      ::::::::    #
-#    ft_toupper.asm                                     :+:      :+:    :+:    #
+#    ft_cat.s                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mbougrin <mbougrin@student.42.fr>          +#+  +:+       +#+         #
+#    By: jpirsch <jpirsch@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2015/01/23 12:37:17 by mbougrin          #+#    #+#              #
-#    Updated: 2015/01/23 13:05:43 by mbougrin         ###   ########.fr        #
+#    Created: 2015/09/30 07:16:18 by jpirsch           #+#    #+#              #
+#    Updated: 2015/09/30 09:35:28 by jpirsch          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-global _ft_toupper
+extern _write, _read
+
+section	.bss
+
+buff: resb 1024
 
 section .text
 
-_ft_toupper:
-mov		rax, rdi
-cmp		rdi, 0x61		; cmp >= 'a'
-jge		_check			; jump _check 
-ret
-
-_check:
-cmp		rdi, 0x7b		; cmp < {
-jl		_leave			; jump _upper
-ret
+_ft_cat:
+mov		rdx, 1024
+lea		rsi, [rel buff]
+call	_read
+cmp		rax, 0x0
+jl		_leave
+push	rdi
+mov		rdi, 1
+mov		rdx, rax
+call	_write
+pop		rdi
+cmp		rax, 0x0
+je		_leave
+jmp		_ft_cat
 
 _leave:
-sub		rax, 32
 ret

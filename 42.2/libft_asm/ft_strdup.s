@@ -1,24 +1,27 @@
 # **************************************************************************** #
 #                                                                              #
 #                                                         :::      ::::::::    #
-#    ft_putstr.s                                        :+:      :+:    :+:    #
+#    ft_strdup.s                                        :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mbougrin <mbougrin@student.42.fr>          +#+  +:+       +#+         #
+#    By: jpirsch <jpirsch@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2015/01/27 03:49:55 by mbougrin          #+#    #+#              #
-#    Updated: 2015/01/27 09:24:52 by mbougrin         ###   ########.fr        #
+#    Created: 2015/09/30 07:15:52 by jpirsch           #+#    #+#              #
+#    Updated: 2015/09/30 07:15:53 by jpirsch          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-global _ft_putstr
-
-extern _write, _ft_strlen
+extern _malloc, _ft_strlen, _ft_memcpy
 
 section .text
 
-_ft_putstr:
-mov		rsi, rdi
+_ft_strdup:
+push	rdi
 call	_ft_strlen
-mov		rdx, rax
-mov		rdi, 1
-call	_write
+mov		rdi, rax
+push	rdi
+call	_malloc
+pop		rdx
+pop		rsi
+mov		rdi, rax
+call	_ft_memcpy
+ret

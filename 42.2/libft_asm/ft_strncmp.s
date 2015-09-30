@@ -1,29 +1,32 @@
 # **************************************************************************** #
 #                                                                              #
 #                                                         :::      ::::::::    #
-#    ft_strcmp.s                                        :+:      :+:    :+:    #
+#    ft_strncmp.s                                       :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mbougrin <mbougrin@student.42.fr>          +#+  +:+       +#+         #
+#    By: jpirsch <jpirsch@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2015/01/27 00:42:49 by mbougrin          #+#    #+#              #
-#    Updated: 2015/01/27 09:24:54 by mbougrin         ###   ########.fr        #
+#    Created: 2015/09/30 07:16:24 by jpirsch           #+#    #+#              #
+#    Updated: 2015/09/30 09:35:48 by jpirsch          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-global _ft_strcmp
-
 section .text
 
-_ft_strcmp:
+_ft_strncmp:
+mov		rbx, rdx
 xor		eax, eax
 xor		ecx, ecx
 xor		rdx, rdx
 push	rsi
 push	rdi
+cmp		rbx, 0
+je		_ret_zero
 
-_loop:
+_loop1:
 mov		cl, [rsi]
 mov		al, [rdi]
+cmp		rbx, 0x0
+je		_check
 cmp		cl, 0x0
 jz		_ret
 cmp		al, 0x0
@@ -32,9 +35,28 @@ sub		ax, cx
 jne		_leave
 inc		rdi
 inc		rsi
-jmp		_loop
+dec		rbx
+jmp		_loop1
+
+_check:
+cmp		cl, 0x0
+jz		_ret
+cmp		al, 0x0
+jz		_ret
+sub		ax, cx
+jne		_leave
+
+_ret_zero:
+pop		rdi
+pop		rsi
+mov		rax, 0
+ret
 
 _leave:
+cmp		cl, 0x0
+jz		_ret
+cmp		al, 0x0
+jz		_ret
 pop		rdi
 pop		rsi
 cwde
@@ -45,3 +67,4 @@ _ret:
 pop		rdi
 pop		rsi
 ret
+

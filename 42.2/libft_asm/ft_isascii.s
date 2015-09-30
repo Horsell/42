@@ -1,15 +1,25 @@
-global	_ft_isascii
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    ft_isascii.s                                       :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: jpirsch <jpirsch@student.42.fr>            +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2015/09/30 05:09:00 by jpirsch           #+#    #+#              #
+#    Updated: 2015/09/30 05:09:02 by jpirsch          ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
 
 section .text
 
 _ft_isascii:
-cmp		rdi, 0
-jl		false
-cmp		rdi, 127
-jg		false
-mov		rax, 1
+mov		rax, 1		; ret value
+cmp		rdi, 0x00 	; cmp 0 <
+jl		_leave
+cmp		rdi, 0x7f	; cmp > 127
+jg		_leave
 ret
 
-false:
-mov		rax, 0
+_leave:
+mov		rax, 0		; ret value
 ret

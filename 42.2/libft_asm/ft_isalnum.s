@@ -1,34 +1,39 @@
 # **************************************************************************** #
 #                                                                              #
 #                                                         :::      ::::::::    #
-#    ft_isalpha.asm                                     :+:      :+:    :+:    #
+#    ft_isalnum.s                                       :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mbougrin <mbougrin@student.42.fr>          +#+  +:+       +#+         #
+#    By: jpirsch <jpirsch@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2015/01/22 18:17:15 by mbougrin          #+#    #+#              #
-#    Updated: 2015/01/22 20:10:29 by mbougrin         ###   ########.fr        #
+#    Created: 2015/09/30 05:08:40 by jpirsch           #+#    #+#              #
+#    Updated: 2015/09/30 05:08:43 by jpirsch          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-global _ft_isalpha
-
 section .text
 
-_ft_isalpha:
+_ft_isalnum:
 mov		rax, 1			; ret value
-cmp		rdi, 0x41		; cmp 'A' <
-jl		_leave			; jump _leave
-cmp		rdi, 0x5b		; cmp '[' >=
-jge		_next			; jump _next
-ret						; return
+cmp		rdi, 0x30		; cmp '0' <
+jl		_leave
+cmp		rdi, 0x39		; cmp '9' >
+jg		_next
+ret
 
 _next:
+cmp		rdi, 0x41		; cmp 'A' <
+jl		_leave
+cmp		rdi, 0x5a		; cmp 'Z' >
+jg		_next_cmp
+ret
+
+_next_cmp:
 cmp		rdi, 0x61		; cmp 'a' <
-jl		_leave			; jump _leave
-cmp		rdi, 0x7b		; cmp '{' >=
-jge		_leave			; jump _leave
-ret						; return
+jl		_leave
+cmp		rdi, 0x7b		; cmp 'z' >
+jg		_leave
+ret
 
 _leave:
 mov		rax, 0			; ret value
-ret						; return
+ret

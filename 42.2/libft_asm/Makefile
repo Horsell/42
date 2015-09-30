@@ -3,14 +3,13 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mbougrin <mbougrin@student.42.fr>          +#+  +:+       +#+         #
+#    By: jpirsch <jpirsch@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2013/12/02 10:49:38 by mbougrin          #+#    #+#              #
-#    Updated: 2015/01/27 10:15:53 by mbougrin         ###   ########.fr        #
+#    Created: 2015/09/30 07:19:39 by jpirsch           #+#    #+#              #
+#    Updated: 2015/09/30 09:35:56 by jpirsch          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = libfts.a
 CC = nasm -f macho64
 AR = ar rc
 RANLIB = ranlib

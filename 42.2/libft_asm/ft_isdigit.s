@@ -1,23 +1,25 @@
 # **************************************************************************** #
 #                                                                              #
 #                                                         :::      ::::::::    #
-#    ft_memcpy.s                                        :+:      :+:    :+:    #
+#    ft_isdigit.s                                       :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mbougrin <mbougrin@student.42.fr>          +#+  +:+       +#+         #
+#    By: jpirsch <jpirsch@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2015/01/26 14:08:55 by mbougrin          #+#    #+#              #
-#    Updated: 2015/01/26 14:42:41 by mbougrin         ###   ########.fr        #
+#    Created: 2015/09/30 05:08:50 by jpirsch           #+#    #+#              #
+#    Updated: 2015/09/30 05:08:52 by jpirsch          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-global _ft_memcpy
-
 section .text
 
-_ft_memcpy:
-push	rdi
-mov		rcx, rdx
-cld
-rep		movsb
-pop		rax
+_ft_isdigit:
+mov		rax, 1			; ret value
+cmp		rdi, 0x30		; cmp '0' <
+jl		_leave
+cmp		rdi, 0x39		; cmp '9' >
+jg		_leave
+ret
+
+_leave:
+mov		rax, 0			; ret value
 ret

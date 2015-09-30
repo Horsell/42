@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   main.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbougrin <mbougrin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jpirsch <jpirsch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/01/21 12:58:55 by mbougrin          #+#    #+#             */
-/*   Updated: 2015/01/27 10:15:55 by mbougrin         ###   ########.fr       */
+/*   Created: 2015/09/30 07:18:15 by jpirsch           #+#    #+#             */
+/*   Updated: 2015/09/30 09:35:54 by jpirsch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MAIN_H
-# define MAIN_H
+#ifndef		MAIN_H
+# define	MAIN_H
 
-# include <string.h>
+//# include <string.h>
 
 int			ft_puts(const char *s);
 void		ft_bzero(void *s, size_t n);

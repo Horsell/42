@@ -1,27 +1,28 @@
 # **************************************************************************** #
 #                                                                              #
 #                                                         :::      ::::::::    #
-#    ft_isprint.asm                                     :+:      :+:    :+:    #
+#    ft_toupper.s                                       :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mbougrin <mbougrin@student.42.fr>          +#+  +:+       +#+         #
+#    By: jpirsch <jpirsch@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2015/01/23 12:13:46 by mbougrin          #+#    #+#              #
-#    Updated: 2015/01/23 12:16:53 by mbougrin         ###   ########.fr        #
+#    Created: 2015/09/30 05:09:28 by jpirsch           #+#    #+#              #
+#    Updated: 2015/09/30 05:09:30 by jpirsch          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-global _ft_isprint
-
 section .text
 
-_ft_isprint:
-mov		rax, 1		; ret value
-cmp		rdi, 0x20	; cmp  32 <
-jl		_leave		; jump _leave
-cmp		rdi, 0x7f	; cmp 127 >=
-jge		_leave		; jump _leave
-ret					; return
+_ft_toupper:
+mov		rax, rdi
+cmp		rdi, 0x61		; cmp >= 'a'
+jge		_check			; jump _check 
+ret
+
+_check:
+cmp		rdi, 0x7a		; cmp <= 'z'
+jle		_leave			; (apply toupper)
+ret
 
 _leave:
-mov		rax, 0		; ret value
-ret					; return
+sub		rax, 32
+ret

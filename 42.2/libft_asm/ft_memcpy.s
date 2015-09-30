@@ -1,24 +1,21 @@
 # **************************************************************************** #
 #                                                                              #
 #                                                         :::      ::::::::    #
-#    ft_strlen.asm                                      :+:      :+:    :+:    #
+#    ft_memcpy.s                                        :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mbougrin <mbougrin@student.42.fr>          +#+  +:+       +#+         #
+#    By: jpirsch <jpirsch@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2015/01/23 16:27:20 by mbougrin          #+#    #+#              #
-#    Updated: 2015/01/26 13:40:38 by mbougrin         ###   ########.fr        #
+#    Created: 2015/09/30 07:15:59 by jpirsch           #+#    #+#              #
+#    Updated: 2015/09/30 09:35:59 by jpirsch          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-global	_ft_strlen
-
 section .text
 
-_ft_strlen:
-mov		rax, 0
-mov		rcx, -1
+_ft_memcpy:
+push	rdi
+mov		rcx, rdx
 cld
-repnz	scasb
-not		rcx
-lea 	rax, [rcx - 1]
+rep		movsb
+pop		rax
 ret

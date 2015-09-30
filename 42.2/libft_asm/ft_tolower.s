@@ -1,39 +1,28 @@
 # **************************************************************************** #
 #                                                                              #
 #                                                         :::      ::::::::    #
-#    ft_cat.s                                           :+:      :+:    :+:    #
+#    ft_tolower.s                                       :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mbougrin <mbougrin@student.42.fr>          +#+  +:+       +#+         #
+#    By: jpirsch <jpirsch@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2015/01/26 23:01:48 by mbougrin          #+#    #+#              #
-#    Updated: 2015/01/27 09:44:33 by mbougrin         ###   ########.fr        #
+#    Created: 2015/09/30 05:09:17 by jpirsch           #+#    #+#              #
+#    Updated: 2015/09/30 05:09:20 by jpirsch          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-global _ft_cat
-
-extern _write, _read
-
-section	.bss
-
-buff: resb 1024
-
 section .text
 
-_ft_cat:
-mov		rdx, 1024
-lea		rsi, [rel buff]
-call	_read
-cmp		rax, 0x0
-jl		_leave
-push	rdi
-mov		rdi, 1
-mov		rdx, rax
-call	_write
-pop		rdi
-cmp		rax, 0x0
-je		_leave
-jmp		_ft_cat
+_ft_tolower:
+mov		rax, rdi
+cmp		rdi, 0x41		; cmp >= 'A'
+jge		_check			; jump _check 
+ret
+
+_check:
+cmp		rdi, 0x5a		; cmp <= 'Z'
+jle		_leave			; (apply tolower)
+ret
 
 _leave:
-ret
+add		rax, 32			; add 32
+ret						; return 

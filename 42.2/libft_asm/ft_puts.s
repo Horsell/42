@@ -1,26 +1,23 @@
 # **************************************************************************** #
 #                                                                              #
 #                                                         :::      ::::::::    #
-#    ft_puts.asm                                        :+:      :+:    :+:    #
+#    ft_puts.s                                          :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mbougrin <mbougrin@student.42.fr>          +#+  +:+       +#+         #
+#    By: jpirsch <jpirsch@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2015/01/20 14:54:23 by mbougrin          #+#    #+#              #
-#    Updated: 2015/01/26 11:11:57 by mbougrin         ###   ########.fr        #
+#    Created: 2015/09/30 05:04:07 by jpirsch           #+#    #+#              #
+#    Updated: 2015/09/30 05:06:42 by jpirsch          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
-
-global _ft_puts
-
 
 section .text
 
 _ft_puts:
-mov		rsi, rdi			; assign rsi <- rdi
+mov		rsi, rdi
 
 _write_char:
 cmp		[rsi], byte 0x0		; check \0
-je		_leave				; jmp _leave rsi == 0x0
+je		_leave
 mov     rax, 0x2000004 		; write
 mov     rdi, 1 				; init rdi stdout
 mov     rdx, 1				; len write

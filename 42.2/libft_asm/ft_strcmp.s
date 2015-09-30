@@ -1,30 +1,45 @@
 # **************************************************************************** #
 #                                                                              #
 #                                                         :::      ::::::::    #
-#    ft_tolower.asm                                     :+:      :+:    :+:    #
+#    ft_strcmp.s                                        :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mbougrin <mbougrin@student.42.fr>          +#+  +:+       +#+         #
+#    By: jpirsch <jpirsch@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2015/01/23 14:40:51 by mbougrin          #+#    #+#              #
-#    Updated: 2015/01/23 14:44:39 by mbougrin         ###   ########.fr        #
+#    Created: 2015/09/30 07:16:33 by jpirsch           #+#    #+#              #
+#    Updated: 2015/09/30 09:35:31 by jpirsch          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-global _ft_tolower
-
 section .text
 
-_ft_tolower:
-mov		rax, rdi
-cmp		rdi, 0x41		; cmp >= 'A'
-jge		_check			; jump _check 
-ret
+_ft_strcmp:
+xor		eax, eax
+xor		ecx, ecx
+xor		rdx, rdx
+push	rsi
+push	rdi
 
-_check:
-cmp		rdi, 0x5b		; cmp < [
-jl		_leave			; jump _upper
-ret
+_loop:
+mov		cl, [rsi]
+mov		al, [rdi]
+cmp		cl, 0x0
+jz		_ret
+cmp		al, 0x0
+jz		_ret
+sub		ax, cx
+jne		_leave
+inc		rdi
+inc		rsi
+jmp		_loop
 
 _leave:
-add		rax, 32			; add 32
-ret						; return 
+pop		rdi
+pop		rsi
+cwde
+cdqe
+ret
+
+_ret:
+pop		rdi
+pop		rsi
+ret
