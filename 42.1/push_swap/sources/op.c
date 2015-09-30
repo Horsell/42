@@ -6,16 +6,16 @@
 /*   By: jpirsch <jpirsch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/14 17:15:03 by jpirsch           #+#    #+#             */
-/*   Updated: 2015/09/28 18:39:39 by jpirsch          ###   ########.fr       */
+/*   Updated: 2015/09/30 01:16:26 by jpirsch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	push_a(t_list **a, t_list **b, t_env *e)
+int	push_a(t_list **a, t_list **b, t_env *e)
 {
-	if (!b)
-		return ;
+	if (!b || !a || !*b)
+		return (0);
 	if (!*a)
 	{
 		*a = ft_lstnew((*b)->content, sizeof(int));
@@ -29,13 +29,14 @@ void	push_a(t_list **a, t_list **b, t_env *e)
 	if (e->v)
 		ft_putstr("pa ");
 	if (e->opt_v && e->v)
-		display_pile(*a, *b);
+		display_pile(*a, *b, e);
+	return (1);
 }
 
-void	push_b(t_list **a, t_list **b, t_env *e)
+int	push_b(t_list **a, t_list **b, t_env *e)
 {
-	if (!a)
-		return ;
+	if (!a || !b || !*a)
+		return (0);
 	if (!*b)
 	{
 		*b = ft_lstnew((*a)->content, sizeof(int));
@@ -49,25 +50,32 @@ void	push_b(t_list **a, t_list **b, t_env *e)
 	if (e->v)
 		ft_putstr("pb ");
 	if (e->opt_v && e->v)
-		display_pile(*a, *b);
+		display_pile(*a, *b, e);
+	return (1);
 }
 
-void	rotate_a(t_list **a, t_list **b, t_env *e)
+int	rotate_a(t_list **a, t_list **b, t_env *e)
 {
+	if (!(*a) || !(*a)->next)
+		return (0);
 	push_back(a, *(int*)(*a)->content);
 	pop(a);
 	if (e->v)
 		ft_putstr("ra ");
 	if (e->opt_v && e->v)
-		display_pile(*a, *b);
+		display_pile(*a, *b, e);
+	return (1);
 }
 
-void	rotate_b(t_list **a, t_list **b, t_env *e)
+int	rotate_b(t_list **a, t_list **b, t_env *e)
 {
+	if (!(*b) || !(*b)->next)
+		return (0);
 	push_back(b, *(int*)(*b)->content);
 	pop(b);
 	if (e->v)
 		ft_putstr("rb ");
 	if (e->opt_v && e->v)
-		display_pile(*a, *b);
+		display_pile(*a, *b, e);
+	return (1);
 }

@@ -6,7 +6,7 @@
 /*   By: jpirsch <jpirsch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/14 17:15:03 by jpirsch           #+#    #+#             */
-/*   Updated: 2015/09/28 19:12:55 by jpirsch          ###   ########.fr       */
+/*   Updated: 2015/09/29 18:43:49 by jpirsch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ void	back_swap(t_list **a, t_list **b, t_env *e)
 	{
 		ft_putstr("rra ");
 		if (e->opt_v)
-			display_pile(*a, *b);
+			display_pile(*a, *b, e);
 		e->v = 1;
 		rev_rotate_a(a, b, e);
 		swap_a(a, b, e);
@@ -99,7 +99,7 @@ void	sort_pile(t_list **a, t_list **b, t_env *e)
 	t_list	*tmp;
 
 	tmp = NULL;
-	if (!a)
+	if (!a || !*a)
 		return ;
 	if (is_sort(*a))
 		return ;
@@ -117,5 +117,4 @@ void	sort_pile(t_list **a, t_list **b, t_env *e)
 	}
 	while (*b)
 		push_a(a, b, e);
-	ft_putendl("");
 }

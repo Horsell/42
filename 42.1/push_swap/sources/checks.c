@@ -6,7 +6,7 @@
 /*   By: jpirsch <jpirsch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/28 18:51:05 by jpirsch           #+#    #+#             */
-/*   Updated: 2015/09/28 19:11:49 by jpirsch          ###   ########.fr       */
+/*   Updated: 2015/09/29 18:18:14 by jpirsch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ int		check_args(int ac, char **av, t_env *e)
 	int	i;
 
 	i = 1;
-	while (is_option(av[i], e))
+	while (i < ac && is_option(av[i], e))
 		i++;
 	while (--ac >= i)
 	{
