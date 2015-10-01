@@ -6,7 +6,7 @@
 #    By: jpirsch <jpirsch@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/09/30 07:19:39 by jpirsch           #+#    #+#              #
-#    Updated: 2015/09/30 17:48:24 by jpirsch          ###   ########.fr        #
+#    Updated: 2015/10/01 00:40:05 by jpirsch          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,8 +32,6 @@ SRC = ft_puts.s \
 	  ft_memcpy.s \
 	  ft_strdup.s \
 	  ft_cat.s \
-	  ft_strcmp.s \
-	  ft_strncmp.s \
 	  ft_putstr.s 
 
 all: $(NAME)

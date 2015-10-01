@@ -5,12 +5,12 @@
 #                                                     +:+ +:+         +:+      #
 #    By: jpirsch <jpirsch@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2015/09/30 07:16:18 by jpirsch           #+#    #+#              #
-#    Updated: 2015/09/30 17:41:13 by jpirsch          ###   ########.fr        #
+#    Created: 2015/10/01 06:37:32 by jpirsch           #+#    #+#              #
+#    Updated: 2015/10/01 06:45:03 by jpirsch          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-extern _write, _read
+extern _write
 
 section	.bss
 
@@ -23,9 +23,9 @@ global _ft_cat
 _ft_cat:
 mov		rdx, 1024			; buff size to arg3 of read
 lea		rsi, [rel buff]		; addr of buf to arg2 of read
-call	_read
-cmp		rax, 0x0			; check ret == -1 ?
-jl		_leave
+mov		rax, 0x2000003		; read address
+syscall
+jc		_leave				; as we use the raw syscall, we use the carry flag instead of rax
 push	rdi					; store fd(arg1 of cat)
 mov		rdi, 1				; stdout to arg1 of write
 mov		rdx, rax			; nbr of bytes read returned to arg3 of write

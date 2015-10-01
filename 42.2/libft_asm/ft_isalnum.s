@@ -6,7 +6,7 @@
 #    By: jpirsch <jpirsch@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/09/30 05:08:40 by jpirsch           #+#    #+#              #
-#    Updated: 2015/09/30 14:30:00 by jpirsch          ###   ########.fr        #
+#    Updated: 2015/10/01 00:48:42 by jpirsch          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,7 +32,7 @@ ret
 _next_cmp:
 cmp		rdi, 0x61		; cmp 'a' <
 jl		_leave
-cmp		rdi, 0x7b		; cmp 'z' >
+cmp		rdi, 0x7a		; cmp 'z' >
 jg		_leave
 ret
 

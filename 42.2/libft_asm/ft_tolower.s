@@ -6,11 +6,13 @@
 #    By: jpirsch <jpirsch@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/09/30 05:09:17 by jpirsch           #+#    #+#              #
-#    Updated: 2015/09/30 05:09:20 by jpirsch          ###   ########.fr        #
+#    Updated: 2015/10/01 00:42:15 by jpirsch          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 section .text
+
+global _ft_tolower
 
 _ft_tolower:
 mov		rax, rdi

@@ -6,7 +6,7 @@
 #    By: jpirsch <jpirsch@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/09/30 05:04:07 by jpirsch           #+#    #+#              #
-#    Updated: 2015/09/30 14:29:03 by jpirsch          ###   ########.fr        #
+#    Updated: 2015/10/01 08:34:40 by jpirsch          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,6 +15,8 @@ section .text
 global _ft_puts
 
 _ft_puts:
+cmp		rdi, 0x0
+je		_ret	
 mov		rsi, rdi
 
 _write_char:
@@ -40,3 +42,6 @@ pop		rsi					; pop \n on the stack
 mov     rax, 0x0A			; ret value
 mov		rdi,0				; init rdi stdin
 ret							; return
+
+_ret:
+ret

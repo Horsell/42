@@ -6,7 +6,7 @@
 /*   By: jpirsch <jpirsch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/30 07:18:15 by jpirsch           #+#    #+#             */
-/*   Updated: 2015/09/30 14:17:55 by jpirsch          ###   ########.fr       */
+/*   Updated: 2015/09/30 18:04:59 by jpirsch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,6 @@ char		*ft_strdup(const char *s1);
 
 void		ft_cat(int fd);
 
-int			ft_strcmp(const char *s1, const char *s2);
-int			ft_strncmp(const char *s1, const char *s2, size_t n);
 void		ft_putstr(const char *s1);
 
 #endif
