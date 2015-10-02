@@ -6,26 +6,41 @@
 #    By: jpirsch <jpirsch@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/10/01 01:58:20 by jpirsch           #+#    #+#              #
-#    Updated: 2015/10/01 08:57:36 by jpirsch          ###   ########.fr        #
+#    Updated: 2015/10/02 19:15:39 by jpirsch          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME	=	../ft_p
-SRC		= 	main.c
-OBJ		=	$(SRC:.c=.o)
+SERVEUR		=	../serveur
+CLIENT		=	../client
+SERV_SRCS	= 	main.c
+SERV_SRC	=	$(addprefix serveur/,$(SERV_SRCS))
+CLIENT_SRCS	= 	main.c
+CLIENT_SRC	=	$(addprefix client/,$(CLIENT_SRCS))
+INCLUDES	=	-I ../includes
+CC			=	gcc
+RM			=	rm -f
+LIB			=	-L ../libft -lft
+SERV_OBJ	=	$(SERV_SRC:.c=.o)
+CLIENT_OBJ	=	$(CLIENT_SRC:.c=.o)
 
-all: $(NAME)
+all: $(SERVEUR) $(CLIENT)
 
-$(NAME): $(OBJ)
-	gcc -o $(NAME) $(OBJ) -L ../libft/ -lft
+$(SERVEUR): $(SERV_OBJ)
+	$(CC) $(FLAGS) $(INCLUDES) $(SERV_SRC) $(LIB) -o $(SERVEUR)
+
+$(CLIENT): $(CLIENT_OBJ)
+	$(CC) $(FLAGS) $(INCLUDES) $(CLIENT_SRC) $(LIB) -o $(CLIENT)
 
 %.o:%.c
-	gcc -c $(FlAGS) $(SRC) -I ../includes
+	$(CC) -O3 -o $(SERV_OBJ) -c $(SERV_SRC) $(FLAGS) $(INCLUDES)
+	$(CC) -O3 -o $(CLIENT_OBJ) -c $(CLIENT_SRC) $(FLAGS) $(INCLUDES)
 
 clean:
-	rm -f $(OBJ)
+	$(RM) $(CLIENT_OBJ) $(SERV_OBJ)
 
 fclean: clean
-	rm -f $(NAME)
+	$(RM) $(CLIENT) $(SERVEUR)
 
 re: fclean all
+
+.PHONY : re fclean clean all

@@ -6,11 +6,11 @@
 /*   By: jpirsch <jpirsch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/12 05:11:10 by jpirsch           #+#    #+#             */
-/*   Updated: 2015/10/01 08:55:58 by jpirsch          ###   ########.fr       */
+/*   Updated: 2015/10/02 19:58:38 by jpirsch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-//#include "ft_p.h"
+#include "ft_p.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <netdb.h>
@@ -39,16 +39,14 @@ void	doprocessing(int sock)
 	}
 }
 
-int		main(int ac, char **av)
+int		main(void)//int ac, char **av)
 {
 	struct sockaddr_in	serv_addr;
 	struct sockaddr_in	cli_addr;
-	char				buffer[256];
 	int					sockfd;
 	int					newsockfd;
 	int					portno;
 	int					clilen;
-	int					n;
 	int					pid;
 
 	/* First call to socket() function */
@@ -60,7 +58,7 @@ int		main(int ac, char **av)
 	}
 	/* Initialize socket structure */
 	bzero((char*)&serv_addr, sizeof(serv_addr));
-	portno = 5001;
+	portno = 4242;
 
 	serv_addr.sin_family = AF_INET;
 	serv_addr.sin_addr.s_addr = INADDR_ANY;
