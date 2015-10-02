@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   arkanoid.h                                         :+:      :+:    :+:   */
+/*   scop.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jpirsch <jpirsch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/05/02 15:36:32 by jpirsch           #+#    #+#             */
-/*   Updated: 2015/10/01 04:52:17 by jpirsch          ###   ########.fr       */
+/*   Created: 2015/10/02 16:38:06 by jpirsch           #+#    #+#             */
+/*   Updated: 2015/10/02 16:40:18 by jpirsch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ARKANOID_H
-# define ARKANOID_H
-# include <GLFW/glfw3.h>
+#ifndef SCOP_H
+# define SCOP_H
+# include <glfw3.h>
 # include <stdlib.h>
 # include <stdio.h>
 # include "libft.h"

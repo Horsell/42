@@ -6,12 +6,12 @@
 /*   By: jpirsch <jpirsch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/02 17:33:45 by jpirsch           #+#    #+#             */
-/*   Updated: 2015/10/01 09:55:10 by jpirsch          ###   ########.fr       */
+/*   Updated: 2015/10/02 16:41:04 by jpirsch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <math.h>
-#include "arkanoid.h"
+#include "scop.h"
 
 static void	ft_glrect(float x1, float y1, float width, float height)
 {

@@ -6,11 +6,11 @@
 /*   By: jpirsch <jpirsch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/02 17:32:33 by jpirsch           #+#    #+#             */
-/*   Updated: 2015/10/01 09:04:30 by jpirsch          ###   ########.fr       */
+/*   Updated: 2015/10/02 16:40:54 by jpirsch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "arkanoid.h"
+#include "scop.h"
 
 static void error_callback(int error, const char *description)
 {
