@@ -1,0 +1,193 @@
+The system is: Darwin - 14.5.0 - x86_64
+Compiling the C compiler identification source file "CMakeCCompilerId.c" succeeded.
+Compiler: /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc 
+Build flags: 
+Id flags: 
+
+The output was:
+0
+
+
+Compilation of the C compiler identification source "CMakeCCompilerId.c" produced "a.out"
+
+The C compiler identification is AppleClang, found in "/nfs/zfs-student-4/users/2014/jpirsch/work/atari/glfw/CMakeFiles/3.2.2/CompilerIdC/a.out"
+
+Determining if the C compiler works passed with the following output:
+Change Dir: /nfs/zfs-student-4/users/2014/jpirsch/work/atari/glfw/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTryCompileExec505993901/fast"
+/Applications/Xcode.app/Contents/Developer/usr/bin/make -f CMakeFiles/cmTryCompileExec505993901.dir/build.make CMakeFiles/cmTryCompileExec505993901.dir/build
+/nfs/zfs-student-4/users/2014/jpirsch/lib/bin/cmake -E cmake_progress_report /nfs/zfs-student-4/users/2014/jpirsch/work/atari/glfw/CMakeFiles/CMakeTmp/CMakeFiles 1
+Building C object CMakeFiles/cmTryCompileExec505993901.dir/testCCompiler.c.o
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc    -o CMakeFiles/cmTryCompileExec505993901.dir/testCCompiler.c.o   -c /nfs/zfs-student-4/users/2014/jpirsch/work/atari/glfw/CMakeFiles/CMakeTmp/testCCompiler.c
+Linking C executable cmTryCompileExec505993901
+/nfs/zfs-student-4/users/2014/jpirsch/lib/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec505993901.dir/link.txt --verbose=1
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc    -Wl,-search_paths_first -Wl,-headerpad_max_install_names   CMakeFiles/cmTryCompileExec505993901.dir/testCCompiler.c.o  -o cmTryCompileExec505993901  
+
+
+Detecting C compiler ABI info compiled with the following output:
+Change Dir: /nfs/zfs-student-4/users/2014/jpirsch/work/atari/glfw/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTryCompileExec186799225/fast"
+/Applications/Xcode.app/Contents/Developer/usr/bin/make -f CMakeFiles/cmTryCompileExec186799225.dir/build.make CMakeFiles/cmTryCompileExec186799225.dir/build
+/nfs/zfs-student-4/users/2014/jpirsch/lib/bin/cmake -E cmake_progress_report /nfs/zfs-student-4/users/2014/jpirsch/work/atari/glfw/CMakeFiles/CMakeTmp/CMakeFiles 1
+Building C object CMakeFiles/cmTryCompileExec186799225.dir/CMakeCCompilerABI.c.o
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc    -o CMakeFiles/cmTryCompileExec186799225.dir/CMakeCCompilerABI.c.o   -c /nfs/zfs-student-4/users/2014/jpirsch/lib/share/cmake-3.2/Modules/CMakeCCompilerABI.c
+Linking C executable cmTryCompileExec186799225
+/nfs/zfs-student-4/users/2014/jpirsch/lib/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec186799225.dir/link.txt --verbose=1
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc    -Wl,-search_paths_first -Wl,-headerpad_max_install_names  -v -Wl,-v CMakeFiles/cmTryCompileExec186799225.dir/CMakeCCompilerABI.c.o  -o cmTryCompileExec186799225   
+Apple LLVM version 6.1.0 (clang-602.0.53) (based on LLVM 3.6.0svn)
+Target: x86_64-apple-darwin14.5.0
+Thread model: posix
+ "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ld" -demangle -dynamic -arch x86_64 -macosx_version_min 10.10.0 -o cmTryCompileExec186799225 -search_paths_first -headerpad_max_install_names -v CMakeFiles/cmTryCompileExec186799225.dir/CMakeCCompilerABI.c.o -lSystem /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../lib/clang/6.1.0/lib/darwin/libclang_rt.osx.a
+@(#)PROGRAM:ld  PROJECT:ld64-242.2
+configured to support archs: armv6 armv7 armv7s arm64 i386 x86_64 x86_64h armv6m armv7m armv7em
+Library search paths:
+	/usr/lib
+	/usr/local/lib
+Framework search paths:
+	/Library/Frameworks/
+	/System/Library/Frameworks/
+
+
+Parsed C implicit link information from above output:
+  link line regex: [^( *|.*[/\])(ld|([^/\]+-)?ld|collect2)[^/\]*( |$)]
+  ignore line: [Change Dir: /nfs/zfs-student-4/users/2014/jpirsch/work/atari/glfw/CMakeFiles/CMakeTmp]
+  ignore line: []
+  ignore line: [Run Build Command:"/usr/bin/make" "cmTryCompileExec186799225/fast"]
+  ignore line: [/Applications/Xcode.app/Contents/Developer/usr/bin/make -f CMakeFiles/cmTryCompileExec186799225.dir/build.make CMakeFiles/cmTryCompileExec186799225.dir/build]
+  ignore line: [/nfs/zfs-student-4/users/2014/jpirsch/lib/bin/cmake -E cmake_progress_report /nfs/zfs-student-4/users/2014/jpirsch/work/atari/glfw/CMakeFiles/CMakeTmp/CMakeFiles 1]
+  ignore line: [Building C object CMakeFiles/cmTryCompileExec186799225.dir/CMakeCCompilerABI.c.o]
+  ignore line: [/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc    -o CMakeFiles/cmTryCompileExec186799225.dir/CMakeCCompilerABI.c.o   -c /nfs/zfs-student-4/users/2014/jpirsch/lib/share/cmake-3.2/Modules/CMakeCCompilerABI.c]
+  ignore line: [Linking C executable cmTryCompileExec186799225]
+  ignore line: [/nfs/zfs-student-4/users/2014/jpirsch/lib/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec186799225.dir/link.txt --verbose=1]
+  ignore line: [/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc    -Wl,-search_paths_first -Wl,-headerpad_max_install_names  -v -Wl,-v CMakeFiles/cmTryCompileExec186799225.dir/CMakeCCompilerABI.c.o  -o cmTryCompileExec186799225   ]
+  ignore line: [Apple LLVM version 6.1.0 (clang-602.0.53) (based on LLVM 3.6.0svn)]
+  ignore line: [Target: x86_64-apple-darwin14.5.0]
+  ignore line: [Thread model: posix]
+  link line: [ "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ld" -demangle -dynamic -arch x86_64 -macosx_version_min 10.10.0 -o cmTryCompileExec186799225 -search_paths_first -headerpad_max_install_names -v CMakeFiles/cmTryCompileExec186799225.dir/CMakeCCompilerABI.c.o -lSystem /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../lib/clang/6.1.0/lib/darwin/libclang_rt.osx.a]
+    arg [/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ld] ==> ignore
+    arg [-demangle] ==> ignore
+    arg [-dynamic] ==> ignore
+    arg [-arch] ==> ignore
+    arg [x86_64] ==> ignore
+    arg [-macosx_version_min] ==> ignore
+    arg [10.10.0] ==> ignore
+    arg [-o] ==> ignore
+    arg [cmTryCompileExec186799225] ==> ignore
+    arg [-search_paths_first] ==> ignore
+    arg [-headerpad_max_install_names] ==> ignore
+    arg [-v] ==> ignore
+    arg [CMakeFiles/cmTryCompileExec186799225.dir/CMakeCCompilerABI.c.o] ==> ignore
+    arg [-lSystem] ==> lib [System]
+    arg [/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../lib/clang/6.1.0/lib/darwin/libclang_rt.osx.a] ==> lib [/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../lib/clang/6.1.0/lib/darwin/libclang_rt.osx.a]
+  Library search paths: [;/usr/lib;/usr/local/lib]
+  Framework search paths: [;/Library/Frameworks/;/System/Library/Frameworks/]
+  remove lib [System]
+  collapse lib [/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../lib/clang/6.1.0/lib/darwin/libclang_rt.osx.a] ==> [/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/6.1.0/lib/darwin/libclang_rt.osx.a]
+  collapse library dir [/usr/lib] ==> [/usr/lib]
+  collapse library dir [/usr/local/lib] ==> [/usr/local/lib]
+  collapse framework dir [/Library/Frameworks/] ==> [/Library/Frameworks]
+  collapse framework dir [/System/Library/Frameworks/] ==> [/System/Library/Frameworks]
+  implicit libs: [/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/6.1.0/lib/darwin/libclang_rt.osx.a]
+  implicit dirs: [/usr/lib;/usr/local/lib]
+  implicit fwks: [/Library/Frameworks;/System/Library/Frameworks]
+
+
+
+
+Detecting C [-std=c11] compiler features compiled with the following output:
+Change Dir: /nfs/zfs-student-4/users/2014/jpirsch/work/atari/glfw/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTryCompileExec910671067/fast"
+/Applications/Xcode.app/Contents/Developer/usr/bin/make -f CMakeFiles/cmTryCompileExec910671067.dir/build.make CMakeFiles/cmTryCompileExec910671067.dir/build
+/nfs/zfs-student-4/users/2014/jpirsch/lib/bin/cmake -E cmake_progress_report /nfs/zfs-student-4/users/2014/jpirsch/work/atari/glfw/CMakeFiles/CMakeTmp/CMakeFiles 1
+Building C object CMakeFiles/cmTryCompileExec910671067.dir/feature_tests.c.o
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc   -std=c11 -o CMakeFiles/cmTryCompileExec910671067.dir/feature_tests.c.o   -c /nfs/zfs-student-4/users/2014/jpirsch/work/atari/glfw/CMakeFiles/feature_tests.c
+Linking C executable cmTryCompileExec910671067
+/nfs/zfs-student-4/users/2014/jpirsch/lib/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec910671067.dir/link.txt --verbose=1
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc    -Wl,-search_paths_first -Wl,-headerpad_max_install_names   CMakeFiles/cmTryCompileExec910671067.dir/feature_tests.c.o  -o cmTryCompileExec910671067  
+
+
+    Feature record: C_FEATURE:1c_function_prototypes
+    Feature record: C_FEATURE:1c_restrict
+    Feature record: C_FEATURE:1c_static_assert
+    Feature record: C_FEATURE:1c_variadic_macros
+
+
+Detecting C [-std=c99] compiler features compiled with the following output:
+Change Dir: /nfs/zfs-student-4/users/2014/jpirsch/work/atari/glfw/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTryCompileExec2862846224/fast"
+/Applications/Xcode.app/Contents/Developer/usr/bin/make -f CMakeFiles/cmTryCompileExec2862846224.dir/build.make CMakeFiles/cmTryCompileExec2862846224.dir/build
+/nfs/zfs-student-4/users/2014/jpirsch/lib/bin/cmake -E cmake_progress_report /nfs/zfs-student-4/users/2014/jpirsch/work/atari/glfw/CMakeFiles/CMakeTmp/CMakeFiles 1
+Building C object CMakeFiles/cmTryCompileExec2862846224.dir/feature_tests.c.o
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc   -std=c99 -o CMakeFiles/cmTryCompileExec2862846224.dir/feature_tests.c.o   -c /nfs/zfs-student-4/users/2014/jpirsch/work/atari/glfw/CMakeFiles/feature_tests.c
+Linking C executable cmTryCompileExec2862846224
+/nfs/zfs-student-4/users/2014/jpirsch/lib/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec2862846224.dir/link.txt --verbose=1
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc    -Wl,-search_paths_first -Wl,-headerpad_max_install_names   CMakeFiles/cmTryCompileExec2862846224.dir/feature_tests.c.o  -o cmTryCompileExec2862846224  
+
+
+    Feature record: C_FEATURE:1c_function_prototypes
+    Feature record: C_FEATURE:1c_restrict
+    Feature record: C_FEATURE:0c_static_assert
+    Feature record: C_FEATURE:1c_variadic_macros
+
+
+Detecting C [-std=c90] compiler features compiled with the following output:
+Change Dir: /nfs/zfs-student-4/users/2014/jpirsch/work/atari/glfw/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTryCompileExec1070243810/fast"
+/Applications/Xcode.app/Contents/Developer/usr/bin/make -f CMakeFiles/cmTryCompileExec1070243810.dir/build.make CMakeFiles/cmTryCompileExec1070243810.dir/build
+/nfs/zfs-student-4/users/2014/jpirsch/lib/bin/cmake -E cmake_progress_report /nfs/zfs-student-4/users/2014/jpirsch/work/atari/glfw/CMakeFiles/CMakeTmp/CMakeFiles 1
+Building C object CMakeFiles/cmTryCompileExec1070243810.dir/feature_tests.c.o
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc   -std=c90 -o CMakeFiles/cmTryCompileExec1070243810.dir/feature_tests.c.o   -c /nfs/zfs-student-4/users/2014/jpirsch/work/atari/glfw/CMakeFiles/feature_tests.c
+Linking C executable cmTryCompileExec1070243810
+/nfs/zfs-student-4/users/2014/jpirsch/lib/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec1070243810.dir/link.txt --verbose=1
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc    -Wl,-search_paths_first -Wl,-headerpad_max_install_names   CMakeFiles/cmTryCompileExec1070243810.dir/feature_tests.c.o  -o cmTryCompileExec1070243810  
+
+
+    Feature record: C_FEATURE:1c_function_prototypes
+    Feature record: C_FEATURE:0c_restrict
+    Feature record: C_FEATURE:0c_static_assert
+    Feature record: C_FEATURE:0c_variadic_macros
+Determining if files pthread.h exist passed with the following output:
+Change Dir: /nfs/zfs-student-4/users/2014/jpirsch/work/atari/glfw/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTryCompileExec2989652250/fast"
+/Applications/Xcode.app/Contents/Developer/usr/bin/make -f CMakeFiles/cmTryCompileExec2989652250.dir/build.make CMakeFiles/cmTryCompileExec2989652250.dir/build
+/nfs/zfs-student-4/users/2014/jpirsch/lib/bin/cmake -E cmake_progress_report /nfs/zfs-student-4/users/2014/jpirsch/work/atari/glfw/CMakeFiles/CMakeTmp/CMakeFiles 1
+Building C object CMakeFiles/cmTryCompileExec2989652250.dir/CheckIncludeFiles.c.o
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc    -o CMakeFiles/cmTryCompileExec2989652250.dir/CheckIncludeFiles.c.o   -c /nfs/zfs-student-4/users/2014/jpirsch/work/atari/glfw/CMakeFiles/CMakeTmp/CheckIncludeFiles.c
+Linking C executable cmTryCompileExec2989652250
+/nfs/zfs-student-4/users/2014/jpirsch/lib/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec2989652250.dir/link.txt --verbose=1
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc    -Wl,-search_paths_first -Wl,-headerpad_max_install_names   CMakeFiles/cmTryCompileExec2989652250.dir/CheckIncludeFiles.c.o  -o cmTryCompileExec2989652250  
+
+
+Determining if the pthread_create exist passed with the following output:
+Change Dir: /nfs/zfs-student-4/users/2014/jpirsch/work/atari/glfw/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTryCompileExec1008369851/fast"
+/Applications/Xcode.app/Contents/Developer/usr/bin/make -f CMakeFiles/cmTryCompileExec1008369851.dir/build.make CMakeFiles/cmTryCompileExec1008369851.dir/build
+/nfs/zfs-student-4/users/2014/jpirsch/lib/bin/cmake -E cmake_progress_report /nfs/zfs-student-4/users/2014/jpirsch/work/atari/glfw/CMakeFiles/CMakeTmp/CMakeFiles 1
+Building C object CMakeFiles/cmTryCompileExec1008369851.dir/CheckSymbolExists.c.o
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc    -o CMakeFiles/cmTryCompileExec1008369851.dir/CheckSymbolExists.c.o   -c /nfs/zfs-student-4/users/2014/jpirsch/work/atari/glfw/CMakeFiles/CMakeTmp/CheckSymbolExists.c
+Linking C executable cmTryCompileExec1008369851
+/nfs/zfs-student-4/users/2014/jpirsch/lib/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec1008369851.dir/link.txt --verbose=1
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc    -Wl,-search_paths_first -Wl,-headerpad_max_install_names   CMakeFiles/cmTryCompileExec1008369851.dir/CheckSymbolExists.c.o  -o cmTryCompileExec1008369851  
+
+File /nfs/zfs-student-4/users/2014/jpirsch/work/atari/glfw/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
+/* */
+#include <pthread.h>
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef pthread_create
+  return ((int*)(&pthread_create))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
+
