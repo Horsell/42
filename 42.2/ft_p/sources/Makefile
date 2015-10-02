@@ -6,14 +6,14 @@
 #    By: jpirsch <jpirsch@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/10/01 01:58:20 by jpirsch           #+#    #+#              #
-#    Updated: 2015/10/02 19:15:39 by jpirsch          ###   ########.fr        #
+#    Updated: 2015/10/02 20:13:27 by jpirsch          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SERVEUR		=	../serveur
+SERVER		=	../server
 CLIENT		=	../client
 SERV_SRCS	= 	main.c
-SERV_SRC	=	$(addprefix serveur/,$(SERV_SRCS))
+SERV_SRC	=	$(addprefix server/,$(SERV_SRCS))
 CLIENT_SRCS	= 	main.c
 CLIENT_SRC	=	$(addprefix client/,$(CLIENT_SRCS))
 INCLUDES	=	-I ../includes
@@ -23,10 +23,10 @@ LIB			=	-L ../libft -lft
 SERV_OBJ	=	$(SERV_SRC:.c=.o)
 CLIENT_OBJ	=	$(CLIENT_SRC:.c=.o)
 
-all: $(SERVEUR) $(CLIENT)
+all: $(SERVER) $(CLIENT)
 
-$(SERVEUR): $(SERV_OBJ)
-	$(CC) $(FLAGS) $(INCLUDES) $(SERV_SRC) $(LIB) -o $(SERVEUR)
+$(SERVER): $(SERV_OBJ)
+	$(CC) $(FLAGS) $(INCLUDES) $(SERV_SRC) $(LIB) -o $(SERVER)
 
 $(CLIENT): $(CLIENT_OBJ)
 	$(CC) $(FLAGS) $(INCLUDES) $(CLIENT_SRC) $(LIB) -o $(CLIENT)
@@ -39,7 +39,7 @@ clean:
 	$(RM) $(CLIENT_OBJ) $(SERV_OBJ)
 
 fclean: clean
-	$(RM) $(CLIENT) $(SERVEUR)
+	$(RM) $(CLIENT) $(SERVER)
 
 re: fclean all
 
