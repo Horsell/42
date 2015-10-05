@@ -10,47 +10,77 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_p.h"
-#include <stdio.h>
-#include <stdlib.h>
-#include <netdb.h>
-#include <netinet/in.h>
-#include <sys/types.h>
-#include <sys/socket.h>
-#include <string.h>
-#include <unistd.h>
+#include "client.h"
 
-int		main(void)
+int		ft_connect(t_env *e)
 {
-	struct sockaddr_in	serv_addr;
-	char				*str;
-	int					sockfd;
-	
-//	struct hostent		*hostinfo;
-//	SOCKADDR_IN addr;
-
-	sockfd = socket(AF_INET, SOCK_STREAM, 0);
-	if (sockfd < 0)
-	{
-		ft_putendl_fd("Socket attribution error", 2);
-		return (-1);
-	}
-//	addr = { 0 }; // initialise la structure avec des 0 
-	serv_addr.sin_family = AF_INET;
-	serv_addr.sin_addr.s_addr = INADDR_ANY;
-	serv_addr.sin_port = htons(4242); // on utilise htons pour le port 
-	if (connect(sockfd, (struct sockaddr*)&serv_addr, sizeof(serv_addr)) < 0)
+	if (connect(e->sockfd, (struct sockaddr*)&e->serv_addr, sizeof(e->serv_addr)) < 0)
 	{
 		ft_putendl_fd("Error on connect", 2);
-		return (-1);
+		return (0);
 	}
-	str = ft_strdup("Hello world !");
-	if (send(sockfd, str, ft_strlen(str), 0) < 0)
+	return (1);
+}
+
+int		ft_send(t_env *e, char *str)
+{
+	if (send(e->sockfd, str, ft_strlen(str), 0) < 0)
 	{
-		ft_putendl_fd("Socket attribution error", 2);
-		return (-1);
+		ft_putendl_fd("Socket send error", 2);
+		return (0);
 	}
-	free(str);
-	close(sockfd);
+	return (1);
+}
+
+int		ft_read(t_env *e)
+{
+	char	buf[18];
+	int	n;
+
+	if ((n = read(e->sockfd, buf, 17)) < 0)
+	{
+		return (0);
+	}
+	ft_putendl(buf);
+	return (1);
+}
+
+int		ft_free(t_env *e)
+{
+	if (close(e->sockfd) == -1)
+	{
+		ft_putendl_fd("Socket close error", 2);
+		return (0);
+	}
+	free(e);
+	return (1);
+}
+
+int		main(int ac, char **av)
+{
+	t_env			*e;
+	char				*line;
+	
+	if (ac != 2)
+		return (-1);
+	e = init_env(ft_atoi(av[1]));
+	if (ft_connect(e))
+	{
+		prompt(e);
+		while (get_next_line(0, &line))
+		{
+			if (!(ft_strcmp(line, "exit")))
+				break ;
+			prompt(e);
+			ft_send(e, line);
+			if (!(ft_read(e)))
+				ft_putendl("read log error");
+		}
+	}
+	free(line);
+	ft_free(e);
 	return (0);
 }
+
+//	struct hostent		*hostinfo;
+//	addr = { 0 }; // initialise la structure avec des 0 

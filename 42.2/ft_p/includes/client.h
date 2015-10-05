@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_p.h                                             :+:      :+:    :+:   */
+/*   client.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jpirsch <jpirsch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,8 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_P_H
-# define FT_P_H
+#ifndef CLIENT_H
+# define CLIENT_H
 # include <signal.h>
 # include <sys/wait.h>
 # include <dirent.h>
@@ -39,12 +39,6 @@ typedef struct	s_env
 {
 	struct sockaddr_in	serv_addr;
 	int					sockfd;
-/*	char		**env;
-	char		**av;
-	char		**path;
-	int			ac;
-	int			pc;
-	int			ec;*/
 }				t_env;
 
 

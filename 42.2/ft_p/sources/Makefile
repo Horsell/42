@@ -12,9 +12,9 @@
 
 SERVER		=	../server
 CLIENT		=	../client
-SERV_SRCS	= 	main.c
+SERV_SRCS	= 	main.c env.c get_next_line.c
 SERV_SRC	=	$(addprefix server/,$(SERV_SRCS))
-CLIENT_SRCS	= 	main.c
+CLIENT_SRCS	= 	main.c shell.c get_next_line.c
 CLIENT_SRC	=	$(addprefix client/,$(CLIENT_SRCS))
 INCLUDES	=	-I ../includes
 CC			=	gcc
@@ -32,8 +32,9 @@ $(CLIENT): $(CLIENT_OBJ)
 	$(CC) $(FLAGS) $(INCLUDES) $(CLIENT_SRC) $(LIB) -o $(CLIENT)
 
 %.o:%.c
-	$(CC) -O3 -o $(SERV_OBJ) -c $(SERV_SRC) $(FLAGS) $(INCLUDES)
-	$(CC) -O3 -o $(CLIENT_OBJ) -c $(CLIENT_SRC) $(FLAGS) $(INCLUDES)
+#	$(CC) -O3 -o $(SERV_OBJ) -c $(SERV_SRC) $(FLAGS) $(INCLUDES)
+	$(CC) -O3 -c $(SERV_SRC) $(FLAGS) $(INCLUDES)
+	$(CC) -O3 -c $(CLIENT_SRC) $(FLAGS) $(INCLUDES)
 
 clean:
 	$(RM) $(CLIENT_OBJ) $(SERV_OBJ)

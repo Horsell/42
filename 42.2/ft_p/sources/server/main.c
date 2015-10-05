@@ -10,92 +10,79 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_p.h"
-#include <stdio.h>
-#include <stdlib.h>
-#include <netdb.h>
-#include <netinet/in.h>
-#include <string.h>
-#include <unistd.h>
+#include "server.h"
 
-void	doprocessing(int sock)
+int	process_client_cmd(int sock)
 {
-	int n;
-	char buffer[256];
+	char	buf[256];
+	int	n;
 
-	bzero(buffer,256);
-	n = read(sock,buffer,255);
-	if (n < 0)
+	ft_bzero(buf, 256);
+	n = 0;
+	while (ft_strcmp(buf, "exit"))
 	{
-		perror("ERROR reading from socket");
-		exit(1);
+		ft_bzero(buf, 256);
+		if ((n = read(sock, buf, 255)) < 0)
+		{
+			ft_putendl_fd("Read on socket error", 2);
+			return (-1);
+		}
+		ft_putstr("Message from client : ");
+		ft_putendl(buf);
+		if ((n = write(sock, "Message received",18)) < 0)
+		{
+			ft_putendl_fd("Write on socket error", 2);
+			return (-1);
+		}
 	}
-	printf("Here is the message: %s\n",buffer);
-	n = write(sock,"I got your message",18);
-	if (n < 0)
-	{
-		perror("ERROR writing to socket");
-		exit(1);
-	}
+	return (0);
 }
 
-int		main(void)//int ac, char **av)
+int		main(int ac, char **av)
 {
-	struct sockaddr_in	serv_addr;
+	t_env			*e;
 	struct sockaddr_in	cli_addr;
-	int					sockfd;
 	int					newsockfd;
-	int					portno;
 	int					clilen;
 	int					pid;
 
-	/* First call to socket() function */
-	sockfd = socket(AF_INET, SOCK_STREAM, 0);
-	if (sockfd < 0)
-	{
-		perror("ERROR opening socket");
-		exit(1);
-	}
-	/* Initialize socket structure */
-	bzero((char*)&serv_addr, sizeof(serv_addr));
-	portno = 4242;
-
-	serv_addr.sin_family = AF_INET;
-	serv_addr.sin_addr.s_addr = INADDR_ANY;
-	serv_addr.sin_port = htons(portno);
-	/* Now bind the host address using bind() call.*/
-	if (bind(sockfd, (struct sockaddr *) &serv_addr, sizeof(serv_addr)) < 0)
-	{
-		perror("ERROR on binding");
-		exit(1);
-	}
 	/* Now start listening for the clients, here
 	* process will go in sleep mode and will wait
 	* for the incoming connection
 	*/
-	listen(sockfd,5);
+	if (ac != 2)
+	{
+		ft_putendl_fd("Wrong number of arguments, use : ./server portnumber", 2);
+		return (-1);
+	}
+	if (!(e = init_env(ft_atoi(av[1]))))
+		return (-1);
+	listen(e->sockfd,5);
 	clilen = sizeof(cli_addr);
 	while (1)
 	{
-		newsockfd = accept(sockfd, (struct sockaddr*)&cli_addr, (socklen_t*)&clilen);
+		newsockfd = accept(e->sockfd, (struct sockaddr*)&cli_addr, (socklen_t*)&clilen);
 		if (newsockfd < 0)
 		{
-			perror("ERROR on accept");
-			exit(1);
+			ft_putendl_fd("Socket accept error", 2);
+			return (-1);
 		}
 		/* Create child process */
 		pid = fork();
 		if (pid < 0)
 		{
-			perror("ERROR on fork");
-			exit(1);
+			ft_putendl_fd("Fork error", 2);
+			return (-1);
 		}
 		if (pid == 0)
 		{
 			/* This is the client process */
-			close(sockfd);
-			doprocessing(newsockfd);
-			exit(0);
+			close(e->sockfd);
+			if (process_client_cmd(newsockfd) == -1)
+			{
+				ft_putendl_fd("A client / server process failed", 2);
+				return (-1);
+			}
 		}
 		else
 			close(newsockfd);
