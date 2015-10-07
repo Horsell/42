@@ -21,6 +21,26 @@ def	get_theta_values():
 		print "Invalid file for theta values (from train.py)"
 	return (theta0, theta1)
 
-theta0, theta1 = get_theta_values()
-print theta0
-print theta1
+def parse_arg(argv):
+	if len(argv) == 1:
+		return -1
+	if len(argv) == 2:
+		print argv[1]
+		return float(argv[1])
+
+def	compute_price(theta0, theta1, mileage):
+	return (theta0 + theta1 * mileage)
+
+def predict(argv):
+	theta0, theta1 = get_theta_values()
+	#print theta0
+	#print theta1
+	mileage = parse_arg(argv)
+	if (mileage < 0):
+		print "error"
+	else:
+#		mileage = parse_arg(argv)
+		estimated_price = compute_price(theta0, theta1, mileage)
+		print estimated_price
+
+predict(argv)

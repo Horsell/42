@@ -9,3 +9,5 @@ x,y = np.loadtxt("Data.txt", unpack='true')
 #plt.scatter(x,y)
 plt.plot(x, y)
 plt.show()
+
+
