@@ -24,6 +24,14 @@ int		ft_connect(t_env *e)
 
 int		ft_send(t_env *e, char *str)
 {
+	char	*len;
+
+	len = ft_itoa(ft_strlen(str) + 1);
+	if (send(e->sockfd, len, 11, 0) < 0)
+	{
+		ft_putendl_fd("Socket send error", 2);
+		return (0);
+	}
 	if (send(e->sockfd, str, ft_strlen(str), 0) < 0)
 	{
 		ft_putendl_fd("Socket send error", 2);
@@ -71,13 +79,13 @@ int		main(int ac, char **av)
 		{
 			if (!(ft_strcmp(line, "exit")))
 				break ;
-			prompt(e);
 			ft_send(e, line);
 			if (!(ft_read(e)))
 				ft_putendl("read log error");
+			prompt(e);
 		}
+		free(line);
 	}
-	free(line);
 	ft_free(e);
 	return (0);
 }

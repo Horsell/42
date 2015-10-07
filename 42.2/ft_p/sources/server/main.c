@@ -11,30 +11,105 @@
 /* ************************************************************************** */
 
 #include "server.h"
+# include <dirent.h>
+
+int	exec_ls(char *directory)
+{
+	DIR				*dir;
+	struct dirent			*dp;
+
+	dir = opendir(directory);
+	while ((dp = readdir(dir)) != NULL)
+	{
+		ft_putendl(dp->d_name);
+	}
+	return (1);
+}
+
+int	check_cmd(char *line)
+{
+	if (!(ft_strcmp(line, "ls")))
+	{
+		ft_putstr("lalalalal");
+		if (!(ft_strncmp(line, "..", 2)))
+			return (-2);
+		exec_ls(".");
+	}
+	return (1);
+}
+
+int	ft_read_len(int sock)
+{
+	char	buf[11];
+	int	len;
+	int	n;
+
+	len = 0;
+	n = 0;
+	if ((n = read(sock, buf, 11)) > 0)
+		len = ft_atoi(buf);
+	else
+	{
+		ft_putendl_fd("Read length of message on socket error", 2);
+		return (0);
+	}
+	return (len);
+}
+
+int	ft_read_sock(char **line, int sock)
+{
+	int	n;
+	int	len;
+
+	n = 0;
+	len = ft_read_len(sock);
+	*line = ft_strnew(len);
+	ft_bzero(*line, len);
+	if ((n = read(sock, *line, len)) > 0)
+	{
+		ft_putstr("Message from client : ");
+		ft_putendl(*line);
+		if (check_cmd(*line))
+		{
+			return (2);
+		}
+	}
+	if (n < 0)
+	{
+		ft_putendl_fd("Read on socket error", 2);
+		return (0);
+	}
+	return (1);
+}
+
+int	ft_write_sock(int sock)
+{
+	char	*confirm;
+	int	n;
+
+	confirm = ft_strdup("Message received");
+	n = 0;
+	if ((n = write(sock, confirm, 17)) < 0)
+	{
+		ft_putendl_fd("Write on socket error", 2);
+		return (-1);
+	}
+	free(confirm);
+	return (0);
+}
 
 int	process_client_cmd(int sock)
 {
-	char	buf[256];
-	int	n;
+	char	*line;
 
-	ft_bzero(buf, 256);
-	n = 0;
-	while (ft_strcmp(buf, "exit"))
+	line = NULL;
+	while (!line || ft_strcmp(line, "exit"))
 	{
-		ft_bzero(buf, 256);
-		if ((n = read(sock, buf, 255)) < 0)
-		{
-			ft_putendl_fd("Read on socket error", 2);
+		if (!(ft_read_sock(&line, sock)))
 			return (-1);
-		}
-		ft_putstr("Message from client : ");
-		ft_putendl(buf);
-		if ((n = write(sock, "Message received",18)) < 0)
-		{
-			ft_putendl_fd("Write on socket error", 2);
-			return (-1);
-		}
+		ft_write_sock(sock);
 	}
+	free(line);
 	return (0);
 }
 
