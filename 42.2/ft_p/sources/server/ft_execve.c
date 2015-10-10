@@ -6,7 +6,7 @@
 /*   By: jpirsch <jpirsch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/10/08 12:05:53 by jpirsch           #+#    #+#             */
-/*   Updated: 2015/10/08 12:06:05 by jpirsch          ###   ########.fr       */
+/*   Updated: 2015/10/10 17:58:10 by jpirsch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int		ft_exec(t_env *e)
 {
-	ft_execve(ft_strchr(e->av[0], '/') + 1, e->av, e->env);
+	ft_execve(e->av[0], e->av, e->env);
 	return (2);
 }
 

@@ -6,7 +6,7 @@
 /*   By: jpirsch <jpirsch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/12 05:11:10 by jpirsch           #+#    #+#             */
-/*   Updated: 2015/10/08 12:11:03 by jpirsch          ###   ########.fr       */
+/*   Updated: 2015/10/10 18:03:36 by jpirsch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ int	check_cmd(char *line, t_env *e)
 		exec_ls(".");
 	}*/
 	e->av = ft_strsplit(line, ' ');
+	e->av[0] = ft_strjoin("/bin/", e->av[0]);
 	ft_exec(e);
 	return (1);
 }
@@ -104,7 +105,7 @@ int	process_client_cmd(int sock, t_env *e)
 	char	*line;
 
 	line = NULL;
-	while (!line || ft_strcmp(line, "exit"))
+	while (!line || ft_strcmp(line, "quit"))
 	{
 		if (!(ft_read_sock(&line, sock, e)))
 			return (-1);
