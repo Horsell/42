@@ -6,7 +6,7 @@
 /*   By: jpirsch <jpirsch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/10/01 01:57:41 by jpirsch           #+#    #+#             */
-/*   Updated: 2015/10/01 02:03:13 by jpirsch          ###   ########.fr       */
+/*   Updated: 2015/10/08 13:32:45 by jpirsch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,13 +35,30 @@
 # define C_CYAN "\033[36m"
 # define C_GRAY "\033[37m"
 
-typedef struct	s_env
+typedef struct			s_env
 {
 	struct sockaddr_in	serv_addr;
 	int					sockfd;
-}				t_env;
+	char				**env;
+	char				**av;
+	char				**path;
+	int					ac;
+	int					pc;
+	int					ec;
+}						t_env;
 
 
 t_env			*init_env(int portno);
+t_env			*empty_env(void);
+int				display_env(t_env *e);
+char			*get_env(t_env *e, char *var);
+int				ft_unsetenv(t_env *e);
+int				ft_setenv(t_env *e);
+int				ft_setenv_prog(t_env *e, char *var, char *value);
+int				ft_change_env(t_env *e, char *var, char *value);
+int				ft_cd(t_env *e);
+int				search_env(t_env *e, char *var);
+int				ft_exec(t_env *e);
+void			ft_execve(char *cmd, char **av, char **env);
 
 #endif

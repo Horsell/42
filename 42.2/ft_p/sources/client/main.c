@@ -6,7 +6,7 @@
 /*   By: jpirsch <jpirsch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/10/02 17:41:54 by jpirsch           #+#    #+#             */
-/*   Updated: 2015/10/02 20:05:08 by jpirsch          ###   ########.fr       */
+/*   Updated: 2015/10/08 12:03:09 by jpirsch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ int		main(int ac, char **av)
 		prompt(e);
 		while (get_next_line(0, &line))
 		{
-			if (!(ft_strcmp(line, "exit")))
+			if (!(ft_strcmp(line, "quit")))
 				break ;
 			ft_send(e, line);
 			if (!(ft_read(e)))

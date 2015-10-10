@@ -6,7 +6,7 @@
 /*   By: jpirsch <jpirsch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/12 05:11:10 by jpirsch           #+#    #+#             */
-/*   Updated: 2015/10/02 19:58:38 by jpirsch          ###   ########.fr       */
+/*   Updated: 2015/10/08 12:11:03 by jpirsch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,15 +26,16 @@ int	exec_ls(char *directory)
 	return (1);
 }
 
-int	check_cmd(char *line)
+int	check_cmd(char *line, t_env *e)
 {
-	if (!(ft_strcmp(line, "ls")))
+/*	if (!(ft_strcmp(line, "ls")))
 	{
-		ft_putstr("lalalalal");
 		if (!(ft_strncmp(line, "..", 2)))
 			return (-2);
 		exec_ls(".");
-	}
+	}*/
+	e->av = ft_strsplit(line, ' ');
+	ft_exec(e);
 	return (1);
 }
 
@@ -56,7 +57,7 @@ int	ft_read_len(int sock)
 	return (len);
 }
 
-int	ft_read_sock(char **line, int sock)
+int	ft_read_sock(char **line, int sock, t_env *e)
 {
 	int	n;
 	int	len;
@@ -69,7 +70,7 @@ int	ft_read_sock(char **line, int sock)
 	{
 		ft_putstr("Message from client : ");
 		ft_putendl(*line);
-		if (check_cmd(*line))
+		if (check_cmd(*line, e))
 		{
 			return (2);
 		}
@@ -98,14 +99,14 @@ int	ft_write_sock(int sock)
 	return (0);
 }
 
-int	process_client_cmd(int sock)
+int	process_client_cmd(int sock, t_env *e)
 {
 	char	*line;
 
 	line = NULL;
 	while (!line || ft_strcmp(line, "exit"))
 	{
-		if (!(ft_read_sock(&line, sock)))
+		if (!(ft_read_sock(&line, sock, e)))
 			return (-1);
 		ft_write_sock(sock);
 	}
@@ -153,7 +154,7 @@ int		main(int ac, char **av)
 		{
 			/* This is the client process */
 			close(e->sockfd);
-			if (process_client_cmd(newsockfd) == -1)
+			if (process_client_cmd(newsockfd, e) == -1)
 			{
 				ft_putendl_fd("A client / server process failed", 2);
 				return (-1);
