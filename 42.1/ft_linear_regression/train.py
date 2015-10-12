@@ -2,6 +2,7 @@
 # -*-coding:utf-8 -*
 from sys import argv
 import matplotlib.pyplot as plt
+from mpl_toolkits.mplot3d import Axes3D
 import numpy as np
 import math
 import re
@@ -12,10 +13,10 @@ def mean(x, y):
 	price = 0
 	for i, j in zip(x, y):
 		price += j
-		km += i
+		km += i * 10000
 		m += 1
-	print "price : {}".format(price / m)
-	print "km : {}".format(km / m)
+	print "Average price : {}".format(price / m)
+	print "Average mileage : {}".format(km / m)
 
 def	get_xy():
 	data = open("data.csv", "r")
@@ -36,43 +37,6 @@ def	get_xy():
 		y.insert(0, float(xy.group(2)))
 		xy = re.match(reg_xy, content[i:])
 	return (x, y)
-
-"""def	calc_tmp_thetas(x, y, tmp_t0, tmp_t1, learn_rate):
-	m = 0
-	sum_prediction_t0 = tmp_t0
-	sum_prediction_t1 = tmp_t1
-	for i, j in zip(x, y):
-		sum_prediction_t0 += (( tmp_t0 + tmp_t1 * i) - j)
-		sum_prediction_t1 += (( tmp_t0 + tmp_t1 * i) - j) * i
-		m += 1
-	tmp_t0 -= learn_rate * sum_prediction_t0 / m
-	tmp_t1 -= learn_rate * sum_prediction_t1 / m
-	return (tmp_t0, tmp_t1)"""
-
-def	calc_tmp_thetas(x, y, t0, t1, learn_rate):
-	tmp0 = 0
-	tmp1 = 0
-	for i, j in zip(x, y):
-		tmp0 += (t0 + t1 * i) - j
-		tmp1 += ((t0 + t1 * i) - j) * i
-	tmp0 = tmp0 / 24 * learn_rate
-	tmp1 = tmp1 / 24 * learn_rate
-	t0 -= tmp0
-	t1 -= tmp1
-	return (t0, t1)
-
-
-def	gradient_descent(x, y, tmp_t0, tmp_t1, learn_rate):
-	i = 0
-	while (i < 5000):
-		if i % 500 == 0:
-			print "t0 : {}".format(tmp_t0)
-			print "t1 : {}".format(tmp_t1)
-			print "calc : {}".format(tmp_t0 + tmp_t1 * 101066.25)
-			plot_line(x, y, tmp_t0, tmp_t1);
-		tmp_t0, tmp_t1 = calc_tmp_thetas(x, y, tmp_t0, tmp_t1, learn_rate)
-		i += 1
-	return (tmp_t0, tmp_t1)
 
 def	r_correl_coeff(x, y):
 	s1 = s2 = s3 = s4 = s5 = n = 0
@@ -101,20 +65,40 @@ def	plot_line(x, y, t0, t1):
 	ax.set_title('title')
 	plt.show()
 
-#tmp_t0 = 8499
-#tmp_t1 = -214.4
+def	write_thetas(t0, t1):
+	theta_file = open("theta.txt", "w")
+	theta_file.write("theta0 = {}\ntheta1 = {}".format(t0, t1))
+	theta_file.close()
+
+def	calc_tmp_thetas(x, y, t0, t1, learn_rate):
+	tmp0 = 0
+	tmp1 = 0
+	for i, j in zip(x, y):
+		tmp0 += (t0 + t1 * i) - j
+		tmp1 += ((t0 + t1 * i) - j) * i
+	tmp0 = tmp0 / 24 * learn_rate
+	tmp1 = tmp1 / 24 * learn_rate
+	t0 -= tmp0
+	t1 -= tmp1
+	return (t0, t1, tmp0, tmp1)
+
+
+def	gradient_descent(x, y, tmp_t0, tmp_t1, learn_rate):
+	i = 0
+
+	while (i < 5000):
+		tmp_t0, tmp_t1, tmp0, tmp1 = calc_tmp_thetas(x, y, tmp_t0, tmp_t1, learn_rate)
+		if i % 500 == 0:
+			plot_line(x, y, tmp_t0, tmp_t1);
+		i += 1
+	return (tmp_t0, tmp_t1)
+
 tmp_t0 = 0
 tmp_t1 = 0
 learn_rate = 0.01
 x, y = get_xy()
 r_correl_coeff(x, y)
-print mean(x, y)
+mean(x, y)
 t0, t1 = gradient_descent(x, y, tmp_t0, tmp_t1, learn_rate)
 t1 = t1 / 10000
-print t0
-print t1
-print (t0 + t1 * 100000)
-plot_line(x, y, t0, t1)
-#mean(x, y)
-print x
-print y
+write_thetas(t0, t1)
