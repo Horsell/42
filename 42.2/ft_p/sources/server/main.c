@@ -6,34 +6,15 @@
 /*   By: jpirsch <jpirsch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/12 05:11:10 by jpirsch           #+#    #+#             */
-/*   Updated: 2015/10/10 18:03:36 by jpirsch          ###   ########.fr       */
+/*   Updated: 2015/10/13 14:34:45 by jpirsch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "server.h"
 # include <dirent.h>
 
-int	exec_ls(char *directory)
-{
-	DIR				*dir;
-	struct dirent			*dp;
-
-	dir = opendir(directory);
-	while ((dp = readdir(dir)) != NULL)
-	{
-		ft_putendl(dp->d_name);
-	}
-	return (1);
-}
-
 int	check_cmd(char *line, t_env *e)
 {
-/*	if (!(ft_strcmp(line, "ls")))
-	{
-		if (!(ft_strncmp(line, "..", 2)))
-			return (-2);
-		exec_ls(".");
-	}*/
 	e->av = ft_strsplit(line, ' ');
 	e->av[0] = ft_strjoin("/bin/", e->av[0]);
 	ft_exec(e);
@@ -84,19 +65,40 @@ int	ft_read_sock(char **line, int sock, t_env *e)
 	return (1);
 }
 
-int	ft_write_sock(int sock)
+int		ft_send(t_env *e, char *str)
+{
+	char	*len;
+
+	len = ft_itoa(ft_strlen(str) + 1);
+	if (send(e->sockfd, len, 11, 0) < 0)
+	{
+		ft_putendl_fd("Socket send len error", 2);
+		return (0);
+	}
+	if (send(e->sockfd, str, ft_strlen(str), 0) < 0)
+	{
+		ft_putendl_fd("Socket send error", 2);
+		return (0);
+	}
+	return (1);
+}
+
+int	ft_write_sock(int sock, char *line)//, t_env *e)
 {
 	char	*confirm;
 	int	n;
+	t_env	bricolage;
 
+	bricolage.sockfd = sock;
 	confirm = ft_strdup("Message received");
 	n = 0;
 	if ((n = write(sock, confirm, 17)) < 0)
 	{
 		ft_putendl_fd("Write on socket error", 2);
-		return (-1);
+		return (0);
 	}
 	free(confirm);
+	ft_send(&bricolage, line);
 	return (0);
 }
 
@@ -107,9 +109,11 @@ int	process_client_cmd(int sock, t_env *e)
 	line = NULL;
 	while (!line || ft_strcmp(line, "quit"))
 	{
+//		if (!(result_cmd = ft_read_sock(&line, sock, e)))
 		if (!(ft_read_sock(&line, sock, e)))
-			return (-1);
-		ft_write_sock(sock);
+			return (0);
+		if (!(ft_write_sock(sock, line)))//, e)))
+			return (0);
 	}
 	free(line);
 	return (0);
@@ -155,7 +159,7 @@ int		main(int ac, char **av)
 		{
 			/* This is the client process */
 			close(e->sockfd);
-			if (process_client_cmd(newsockfd, e) == -1)
+			if (!(process_client_cmd(newsockfd, e)))
 			{
 				ft_putendl_fd("A client / server process failed", 2);
 				return (-1);

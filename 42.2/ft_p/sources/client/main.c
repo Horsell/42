@@ -6,7 +6,7 @@
 /*   By: jpirsch <jpirsch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/10/02 17:41:54 by jpirsch           #+#    #+#             */
-/*   Updated: 2015/10/08 12:03:09 by jpirsch          ###   ########.fr       */
+/*   Updated: 2015/10/13 14:25:42 by jpirsch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,47 @@ int		ft_send(t_env *e, char *str)
 	return (1);
 }
 
+int	ft_read_len(int sock)
+{
+	char	buf[11];
+	int	len;
+	int	n;
+
+	len = 0;
+	n = 0;
+	if ((n = read(sock, buf, 11)) >= 0)
+		len = ft_atoi(buf);
+	else
+	{
+		ft_putendl_fd("Read length of message on socket error", 2);
+		return (0);
+	}
+	return (len);
+}
+
+int	ft_read_sock(int sock)
+{
+	char *line;
+	int	n;
+	int	len;
+
+	n = 0;
+	len = ft_read_len(sock);
+	line = ft_strnew(len);
+	ft_bzero(line, len);
+	if ((n = read(sock, line, len)) > 0)
+	{
+		ft_putstr("Message from server : ");
+		ft_putendl(line);
+	}
+	if (n < 0)
+	{
+		ft_putendl_fd("Read on socket error", 2);
+		return (0);
+	}
+	return (1);
+}
+
 int		ft_read(t_env *e)
 {
 	char	buf[18];
@@ -47,9 +88,11 @@ int		ft_read(t_env *e)
 
 	if ((n = read(e->sockfd, buf, 17)) < 0)
 	{
+		ft_putendl_fd("Read confirm message on socket error", 2);
 		return (0);
 	}
 	ft_putendl(buf);
+	ft_read_sock(e->sockfd);
 	return (1);
 }
 
@@ -66,8 +109,8 @@ int		ft_free(t_env *e)
 
 int		main(int ac, char **av)
 {
-	t_env			*e;
-	char				*line;
+	t_env	*e;
+	char	*line;
 	
 	if (ac != 2)
 		return (-1);
@@ -79,10 +122,13 @@ int		main(int ac, char **av)
 		{
 			if (!(ft_strcmp(line, "quit")))
 				break ;
-			ft_send(e, line);
+			if (!(ft_send(e, line)))
+				return (-1);
 			if (!(ft_read(e)))
-				ft_putendl("read log error");
+				return (-1);
 			prompt(e);
+//			if (!(prompt(e)))
+//				return (-1);
 		}
 		free(line);
 	}
