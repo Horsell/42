@@ -3,37 +3,93 @@
 from sys import argv
 import re
 
-def check_valid_poly(arg)
+def check_valid_eq(arg):
+	reg_eq = re.compile('(([-+=]?)\s*([0-9\.]+)?(\s*\*?\s*[xX](?:\s*\^\s*([0-2]+))?)?\s*)*')
+	eq = re.match(reg_eq, arg)
+	if (eq is None or len(eq.group(0)) < len(arg)):
+		print "Invalid equation"
+		return (None)
+	return (eq)
 
-def extract_right_poly(poly)
-	return (right_poly)
+def extract_right_left(eq):
+	for i, elt in enumerate(eq.group()):
+		if (elt == '='):
+			break
+	left_poly = eq.group(0)[0:i]
+	right_poly = eq.group(0)[i+1:]
+	return (left_poly, right_poly)
 
-def extract_left_poly(poly)
-	return (left_poly)
-
-def extract_eq_part(poly)
-	return (eq_part)
-
-def reduce_form(poly_parts)
-	return (reduced_poly)
-
-def parse(arg):
-	poly = check_valid_poly(arg)
-	right_poly = extract_right_poly(poly)
-	left_poly = extract_left_poly(poly)
-	for elt in right_poly:
-		poly_parts += extract_eq_part(right_poly)
-	for elt in right_poly:
-		poly_parts += extract_eq_part(left_poly)
-	reduce_form(poly_parts)
-
-
+def get_coeffs(poly, side):
+	a = b = c = 0
+	reg_eq = re.compile('\s*([-+=]?)\s*([0-9\.]+)?\s*\*?\s*[xX](?:\s*\^\s*([0-2]+))?\s*')
+	eq_part = re.match(reg_eq, poly)
+	poly_len = 0
+	sign = 1
+	while (eq_part.group(0) is not None):
+		if (poly_len >= len(poly)):
+			break
+		eq_part = re.match(reg_eq, poly[poly_len:])
+		#print "eq_part : {}".format(eq_part.group(0))
+		if (eq_part is not None):
+			for i, elt in enumerate(eq_part.groups()):
+		#		print "i : {} elt : {}".format(i, elt)
+				if (i == 0 and (elt == '-' and side == 0) or (elt == '+' and side == 1)):
+					sign = -1
+				elif (i == 0):
+					sign = 1
+				if (i == 1):
+					tmp = float(elt) * sign
+				if (i == 2 and elt == '0'):
+					c += tmp
+				if (i == 2 and elt == '1'):
+					b += tmp
+				if (i == 2 and elt == '2'):
+					a += tmp
+		poly_len += len(eq_part.group(0))
 	return (a, b, c)
 
+def reduce_form(left_poly, right_poly):
+	a, b, c = get_coeffs(left_poly, 0)
+	a2, b2, c2 = get_coeffs(right_poly, 1)
+	a += a2
+	b += b2
+	c += c2
+	if (a > 0)
+		a_part = "{} * X^2".format(a)
+	if (a < 0)
+		a_part = "- {} * X^2".format(-a)
+"""	if (a >= 0 and b >= 0 and c >= 0):
+		reduced_poly = "{} * X^0 + {} * X^1 + {} * X^2 = 0".format(c, b, a)
+	if (a <= 0 and b >= 0 and c >= 0):
+		reduced_poly = "{} * X^0 + {} * X^1 - {} * X^2 = 0".format(c, b, -a)
+	if (a >= 0 and b <= 0 and c >= 0):
+		reduced_poly = "{} * X^0 - {} * X^1 + {} * X^2 = 0".format(c, -b, a)
+	if (a >= 0 and b >= 0 and c <= 0):
+		reduced_poly = "- {} * X^0 + {} * X^1 + {} * X^2 = 0".format(-c, b, a)
+	if (a <= 0 and b <= 0 and c >= 0):
+		reduced_poly = "{} * X^0 - {} * X^1 - {} * X^2 = 0".format(c, -b, -a)
+	if (a >= 0 and b <= 0 and c <= 0):
+		reduced_poly = "- {} * X^0 - {} * X^1 + {} * X^2 = 0".format(-c, -b, a)
+	if (a <= 0 and b <= 0 and c <= 0):
+		reduced_poly = "- {} * X^0 - {} * X^1 - {} * X^2 = 0".format(-c, -b, -a)"""
+	print reduced_poly
+	return (a, b, c)
+
+def parse(arg):
+	eq = check_valid_eq(arg)
+	if (eq is not None):
+		left_poly, right_poly = extract_right_left(eq)
+		#print left_poly
+		#print right_poly
+		a, b, c = reduce_form(left_poly, right_poly)
+		return (1, a, b, c)
+	else:
+		return (0, 0, 0, 0)
 
 
 
-def solve():
+
+def solve(a, b, c):
 	if a == 0 and b != 0:
 		x = -c / b
 		print "\033[90mx = {}\033[39m ".format(x)
@@ -60,7 +116,8 @@ def solve():
 
 if (len(argv) == 2):
 	arg = argv[1]
-	if parse(arg) == 1:
-		solve()
+	is_ok, a, b, c = parse(arg)
+	if is_ok == 1:
+		solve(a, b, c)
 else:
 	print "Wrong number of parameters."
